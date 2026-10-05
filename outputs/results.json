@@ -1,0 +1,797 @@
+{
+  "snapshot": "2026-06-29",
+  "snapshot_start": "2026-06-17",
+  "raw_listings": 20573,
+  "raw_calendar_rows": 7509145,
+  "raw_station_rows": 1074,
+  "raw_stations_unique": 351,
+  "price_trim": [
+    64.73,
+    2979.4
+  ],
+  "clean_listings": 15686,
+  "stations_sydney": 249,
+  "entrances_sydney": 836,
+  "median_dist_station_m": 819,
+  "share_within_500m": 33.0,
+  "share_within_1km": 56.1,
+  "calendar_match_share": 100.0,
+  "popular_threshold_nights": 120.0,
+  "popular_n": 4088,
+  "rho_occ_calendar": 0.11,
+  "rho_occ_reviews_ltm": 0.99,
+  "q1": {
+    "Popular (top 25%)": {
+      "Listings": 4088.0,
+      "Median price (AUD)": 285.84,
+      "Median guests": 4.0,
+      "Median bedrooms": 1.0,
+      "Median minimum nights": 1.0,
+      "Median amenities": 44.0,
+      "Mean rating (5+ reviews)": 4.81,
+      "Superhost %": 62.77,
+      "Entire home %": 87.13,
+      "Commercial host (10+) %": 29.75,
+      "Median distance to station (m)": 632.82,
+      "Within 500 m of station %": 40.58,
+      "Median days available (365)": 172.0,
+      "Median 90-day unavailable %": 35.56
+    },
+    "Other listings": {
+      "Listings": 11598.0,
+      "Median price (AUD)": 320.5,
+      "Median guests": 4.0,
+      "Median bedrooms": 2.0,
+      "Median minimum nights": 2.0,
+      "Median amenities": 38.0,
+      "Mean rating (5+ reviews)": 4.72,
+      "Superhost %": 29.1,
+      "Entire home %": 77.97,
+      "Commercial host (10+) %": 40.64,
+      "Median distance to station (m)": 912.61,
+      "Within 500 m of station %": 30.29,
+      "Median days available (365)": 179.0,
+      "Median 90-day unavailable %": 24.44
+    }
+  },
+  "q1_occ_by_minnights": {
+    "1": 60.0,
+    "2": 54.0,
+    "3": 30.0,
+    "4-7": 14.0,
+    "8-30": 8.0
+  },
+  "q1_occ_by_rating": {
+    "<4.5": 48.0,
+    "4.5-4.7": 84.0,
+    "4.7-4.8": 90.0,
+    "4.8-4.9": 112.0,
+    "4.9-5.0": 90.0
+  },
+  "q1_occ_superhost": {
+    "0": 24.0,
+    "1": 102.0
+  },
+  "q1_property_mix": {
+    "Other %": {
+      "Entire rental unit": 46.6,
+      "Entire home": 21.7,
+      "Other": 11.5,
+      "Private room in home": 11.8,
+      "Entire guesthouse": 1.9,
+      "Entire condo": 2.1,
+      "Private room in rental unit": 4.4
+    },
+    "Popular %": {
+      "Entire rental unit": 54.2,
+      "Entire home": 15.4,
+      "Other": 15.0,
+      "Private room in home": 5.5,
+      "Entire guesthouse": 4.7,
+      "Entire condo": 2.6,
+      "Private room in rental unit": 2.6
+    }
+  },
+  "q2_n_rated": 11026,
+  "q2_spearman_price": {
+    "Rating": 0.216,
+    "Accuracy": 0.19,
+    "Cleanliness": 0.142,
+    "Checkin": 0.142,
+    "Communication": 0.159,
+    "Location": 0.352,
+    "Value": 0.058
+  },
+  "q2_rho_overall": 0.216,
+  "q2_p_overall": 1.0286777168579131e-116,
+  "q2_by_room": {
+    "Entire home/apt": {
+      "n": 9058,
+      "rho": 0.16,
+      "p": 7.001068327441069e-53
+    },
+    "Private room": {
+      "n": 1914,
+      "rho": 0.207,
+      "p": 5.712265822460488e-20
+    }
+  },
+  "q2_kruskal_p": 1.0757929691090097e-131,
+  "q2_deciles": {
+    "price_decile": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10
+    ],
+    "price_median": [
+      103.0,
+      160.0,
+      205.41,
+      246.0,
+      285.5,
+      325.24,
+      375.0,
+      435.75,
+      553.47,
+      910.5
+    ],
+    "rating_mean": [
+      4.583,
+      4.717,
+      4.741,
+      4.758,
+      4.756,
+      4.763,
+      4.77,
+      4.782,
+      4.799,
+      4.848
+    ],
+    "value_mean": [
+      4.573,
+      4.666,
+      4.674,
+      4.677,
+      4.671,
+      4.67,
+      4.671,
+      4.68,
+      4.694,
+      4.703
+    ],
+    "location_mean": [
+      4.642,
+      4.795,
+      4.821,
+      4.837,
+      4.846,
+      4.859,
+      4.865,
+      4.876,
+      4.891,
+      4.911
+    ],
+    "share_below_45": [
+      30.929,
+      15.818,
+      12.941,
+      11.202,
+      10.354,
+      10.063,
+      9.891,
+      8.514,
+      8.265,
+      4.261
+    ]
+  },
+  "q2_linear_r2": 0.0583,
+  "q2_quad_r2": 0.0618,
+  "q2_linear_slope": 0.0948,
+  "q3_lga_n": 37,
+  "q3_lga_top_price": {
+    "Pittwater": {
+      "listings": 673,
+      "median_price": 702.0,
+      "median_occupancy": 18.0
+    },
+    "Manly": {
+      "listings": 665,
+      "median_price": 418.4,
+      "median_occupancy": 48.0
+    },
+    "Woollahra": {
+      "listings": 405,
+      "median_price": 409.5,
+      "median_occupancy": 42.0
+    },
+    "Mosman": {
+      "listings": 178,
+      "median_price": 403.7,
+      "median_occupancy": 40.0
+    },
+    "Warringah": {
+      "listings": 617,
+      "median_price": 377.0,
+      "median_occupancy": 30.0
+    }
+  },
+  "q3_lga_bottom_price": {
+    "Canterbury": {
+      "listings": 129,
+      "median_price": 202.3,
+      "median_occupancy": 42.0
+    },
+    "Burwood": {
+      "listings": 178,
+      "median_price": 201.1,
+      "median_occupancy": 42.0
+    },
+    "Holroyd": {
+      "listings": 84,
+      "median_price": 181.2,
+      "median_occupancy": 30.0
+    },
+    "Bankstown": {
+      "listings": 230,
+      "median_price": 160.0,
+      "median_occupancy": 42.0
+    },
+    "Hurstville": {
+      "listings": 106,
+      "median_price": 127.3,
+      "median_occupancy": 22.0
+    }
+  },
+  "q3_lga_top_occ": {
+    "Sydney": {
+      "listings": 4008,
+      "median_price": 310.5,
+      "median_occupancy": 72.0
+    },
+    "Sutherland Shire": {
+      "listings": 415,
+      "median_price": 335.0,
+      "median_occupancy": 66.0
+    },
+    "Marrickville": {
+      "listings": 376,
+      "median_price": 238.4,
+      "median_occupancy": 66.0
+    },
+    "North Sydney": {
+      "listings": 633,
+      "median_price": 337.0,
+      "median_occupancy": 60.0
+    },
+    "Leichhardt": {
+      "listings": 309,
+      "median_price": 276.3,
+      "median_occupancy": 60.0
+    }
+  },
+  "q3_sydney_lga_share": 25.6,
+  "q3_top5_lga_share": 47.3,
+  "q3_kw_price_p": 0.0,
+  "q3_kw_occ_p": 8.146563807900238e-92,
+  "q3_lga_price_occ_rho": 0.13,
+  "q3_bands": {
+    "transit_band": [
+      "<500 m",
+      "500 m-1 km",
+      "1-2 km",
+      ">2 km"
+    ],
+    "listings": [
+      5172,
+      3622,
+      2462,
+      4430
+    ],
+    "median_price": [
+      297.41,
+      281.94,
+      285.14,
+      388.0
+    ],
+    "median_occupancy": [
+      60.0,
+      48.0,
+      40.0,
+      40.0
+    ],
+    "mean_location_score": [
+      4.82,
+      4.76,
+      4.77,
+      4.87
+    ],
+    "entire_home_pct": [
+      80.59,
+      75.48,
+      72.99,
+      88.17
+    ],
+    "median_dist_cbd_km": [
+      2.93,
+      5.53,
+      7.24,
+      11.82
+    ],
+    "unavailable_90d": [
+      0.32,
+      0.29,
+      0.26,
+      0.23
+    ]
+  },
+  "q3_rho_dist_price": 0.18,
+  "q3_rho_dist_estimated_occupancy_l365d": -0.118,
+  "q3_rho_dist_review_scores_location": 0.113,
+  "q3_rho_cbd_price": -0.041,
+  "q3_rho_cbd_station": 0.543,
+  "a3_premium": {
+    "Model": [
+      "Raw",
+      "Raw",
+      "Raw",
+      "+ Structure",
+      "+ Structure",
+      "+ Structure",
+      "+ Structure + location",
+      "+ Structure + location",
+      "+ Structure + location"
+    ],
+    "Band": [
+      "<500 m",
+      "500 m-1 km",
+      "1-2 km",
+      "<500 m",
+      "500 m-1 km",
+      "1-2 km",
+      "<500 m",
+      "500 m-1 km",
+      "1-2 km"
+    ],
+    "Premium %": [
+      -30.1903,
+      -35.5408,
+      -32.2603,
+      -12.5491,
+      -17.6203,
+      -17.1161,
+      2.2863,
+      -2.2352,
+      -2.1651
+    ],
+    "CI low %": [
+      -32.0572,
+      -37.4702,
+      -34.6861,
+      -14.0809,
+      -19.1808,
+      -18.9636,
+      -0.3385,
+      -4.7404,
+      -4.6018
+    ],
+    "CI high %": [
+      -28.2721,
+      -33.5519,
+      -29.7443,
+      -10.99,
+      -16.0297,
+      -15.2264,
+      4.9802,
+      0.3358,
+      0.334
+    ],
+    "p": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0883,
+      0.0878,
+      0.089
+    ],
+    "R2": [
+      0.0677,
+      0.0677,
+      0.0677,
+      0.6343,
+      0.6343,
+      0.6343,
+      0.7001,
+      0.7001,
+      0.7001
+    ]
+  },
+  "a3_adj_premium_500": 2.29,
+  "a3_adj_premium_500_ci": [
+    -0.34,
+    4.98
+  ],
+  "a3_adj_premium_500_dollars": 7.12,
+  "median_price": 311.5,
+  "a3_raw_premium_500": -30.19,
+  "a3_r2": {
+    "Raw": 0.068,
+    "+ Structure": 0.634,
+    "+ Structure + location": 0.7
+  },
+  "a3_occ_500_nights": 4.79,
+  "a3_occ_500_p": 0.03765105142935667,
+  "a3_occ_500_ci": [
+    0.27,
+    9.31
+  ],
+  "a3_host_tier": {
+    "host_tier": [
+      "Single (1)",
+      "Small multi (2-9)",
+      "Commercial (10+)"
+    ],
+    "listings": [
+      5011,
+      4746,
+      5929
+    ],
+    "hosts": [
+      5011,
+      1604,
+      259
+    ],
+    "median_price": [
+      331.0,
+      279.59,
+      319.53
+    ],
+    "median_occupancy": [
+      54.0,
+      54.0,
+      36.0
+    ],
+    "median_availability": [
+      171.0,
+      189.0,
+      176.0
+    ],
+    "median_min_nights": [
+      2.0,
+      2.0,
+      2.0
+    ],
+    "superhost_pct": [
+      40.132,
+      45.112,
+      30.174
+    ],
+    "entire_home_pct": [
+      89.144,
+      71.702,
+      79.862
+    ],
+    "median_dist_station_m": [
+      1464.777,
+      794.08,
+      625.46
+    ],
+    "within_500m_pct": [
+      22.411,
+      34.345,
+      40.799
+    ],
+    "median_dist_cbd_km": [
+      8.662,
+      7.171,
+      6.369
+    ],
+    "sydney_lga_pct": [
+      16.923,
+      26.359,
+      32.198
+    ],
+    "listing_share_pct": [
+      31.946,
+      30.256,
+      37.798
+    ],
+    "mean_rating_5plus": [
+      4.854,
+      4.758,
+      4.65
+    ],
+    "below_4_5_pct": [
+      3.586,
+      10.75,
+      21.674
+    ]
+  },
+  "a3_host_subscores": {
+    "Single (1)": {
+      "Rating": 4.854,
+      "Accuracy": 4.871,
+      "Cleanliness": 4.814,
+      "Checkin": 4.906,
+      "Communication": 4.933,
+      "Location": 4.883,
+      "Value": 4.766
+    },
+    "Small multi (2-9)": {
+      "Rating": 4.758,
+      "Accuracy": 4.787,
+      "Cleanliness": 4.727,
+      "Checkin": 4.843,
+      "Communication": 4.869,
+      "Location": 4.832,
+      "Value": 4.686
+    },
+    "Commercial (10+)": {
+      "Rating": 4.65,
+      "Accuracy": 4.7,
+      "Cleanliness": 4.609,
+      "Checkin": 4.772,
+      "Communication": 4.796,
+      "Location": 4.791,
+      "Value": 4.559
+    }
+  },
+  "a3_host_tests": {
+    "rating_kw_p": 0.0,
+    "rating_mw_p": 8.224477746387249e-308,
+    "dist_mw_p": 2.280141387456143e-197,
+    "rating_rank_biserial": 0.49822767055410755,
+    "near_station_chi2_p": 3.245718032129054e-92,
+    "rating_gap_adj": -0.16942005999356757,
+    "rating_gap_adj_ci": [
+      -0.1797,
+      -0.1591
+    ],
+    "rating_gap_adj_p": 5.030228869527542e-227
+  },
+  "ml_train_n": 12548,
+  "ml_test_n": 3138,
+  "m1_alpha": 1.0,
+  "m1_cv_rmse_log": 0.3587,
+  "m1": {
+    "Model": "Model 1: Ridge",
+    "R2 (log price)": 0.7316,
+    "RMSE (AUD)": 235.5027,
+    "MAE (AUD)": 118.9256,
+    "MAPE %": 27.1245
+  },
+  "m1_train_r2": 0.732,
+  "m1_noT": {
+    "Model": "Ridge without rail features",
+    "R2 (log price)": 0.731,
+    "RMSE (AUD)": 235.5155,
+    "MAE (AUD)": 118.9411,
+    "MAPE %": 27.1603
+  },
+  "m1_coef_rail": {
+    "log_dist_station": 0.0046,
+    "stations_within_1km": 0.031
+  },
+  "m1_top_coefs": {
+    "neighbourhood_cleansed_Camden": 0.5471,
+    "room_type_infrequent_sklearn": -0.5458,
+    "room_type_Entire home/apt": 0.3502,
+    "neighbourhood_cleansed_Campbelltown": 0.3382,
+    "neighbourhood_cleansed_Penrith": 0.3318,
+    "neighbourhood_cleansed_Ku-Ring-Gai": -0.2645,
+    "neighbourhood_cleansed_Sutherland Shire": 0.2606,
+    "neighbourhood_cleansed_Liverpool": 0.2398,
+    "longitude": 0.2047,
+    "property_group_Private room in home": -0.2032,
+    "bedrooms": 0.1935,
+    "neighbourhood_cleansed_Willoughby": -0.1886
+  },
+  "m1_top_nonlga": {
+    "room_type_infrequent_sklearn": -0.5458,
+    "room_type_Entire home/apt": 0.3502,
+    "longitude": 0.2047,
+    "property_group_Private room in home": -0.2032,
+    "bedrooms": 0.1935,
+    "property_group_Entire home": 0.1682,
+    "room_type_Hotel room": 0.1274,
+    "accommodates": 0.1246,
+    "latitude": 0.0977,
+    "property_group_Private room in rental unit": -0.0826,
+    "room_type_Private room": 0.0682,
+    "number_of_reviews": -0.0623
+  },
+  "m1_coef_cbd": -0.0288,
+  "m2_k_table": {
+    "k": [
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10
+    ],
+    "inertia": [
+      72852.7183,
+      57290.8742,
+      47703.1652,
+      42668.8678,
+      38697.0384,
+      35780.4685,
+      33404.7504,
+      31421.0424,
+      29633.2686
+    ],
+    "silhouette": [
+      0.3079,
+      0.3192,
+      0.2587,
+      0.2161,
+      0.2313,
+      0.2195,
+      0.2127,
+      0.2177,
+      0.2249
+    ]
+  },
+  "m2_k": 4,
+  "m2_silhouette": 0.2587,
+  "m2_profiles": {
+    "cluster": [
+      3,
+      1,
+      2,
+      0
+    ],
+    "segment": [
+      "City-core high-turnover",
+      "Inner-ring low-utilisation",
+      "Coastal premium, rail-remote",
+      "Outer-suburban budget"
+    ],
+    "listings": [
+      3520,
+      7726,
+      2183,
+      2257
+    ],
+    "median_price": [
+      278.3,
+      326.0,
+      502.2,
+      203.5
+    ],
+    "median_occupancy": [
+      186.0,
+      24.0,
+      30.0,
+      36.0
+    ],
+    "median_revenue": [
+      51333.0,
+      7337.0,
+      15180.0,
+      6300.0
+    ],
+    "median_dist_station_m": [
+      513.5,
+      669.0,
+      9584.9,
+      1116.8
+    ],
+    "median_dist_cbd_km": [
+      3.6,
+      5.7,
+      15.4,
+      25.9
+    ],
+    "entire_home_pct": [
+      85.6,
+      80.5,
+      94.5,
+      58.0
+    ],
+    "mean_rating": [
+      4.8,
+      4.7,
+      4.8,
+      4.6
+    ],
+    "top_lga": [
+      "Sydney, Waverley",
+      "Sydney, Waverley",
+      "Pittwater, Manly",
+      "Parramatta, Blacktown"
+    ]
+  },
+  "m3_search_seconds": 87.0,
+  "m3_params": {
+    "subsample": 0.9,
+    "reg_lambda": 3,
+    "n_estimators": 800,
+    "min_child_weight": 1,
+    "max_depth": 6,
+    "learning_rate": 0.03,
+    "colsample_bytree": 0.6
+  },
+  "m3_cv_rmse_log": 0.3093,
+  "m3": {
+    "Model": "Model 3: XGBoost",
+    "R2 (log price)": 0.8059,
+    "RMSE (AUD)": 198.1792,
+    "MAE (AUD)": 99.9734,
+    "MAPE %": 22.664
+  },
+  "m3_train_r2": 0.9057,
+  "m3_noT": {
+    "Model": "XGBoost without rail features",
+    "R2 (log price)": 0.8045,
+    "RMSE (AUD)": 198.3849,
+    "MAE (AUD)": 100.1883,
+    "MAPE %": 22.7007
+  },
+  "m3_shap_mean_abs": {
+    "bedrooms": 0.18029999732971191,
+    "accommodates": 0.13740000128746033,
+    "room_type": 0.12160000205039978,
+    "longitude": 0.10830000042915344,
+    "bathrooms": 0.05380000174045563,
+    "property_group": 0.047600001096725464,
+    "dist_to_cbd_km": 0.03709999844431877,
+    "amenities_count": 0.03480000048875809,
+    "number_of_reviews": 0.0333000011742115,
+    "review_scores_location": 0.03310000151395798,
+    "latitude": 0.03220000118017197,
+    "minimum_nights": 0.03009999915957451,
+    "availability_365": 0.02969999983906746,
+    "review_scores_rating": 0.027699999511241913,
+    "calculated_host_listings_count": 0.027400000020861626,
+    "neighbourhood_cleansed": 0.02239999920129776,
+    "beds": 0.019600000232458115,
+    "bath_shared": 0.01940000057220459,
+    "dist_to_nearest_station_m": 0.014299999922513962,
+    "superhost": 0.006500000134110451,
+    "stations_within_1km": 0.004600000102072954
+  },
+  "m3_shap_rail_share_pct": 1.9,
+  "m3_shap_rail_rank": 19,
+  "m3_shap_dist_band_pct": {
+    "<250 m": -0.05,
+    "250-500 m": -0.49,
+    "500 m-1 km": -0.21,
+    "1-2 km": -0.58,
+    "2-5 km": -0.09,
+    ">5 km": 3.37
+  },
+  "ml_err_by_band": {
+    "Ridge MAPE %": {
+      "Q1 (cheapest)": 34.96,
+      "Q2": 23.48,
+      "Q3": 19.96,
+      "Q4 (dearest)": 30.1
+    },
+    "XGBoost MAPE %": {
+      "Q1 (cheapest)": 26.46,
+      "Q2": 19.81,
+      "Q3": 18.32,
+      "Q4 (dearest)": 26.07
+    },
+    "XGBoost bias %": {
+      "Q1 (cheapest)": 20.7,
+      "Q2": 10.81,
+      "Q3": -0.37,
+      "Q4 (dearest)": -12.51
+    }
+  }
+}
