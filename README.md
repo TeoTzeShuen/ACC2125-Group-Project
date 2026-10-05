@@ -93,4 +93,4 @@ Inside Airbnb's occupancy and revenue figures are model estimates built from rev
 
 ## Academic use
 
-This was prepared for coursework at the Singapore Institute of Technology. If you are a student on this module, follow your institution's academic integrity policy before reusing any of it.
+This was prepared for coursework at the Singapore Institute of Technology. Follow your institution's academic integrity policy before reusing any of it.
