@@ -33,8 +33,6 @@ Investors often assume that short-term rental listings near train stations earn 
 | `outputs/` | Data Decisions Log, model comparison and `results.json` with every headline number (written by the notebook). |
 | `scripts/` | Build scripts. `build_notebook.py` regenerates and executes the notebook from `notebook_source.txt`; `build_report.py` and `build_slides.py` build the Word report and slides from the notebook outputs. |
 
-The Word report and slide deck are submission files and are not tracked in this repository. The course brief PDF and raw `data/` folder are also not tracked.
-
 ## Data you need to download
 
 The notebook reads three raw files from a `data/` folder in the project root. The raw Inside Airbnb files are **not** included in this repository.
