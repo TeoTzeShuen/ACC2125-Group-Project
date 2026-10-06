@@ -26,21 +26,21 @@ Investors often assume that short-term rental listings near train stations earn 
 
 | Path | Description |
 |---|---|
-| `Code_GroupXX.ipynb` | The full analysis notebook (Parts A1–A3 and B). Includes the Data Decisions Log. |
-| `External01_GroupXX.csv` | Rail, Metro and light-rail station entrances with mode, off-peak frequency and rail travel time to the CBD and airport, derived from the TfNSW GTFS timetable by the notebook. |
-| `External02_GroupXX.csv` | TfNSW station entries and exits (monthly, Oct 2024 – Aug 2026). |
-| `External03_GroupXX.csv` | ABS SEIFA 2021 indexes for NSW SA2s (extracted by the notebook from the ABS workbook). |
-| `External04_GroupXX.csv` | OpenStreetMap beaches and tourist attractions in the Sydney window. |
-| `External05_GroupXX.csv` | TfNSW train station entrances (2020, v4), kept as a comparison with the current network. |
-| `Data01_GroupXX.csv` | Cleaned listings with engineered rail features (written by the notebook). |
-| `Data02_GroupXX.csv` | 90-day forward calendar availability per listing (written by the notebook). |
+| `Code_Group09.ipynb` | The full analysis notebook (Parts A1–A3 and B). Includes the Data Decisions Log. |
+| `External01_Group09.csv` | Rail, Metro and light-rail station entrances with mode, off-peak frequency and rail travel time to the CBD and airport, derived from the TfNSW GTFS timetable by the notebook. |
+| `External02_Group09.csv` | TfNSW station entries and exits (monthly, Oct 2024 – Aug 2026). |
+| `External03_Group09.csv` | ABS SEIFA 2021 indexes for NSW SA2s (extracted by the notebook from the ABS workbook). |
+| `External04_Group09.csv` | OpenStreetMap beaches and tourist attractions in the Sydney window. |
+| `External05_Group09.csv` | TfNSW train station entrances (2020, v4), kept as a comparison with the current network. |
+| `Data01_Group09.csv` | Cleaned listings with engineered rail features (written by the notebook). |
+| `Data02_Group09.csv` | 90-day forward calendar availability per listing (written by the notebook). |
 | `figures/` | Charts at 300 DPI (written by the notebook). |
 | `outputs/` | Data Decisions Log, model comparison and `results.json` with every headline number (written by the notebook). |
 | `scripts/` | Build scripts. `build_notebook.py` regenerates and executes the notebook from `notebook_source.txt`; `fetch_osm.py` downloads the OpenStreetMap inputs; `build_report.py` and `build_slides.py` build the Word report and slides from the notebook outputs (their text still describes the first draft and needs updating). |
 
 ## Data you need to download
 
-The notebook reads raw files from a `data/` folder in the project root, plus the TfNSW GTFS feed in `tfNSW GTFS/`. None of these are included in this repository (they are large or redistributable only from source). The submitted `External0X_GroupXX.csv` files are included, and once they exist the notebook reads them instead of rebuilding them, so the GTFS feed and the SEIFA workbook are needed only to rebuild External01 and External03.
+The notebook reads raw files from a `data/` folder in the project root, plus the TfNSW GTFS feed in `tfNSW GTFS/`. None of these are included in this repository (they are large or redistributable only from source). The submitted `External0X_Group09.csv` files are included, and once they exist the notebook reads them instead of rebuilding them, so the GTFS feed and the SEIFA workbook are needed only to rebuild External01 and External03.
 
 ### 1. Inside Airbnb: Sydney (required)
 
@@ -77,8 +77,8 @@ Run `python scripts/fetch_osm.py` once from the project root. It downloads beach
 
 ```
 .
-├── Code_GroupXX.ipynb
-├── External01_GroupXX.csv … External05_GroupXX.csv
+├── Code_Group09.ipynb
+├── External01_Group09.csv … External05_Group09.csv
 ├── tfNSW GTFS/                      (only to rebuild External01)
 └── data/
     ├── listings.csv.gz
@@ -100,7 +100,7 @@ pip install pandas numpy scipy matplotlib seaborn geopandas statsmodels scikit-l
 
 (`osmnx` is only needed for `scripts/fetch_osm.py`; `python-docx`, `python-pptx`, `nbformat` and `nbclient` only for the other build scripts.)
 
-Open `Code_GroupXX.ipynb` in Jupyter or VS Code with a Python 3.14 kernel and run all cells from the project folder. A full run takes about 6 minutes (the two XGBoost searches are the slowest step; the first run also converts the walking network to a compact cache). The notebook creates `figures/` and `outputs/` and overwrites `Data01_GroupXX.csv` and `Data02_GroupXX.csv`. Random seeds are fixed (42) so results are reproducible with the same data and library versions.
+Open `Code_Group09.ipynb` in Jupyter or VS Code with a Python 3.14 kernel and run all cells from the project folder. A full run takes about 6 minutes (the two XGBoost searches are the slowest step; the first run also converts the walking network to a compact cache). The notebook creates `figures/` and `outputs/` and overwrites `Data01_Group09.csv` and `Data02_Group09.csv`. Random seeds are fixed (42) so results are reproducible with the same data and library versions.
 
 ## Attributions and licences
 

@@ -1,7 +1,7 @@
 """Download the OpenStreetMap inputs the notebook needs (run once from the project root).
 
 1. Points of interest (beaches and tourist attractions) inside the Sydney listings window
-   -> data/osm/osm_pois_raw.csv (cleaned into External04_GroupXX.csv by the notebook)
+   -> data/osm/osm_pois_raw.csv (cleaned into External04_Group09.csv by the notebook)
 2. The pedestrian street network within 2.5 km of every rail station
    -> data/osm/sydney_walk.graphml (used for walking distances to station entrances)
 

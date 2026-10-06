@@ -1,21 +1,21 @@
 # %% [markdown]
 # # ACC2125 Group Project — Sydney Short-Term Rentals and Rail Access
 #
-# **Group:** GroupXX
+# **Group:** Group09
 # **City / snapshot:** Sydney, New South Wales, Australia — Inside Airbnb snapshot scraped 17–29 June 2026 (main sample) and 21 March 2026 (cross-season check)
 # **External datasets** (all CC BY 4.0 or ODbL, see `README.md` for full citations):
 #
 # | File | Source | Used for |
 # |---|---|---|
-# | `External01_GroupXX.csv` | Transport for NSW, *Timetables Complete GTFS* (timetable from 6 Oct 2026) | Station entrances, mode, rail travel time to the CBD and airport, service frequency |
-# | `External02_GroupXX.csv` | Transport for NSW, *Train, Metro and Light Rail Station Entries and Exits* (Oct 2024 – Aug 2026) | Station patronage |
-# | `External03_GroupXX.csv` | Australian Bureau of Statistics, *SEIFA 2021* by Statistical Area Level 2 (SA2) | Neighbourhood socio-economic advantage; SA2 areas for fine location controls |
-# | `External04_GroupXX.csv` | OpenStreetMap contributors (Overpass API), beaches and tourist attractions | Distance to the nearest beach, attractions within 1 km |
-# | `External05_GroupXX.csv` | Transport for NSW, *Train station entrance locations* (2020, v4) | Sensitivity check: what the 2020 network misses |
+# | `External01_Group09.csv` | Transport for NSW, *Timetables Complete GTFS* (timetable from 6 Oct 2026) | Station entrances, mode, rail travel time to the CBD and airport, service frequency |
+# | `External02_Group09.csv` | Transport for NSW, *Train, Metro and Light Rail Station Entries and Exits* (Oct 2024 – Aug 2026) | Station patronage |
+# | `External03_Group09.csv` | Australian Bureau of Statistics, *SEIFA 2021* by Statistical Area Level 2 (SA2) | Neighbourhood socio-economic advantage; SA2 areas for fine location controls |
+# | `External04_Group09.csv` | OpenStreetMap contributors (Overpass API), beaches and tourist attractions | Distance to the nearest beach, attractions within 1 km |
+# | `External05_Group09.csv` | Transport for NSW, *Train station entrance locations* (2020, v4) | Sensitivity check: what the 2020 network misses |
 #
 # Supporting geometry (not submitted as data files): ABS ASGS Edition 3 SA2 boundaries (2021, GDA2020) and the OpenStreetMap pedestrian network, used only to assign SA2 codes and to measure walking distances.
 #
-# This notebook reproduces every number, table and figure used in `Report_GroupXX.docx` and `Slides_GroupXX.pptx`. Run it top to bottom from the project folder. Figures are written to `figures/` at 300 DPI and headline numbers to `outputs/results.json`.
+# This notebook reproduces every number, table and figure used in `Report_Group09.docx` and `Slides_Group09.pptx`. Run it top to bottom from the project folder. Figures are written to `figures/` at 300 DPI and headline numbers to `outputs/results.json`.
 #
 # Structure:
 # - **Part A1** – data selection, external-data integration and the Data Decisions Log
@@ -49,7 +49,7 @@ pd.set_option("display.width", 160)
 
 DATA = Path("data")                         # raw Inside Airbnb files and supporting geometry (not submitted)
 GTFS = Path("tfNSW GTFS")                   # raw TfNSW GTFS feed (1.4 GB, not submitted; External01 is derived from it)
-EXT = {i: Path(f"External0{i}_GroupXX.csv") for i in range(1, 6)}
+EXT = {i: Path(f"External0{i}_Group09.csv") for i in range(1, 6)}
 FIG = Path("figures"); FIG.mkdir(exist_ok=True)
 OUT = Path("outputs"); OUT.mkdir(exist_ok=True)
 SEED = 42
@@ -224,10 +224,10 @@ RESULTS["clean_listings"] = len(df)
 RESULTS["clean_listings_mar"] = len(df_mar)
 
 # %% [markdown]
-# ### A1.3 External data 1 – Transport for NSW GTFS timetable → `External01_GroupXX.csv`
+# ### A1.3 External data 1 – Transport for NSW GTFS timetable → `External01_Group09.csv`
 # The 2020 station-entrance file used in our first draft misses every station opened since 2020: Sydney Metro City & Southwest (Crows Nest, Victoria Cross, Barangaroo, Martin Place, Gadigal, Waterloo; Aug 2024), the Metro conversion of the Bankstown line, and Parramatta Light Rail (Dec 2024). Listings near those stations were wrongly recorded as far from rail.
 #
-# We therefore rebuild the station layer from TfNSW's current GTFS timetable (the open standard transit agencies use to publish stops and schedules). The raw feed is 1.4 GB, so the cell below condenses it into one row per station entrance and saves that as `External01_GroupXX.csv`; later runs read the CSV. For every rail, Metro and light-rail station we derive:
+# We therefore rebuild the station layer from TfNSW's current GTFS timetable (the open standard transit agencies use to publish stops and schedules). The raw feed is 1.4 GB, so the cell below condenses it into one row per station entrance and saves that as `External01_Group09.csv`; later runs read the CSV. For every rail, Metro and light-rail station we derive:
 # - **Entrance locations** from the GTFS *pathways* extension (the station point where no entrance is mapped).
 # - **Mode** – Train (Sydney Trains / NSW TrainLink), Metro, or Light rail.
 # - **Off-peak frequency** – scheduled departures per hour between 10:00 and 16:00 on a typical weekday (Wednesday 7 October 2026).
@@ -335,7 +335,7 @@ stations_raw.head()
 # %%
 # External02: station patronage
 if not EXT[2].exists():
-    raise FileNotFoundError("Save the TfNSW entries/exits CSV as External02_GroupXX.csv")
+    raise FileNotFoundError("Save the TfNSW entries/exits CSV as External02_Group09.csv")
 ee = pd.read_csv(EXT[2])
 ee["month"] = pd.to_datetime(ee["MonthYear"])
 ee["trips"] = pd.to_numeric(ee["Trip"].replace("Less than 50", 25), errors="coerce")
@@ -578,8 +578,8 @@ export_cols = ["id", "name", "host_id", "host_tier", "calculated_host_listings_c
                "nearest_station", "nearest_mode", "nearest_has_metro", "services_per_hour", "monthly_entries_exits",
                "rail_mins_to_cbd", "rail_mins_to_airport", "door_to_cbd_min", "stations_within_1km",
                "transit_band", "near_station", "dist_to_cbd_km", "cbd_ring", "dist_to_beach_km", "attractions_1km"]
-df[export_cols].to_csv("Data01_GroupXX.csv", index=False)
-cal_sum.to_csv("Data02_GroupXX.csv", index=False)
+df[export_cols].to_csv("Data01_Group09.csv", index=False)
+cal_sum.to_csv("Data02_Group09.csv", index=False)
 with pd.option_context("display.max_colwidth", None):
     display(decisions)
 

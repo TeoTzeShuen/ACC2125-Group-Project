@@ -1,4 +1,4 @@
-"""Build Report_GroupXX.docx from the notebook outputs (outputs/results.json, outputs/*.csv, figures/*.png).
+"""Build Report_Group09.docx from the notebook outputs (outputs/results.json, outputs/*.csv, figures/*.png).
 
 Every number in the report is read from the files the notebook writes, so the report always matches the code.
 """
@@ -17,7 +17,7 @@ from docx.shared import Cm, Pt, RGBColor
 ROOT = Path(__file__).resolve().parent.parent
 R = json.loads((ROOT / "outputs" / "results.json").read_text())
 FIG = ROOT / "figures"
-GROUP = "GroupXX"
+GROUP = "Group09"
 
 NAVY = RGBColor(0x10, 0x42, 0x81)
 INK = RGBColor(0x0B, 0x0B, 0x0B)

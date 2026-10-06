@@ -1,4 +1,4 @@
-"""Convert scripts/notebook_source.txt into Code_GroupXX.ipynb and execute it in place."""
+"""Convert scripts/notebook_source.txt into Code_Group09.ipynb and execute it in place."""
 import sys
 from pathlib import Path
 import nbformat
@@ -19,7 +19,7 @@ for block in src.split("# %%")[1:]:
 
 nb = nbformat.v4.new_notebook(cells=cells)
 nb.metadata["kernelspec"] = {"name": "python3", "display_name": "Python 3", "language": "python"}
-out = ROOT / "Code_GroupXX.ipynb"
+out = ROOT / "Code_Group09.ipynb"
 if "--no-run" not in sys.argv:
     NotebookClient(nb, timeout=1800, kernel_name="python3", resources={"metadata": {"path": str(ROOT)}}).execute()
 nbformat.write(nb, out)

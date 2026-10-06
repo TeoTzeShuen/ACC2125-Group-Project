@@ -1,4 +1,4 @@
-"""Build Slides_GroupXX.pptx (16:9, 18 slides, ~20 minutes) from the notebook outputs.
+"""Build Slides_Group09.pptx (16:9, 18 slides, ~20 minutes) from the notebook outputs.
 
 Numbers come from outputs/results.json and outputs/model_comparison.csv; charts from figures/.
 Each slide carries speaker notes with the talking points and the key numbers.
@@ -18,7 +18,7 @@ ROOT = Path(__file__).resolve().parent.parent
 R = json.loads((ROOT / "outputs" / "results.json").read_text())
 CMP = pd.read_csv(ROOT / "outputs" / "model_comparison.csv").set_index("Model")
 FIG = ROOT / "figures"
-GROUP = "GroupXX"
+GROUP = "Group09"
 
 NAVY = RGBColor(0x10, 0x42, 0x81)
 BLUE = RGBColor(0x2A, 0x78, 0xD6)
