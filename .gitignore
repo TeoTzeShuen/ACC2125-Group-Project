@@ -3,3 +3,5 @@ data/
 Report_*.docx
 Slides_*.pptx
 __pycache__/
+tfNSW GTFS/
+.DS_Store

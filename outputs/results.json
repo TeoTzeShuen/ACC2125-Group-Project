@@ -1,20 +1,60 @@
 {
   "snapshot": "2026-06-29",
   "snapshot_start": "2026-06-17",
+  "snapshot_mar": "2026-03-21",
   "raw_listings": 20573,
+  "raw_listings_mar": 13563,
   "raw_calendar_rows": 7509145,
-  "raw_station_rows": 1074,
-  "raw_stations_unique": 351,
   "price_trim": [
     64.73,
     2979.4
   ],
   "clean_listings": 15686,
-  "stations_sydney": 249,
-  "entrances_sydney": 836,
-  "median_dist_station_m": 819,
-  "share_within_500m": 33.0,
-  "share_within_1km": 56.1,
+  "clean_listings_mar": 13194,
+  "raw_station_rows": 1001,
+  "raw_stations_unique": 422,
+  "patronage_months": [
+    "2025-09-01",
+    "2026-08-01"
+  ],
+  "stations_sydney": 254,
+  "entrances_sydney": 740,
+  "stations_by_mode": {
+    "Train": 186,
+    "Light rail": 52,
+    "Metro": 16
+  },
+  "patronage_match_pct": 99.2,
+  "walk_routed_pct": 99.9,
+  "walk_detour_factor": 1.343,
+  "median_dist_station_m": 1190,
+  "median_straight_dist_station_m": 801,
+  "share_within_500m": 22.9,
+  "share_within_1km": 44.9,
+  "share_within_500m_straight": 35.3,
+  "new_stations_since_2020": [
+    "Barangaroo Station",
+    "Benaud Oval Light Rail",
+    "Childrens Hospital Light Rail",
+    "Church Street Light Rail",
+    "Crows Nest Station",
+    "ES Marks Light Rail",
+    "Fennell Street Light Rail",
+    "Juniors Kingsford Light Rail",
+    "Kensington Light Rail",
+    "Kingsford Light Rail",
+    "Ngara Light Rail",
+    "Prince Alfred Square Light Rail",
+    "Robin Thomas Light Rail",
+    "Tramway Avenue Light Rail",
+    "UNSW Anzac Parade Light Rail",
+    "Victoria Cross Station",
+    "Waterloo Station",
+    "Westmead Hospital Light Rail"
+  ],
+  "listings_station_closer_than_2020": 1679,
+  "listings_nearest_new_station": 1786,
+  "share_within_500m_2020": 33.0,
   "calendar_match_share": 100.0,
   "popular_threshold_nights": 120.0,
   "popular_n": 4088,
@@ -32,8 +72,8 @@
       "Superhost %": 62.77,
       "Entire home %": 87.13,
       "Commercial host (10+) %": 29.75,
-      "Median distance to station (m)": 632.82,
-      "Within 500 m of station %": 40.58,
+      "Median walk to station (m)": 891.21,
+      "Within 500 m walk of station %": 28.82,
       "Median days available (365)": 172.0,
       "Median 90-day unavailable %": 35.56
     },
@@ -48,10 +88,39 @@
       "Superhost %": 29.1,
       "Entire home %": 77.97,
       "Commercial host (10+) %": 40.64,
-      "Median distance to station (m)": 912.61,
-      "Within 500 m of station %": 30.29,
+      "Median walk to station (m)": 1301.37,
+      "Within 500 m walk of station %": 20.8,
       "Median days available (365)": 179.0,
       "Median 90-day unavailable %": 24.44
+    }
+  },
+  "q1_robust": {
+    "Occupancy (reviews-based)": {
+      "Listings": 4088,
+      "Overlap with main definition %": 100.0,
+      "Superhost % (popular / other)": "63 / 29",
+      "Median min nights (popular / other)": "1 / 2",
+      "Median price (popular / other)": "$286 / $320",
+      "Within 500 m walk % (popular / other)": "29 / 21",
+      "Commercial host % (popular / other)": "30 / 41"
+    },
+    "Calendar: next 90 days unavailable": {
+      "Listings": 3931,
+      "Overlap with main definition %": 21.902823708979902,
+      "Superhost % (popular / other)": "37 / 38",
+      "Median min nights (popular / other)": "2 / 2",
+      "Median price (popular / other)": "$308 / $312",
+      "Within 500 m walk % (popular / other)": "22 / 23",
+      "Commercial host % (popular / other)": "32 / 40"
+    },
+    "Reviews in last 12 months": {
+      "Listings": 4132,
+      "Overlap with main definition %": 94.1674733785092,
+      "Superhost % (popular / other)": "62 / 29",
+      "Median min nights (popular / other)": "1 / 2",
+      "Median price (popular / other)": "$288 / $320",
+      "Within 500 m walk % (popular / other)": "29 / 21",
+      "Commercial host % (popular / other)": "31 / 40"
     }
   },
   "q1_occ_by_minnights": {
@@ -103,20 +172,20 @@
     "Value": 0.058
   },
   "q2_rho_overall": 0.216,
-  "q2_p_overall": 1.0286777168579131e-116,
+  "q2_p_overall": 1.028677716857932e-116,
   "q2_by_room": {
     "Entire home/apt": {
       "n": 9058,
       "rho": 0.16,
-      "p": 7.001068327441069e-53
+      "p": 7.001068327441023e-53
     },
     "Private room": {
       "n": 1914,
       "rho": 0.207,
-      "p": 5.712265822460488e-20
+      "p": 5.712265822460436e-20
     }
   },
-  "q2_kruskal_p": 1.0757929691090097e-131,
+  "q2_kruskal_p": 1.0757929691090099e-131,
   "q2_deciles": {
     "price_decile": [
       1,
@@ -265,21 +334,21 @@
       "median_price": 238.4,
       "median_occupancy": 66.0
     },
-    "North Sydney": {
-      "listings": 633,
-      "median_price": 337.0,
-      "median_occupancy": 60.0
-    },
     "Leichhardt": {
       "listings": 309,
       "median_price": 276.3,
+      "median_occupancy": 60.0
+    },
+    "North Sydney": {
+      "listings": 633,
+      "median_price": 337.0,
       "median_occupancy": 60.0
     }
   },
   "q3_sydney_lga_share": 25.6,
   "q3_top5_lga_share": 47.3,
   "q3_kw_price_p": 0.0,
-  "q3_kw_occ_p": 8.146563807900238e-92,
+  "q3_kw_occ_p": 8.14656380790024e-92,
   "q3_lga_price_occ_rho": 0.13,
   "q3_bands": {
     "transit_band": [
@@ -289,53 +358,151 @@
       ">2 km"
     ],
     "listings": [
-      5172,
-      3622,
-      2462,
-      4430
+      3590,
+      3455,
+      2899,
+      5742
     ],
     "median_price": [
-      297.41,
-      281.94,
-      285.14,
-      388.0
+      298.25,
+      286.67,
+      271.0,
+      370.07
     ],
     "median_occupancy": [
       60.0,
-      48.0,
-      40.0,
-      40.0
+      54.0,
+      42.0,
+      42.0
     ],
     "mean_location_score": [
       4.82,
-      4.76,
-      4.77,
-      4.87
+      4.78,
+      4.75,
+      4.86
     ],
     "entire_home_pct": [
-      80.59,
-      75.48,
-      72.99,
-      88.17
+      79.39,
+      78.47,
+      71.75,
+      86.45
     ],
     "median_dist_cbd_km": [
-      2.93,
-      5.53,
-      7.24,
-      11.82
+      2.01,
+      4.43,
+      6.93,
+      12.39
+    ],
+    "median_dist_beach_km": [
+      3.44,
+      3.91,
+      4.47,
+      0.93
     ],
     "unavailable_90d": [
-      0.32,
+      0.33,
+      0.3,
       0.29,
-      0.26,
       0.23
     ]
   },
-  "q3_rho_dist_price": 0.18,
-  "q3_rho_dist_estimated_occupancy_l365d": -0.118,
-  "q3_rho_dist_review_scores_location": 0.113,
+  "q3_rho_dist_price": 0.186,
+  "q3_rho_dist_estimated_occupancy_l365d": -0.106,
+  "q3_rho_dist_review_scores_location": 0.124,
   "q3_rho_cbd_price": -0.041,
-  "q3_rho_cbd_station": 0.543,
+  "q3_rho_cbd_station": 0.599,
+  "q3_rho_beach_station": -0.331,
+  "q3_by_mode_near": {
+    "Light rail": {
+      "listings": 1136,
+      "median_price": 309.0,
+      "median_occupancy": 72.0,
+      "median_rail_mins_cbd": 0.0,
+      "median_services_hr": 15.2,
+      "median_dist_cbd_km": 1.1
+    },
+    "Metro": {
+      "listings": 309,
+      "median_price": 355.7,
+      "median_occupancy": 60.0,
+      "median_rail_mins_cbd": 3.6,
+      "median_services_hr": 25.2,
+      "median_dist_cbd_km": 4.1
+    },
+    "Train": {
+      "listings": 2145,
+      "median_price": 281.3,
+      "median_occupancy": 54.0,
+      "median_rail_mins_cbd": 7.8,
+      "median_services_hr": 18.0,
+      "median_dist_cbd_km": 3.4
+    }
+  },
+  "q3_rho_irsad_price": 0.25,
+  "q3_rho_irsad_occ": 0.059,
+  "q3_seifa": {
+    "irsad_decile": [
+      1.0,
+      2.0,
+      3.0,
+      4.0,
+      5.0,
+      6.0,
+      7.0,
+      8.0,
+      9.0,
+      10.0
+    ],
+    "listings": [
+      310,
+      251,
+      207,
+      143,
+      117,
+      335,
+      716,
+      965,
+      3380,
+      9252
+    ],
+    "median_price": [
+      200.4,
+      217.4,
+      198.6,
+      230.0,
+      166.0,
+      177.0,
+      213.2,
+      256.5,
+      311.7,
+      342.4
+    ],
+    "median_occupancy": [
+      36.0,
+      48.0,
+      42.0,
+      36.0,
+      36.0,
+      36.0,
+      30.0,
+      48.0,
+      42.0,
+      50.0
+    ],
+    "near_station_pct": [
+      6.5,
+      10.8,
+      25.6,
+      7.0,
+      6.0,
+      18.2,
+      21.8,
+      16.3,
+      29.1,
+      22.9
+    ]
+  },
+  "sa2_n": 311,
   "a3_premium": {
     "Model": [
       "Raw",
@@ -344,11 +511,23 @@
       "+ Structure",
       "+ Structure",
       "+ Structure",
-      "+ Structure + location",
-      "+ Structure + location",
-      "+ Structure + location"
+      "+ LGA",
+      "+ LGA",
+      "+ LGA",
+      "+ Beach & attractions",
+      "+ Beach & attractions",
+      "+ Beach & attractions",
+      "+ SA2",
+      "+ SA2",
+      "+ SA2"
     ],
     "Band": [
+      "<500 m",
+      "500 m-1 km",
+      "1-2 km",
+      "<500 m",
+      "500 m-1 km",
+      "1-2 km",
       "<500 m",
       "500 m-1 km",
       "1-2 km",
@@ -360,37 +539,55 @@
       "1-2 km"
     ],
     "Premium %": [
-      -30.1903,
-      -35.5408,
-      -32.2603,
-      -12.5491,
-      -17.6203,
-      -17.1161,
-      2.2863,
-      -2.2352,
-      -2.1651
+      -25.8344,
+      -28.5365,
+      -33.1172,
+      -7.3899,
+      -11.6745,
+      -15.6789,
+      -0.1128,
+      -1.8244,
+      -5.0643,
+      1.1107,
+      -0.4646,
+      -2.041,
+      1.6667,
+      2.3453,
+      -0.9849
     ],
     "CI low %": [
-      -32.0572,
-      -37.4702,
-      -34.6861,
-      -14.0809,
-      -19.1808,
-      -18.9636,
-      -0.3385,
-      -4.7404,
-      -4.6018
+      -30.3484,
+      -32.7738,
+      -37.6002,
+      -10.2828,
+      -14.3003,
+      -18.4386,
+      -3.7521,
+      -4.9742,
+      -7.9387,
+      -2.5935,
+      -3.6723,
+      -4.9668,
+      -3.0293,
+      -1.9914,
+      -4.5558
     ],
     "CI high %": [
-      -28.2721,
-      -33.5519,
-      -29.7443,
-      -10.99,
-      -16.0297,
-      -15.2264,
-      4.9802,
-      0.3358,
-      0.334
+      -21.0278,
+      -24.0322,
+      -28.3122,
+      -4.4037,
+      -8.9683,
+      -12.8258,
+      3.6642,
+      1.4299,
+      -2.1001,
+      4.9557,
+      2.85,
+      0.975,
+      6.59,
+      6.874,
+      2.7197
     ],
     "p": [
       0.0,
@@ -399,41 +596,314 @@
       0.0,
       0.0,
       0.0,
-      0.0883,
-      0.0878,
-      0.089
+      0.9525,
+      0.2684,
+      0.0009,
+      0.5619,
+      0.7806,
+      0.1826,
+      0.4933,
+      0.294,
+      0.5974
     ],
     "R2": [
-      0.0677,
-      0.0677,
-      0.0677,
-      0.6343,
-      0.6343,
-      0.6343,
+      0.0598,
+      0.0598,
+      0.0598,
+      0.6306,
+      0.6306,
+      0.6306,
       0.7001,
       0.7001,
-      0.7001
+      0.7001,
+      0.7072,
+      0.7072,
+      0.7072,
+      0.7261,
+      0.7261,
+      0.7261
     ]
   },
-  "a3_adj_premium_500": 2.29,
-  "a3_adj_premium_500_ci": [
-    -0.34,
-    4.98
-  ],
-  "a3_adj_premium_500_dollars": 7.12,
-  "median_price": 311.5,
-  "a3_raw_premium_500": -30.19,
   "a3_r2": {
-    "Raw": 0.068,
-    "+ Structure": 0.634,
-    "+ Structure + location": 0.7
+    "Raw": 0.06,
+    "+ Structure": 0.631,
+    "+ LGA": 0.7,
+    "+ Beach & attractions": 0.707,
+    "+ SA2": 0.726
   },
-  "a3_occ_500_nights": 4.79,
-  "a3_occ_500_p": 0.03765105142935667,
-  "a3_occ_500_ci": [
-    0.27,
-    9.31
+  "a3_adj_premium_500": 1.67,
+  "a3_adj_premium_500_ci": [
+    -3.03,
+    6.59
   ],
+  "a3_adj_premium_500_p": 0.49330744374506763,
+  "median_price": 311.5,
+  "a3_adj_premium_500_dollars": 5.19,
+  "a3_raw_premium_500": -25.83,
+  "a3_lga_premium_500": -0.11,
+  "a3_se_cluster_vs_hc3": [
+    0.0241,
+    0.0178
+  ],
+  "a3_contrast_500_vs_1k": {
+    "diff_pct": -0.66,
+    "p": 0.5909177686342759
+  },
+  "a3_curve": {
+    "walk_m": [
+      50.0,
+      79.71,
+      127.07,
+      202.57,
+      322.92,
+      514.79,
+      820.65,
+      1308.25,
+      2085.56,
+      3324.72
+    ],
+    "effect_pct": [
+      3.67,
+      3.64,
+      3.51,
+      3.23,
+      2.76,
+      2.06,
+      1.15,
+      0.36,
+      -0.02,
+      -0.28
+    ],
+    "lo": [
+      -2.15,
+      -1.52,
+      -1.3,
+      -1.34,
+      -1.43,
+      -1.47,
+      -1.62,
+      -1.46,
+      -0.24,
+      -2.81
+    ],
+    "hi": [
+      9.83,
+      9.07,
+      8.55,
+      8.01,
+      7.13,
+      5.72,
+      3.99,
+      2.22,
+      0.19,
+      2.3
+    ]
+  },
+  "a3_curve_at": {
+    "100 m": 3.59,
+    "250 m": 3.04,
+    "500 m": 2.11,
+    "1000 m": 0.77
+  },
+  "a3_ring": {
+    "Group": [
+      "Inner (<5 km)",
+      "Middle (5-15 km)",
+      "Outer (>15 km)"
+    ],
+    "Premium %": [
+      -3.2631,
+      4.5699,
+      6.8143
+    ],
+    "CI low %": [
+      -6.291,
+      0.2126,
+      0.5202
+    ],
+    "CI high %": [
+      -0.1373,
+      9.1167,
+      13.5024
+    ],
+    "p": [
+      0.0409,
+      0.0396,
+      0.0334
+    ],
+    "n near": [
+      2475,
+      755,
+      360
+    ]
+  },
+  "a3_mode": {
+    "Group": [
+      "Light rail",
+      "Metro",
+      "Train"
+    ],
+    "Premium %": [
+      3.0805,
+      -3.2389,
+      -0.164
+    ],
+    "CI low %": [
+      -1.0162,
+      -10.5861,
+      -2.7682
+    ],
+    "CI high %": [
+      7.3466,
+      4.712,
+      2.51
+    ],
+    "p": [
+      0.1426,
+      0.4138,
+      0.9031
+    ],
+    "n near": [
+      1136,
+      309,
+      2145
+    ]
+  },
+  "a3_quality": {
+    "Measure": [
+      "log walking distance (x2 distance)",
+      "log off-peak services/hour (x2)",
+      "rail minutes to CBD (+10 min)",
+      "log station patronage (x2)"
+    ],
+    "Price effect %": [
+      -0.8065,
+      -0.5445,
+      0.5242,
+      -0.4605
+    ],
+    "CI low %": [
+      -1.864,
+      -3.1126,
+      -2.2287,
+      -1.7628
+    ],
+    "CI high %": [
+      0.2625,
+      2.0916,
+      3.3547,
+      0.8591
+    ],
+    "p": [
+      0.1387,
+      0.6825,
+      0.7121,
+      0.4921
+    ]
+  },
+  "a3_demand": {
+    "Occupancy, nights (OLS)": {
+      "Effect of <500 m walk": -1.8874869848999056,
+      "CI low": -10.032667948905587,
+      "CI high": 6.257693979105777,
+      "Unit": "nights",
+      "p": 0.6496967832375853,
+      "n": 15686.0
+    },
+    "Occupancy, nights (OLS, + log price)": {
+      "Effect of <500 m walk": -1.0603571170634245,
+      "CI low": -8.799885278379254,
+      "CI high": 6.679171044252405,
+      "Unit": "nights",
+      "p": 0.7882947407336215,
+      "n": 15686.0
+    },
+    "Occupancy (Poisson)": {
+      "Effect of <500 m walk": -1.3727352100949997,
+      "CI low": -12.211403168374236,
+      "CI high": 10.804110226235775,
+      "Unit": "%",
+      "p": 0.8159846396362092,
+      "n": 15686.0
+    },
+    "Calendar unavailable, next 90 days (OLS)": {
+      "Effect of <500 m walk": -1.2415682639268801,
+      "CI low": -4.933080703395394,
+      "CI high": 2.4499441755416336,
+      "Unit": "pp",
+      "p": 0.5097701156378727,
+      "n": 15686.0
+    },
+    "Reviews, last 12 months (Poisson)": {
+      "Effect of <500 m walk": 0.16002282396658796,
+      "CI low": -12.72173354050128,
+      "CI high": 14.943050303970562,
+      "Unit": "%",
+      "p": 0.981838429356407,
+      "n": 15686.0
+    },
+    "Revenue (PPML)": {
+      "Effect of <500 m walk": 2.1554722320474173,
+      "CI low": -9.206723331982204,
+      "CI high": 14.939573610835799,
+      "Unit": "%",
+      "p": 0.7229750957028269,
+      "n": 15686.0
+    },
+    "Revenue (PPML, + log price)": {
+      "Effect of <500 m walk": 2.3996975256609154,
+      "CI low": -9.055170187498952,
+      "CI high": 15.2973519766322,
+      "Unit": "%",
+      "p": 0.6952169606442119,
+      "n": 15686.0
+    }
+  },
+  "a3_occ_500_nights": -1.06,
+  "a3_occ_500_p": 0.7882947407336215,
+  "a3_occ_500_ci": [
+    -8.8,
+    6.68
+  ],
+  "a3_rev_500_pct": 2.16,
+  "a3_rev_500_ci": [
+    -9.21,
+    14.94
+  ],
+  "a3_rev_500_p": 0.7229750957028269,
+  "median_revenue": 14180.5,
+  "walk_routed_pct_mar": 99.9,
+  "walk_detour_factor_mar": 1.343,
+  "a3_robust": {
+    "June 2026, walking distance, current network (main)": {
+      "Premium %": 1.6667,
+      "CI low %": -3.0293,
+      "CI high %": 6.59,
+      "p": 0.4933,
+      "n": 15686.0
+    },
+    "March 2026, walking distance, current network": {
+      "Premium %": 0.9824,
+      "CI low %": -3.4987,
+      "CI high %": 5.6716,
+      "p": 0.6729,
+      "n": 13194.0
+    },
+    "June 2026, straight line, 2020 network (first draft)": {
+      "Premium %": 5.7639,
+      "CI low %": 0.9173,
+      "CI high %": 10.8433,
+      "p": 0.0192,
+      "n": 15686.0
+    },
+    "June 2026, straight line, current network": {
+      "Premium %": 3.2437,
+      "CI low %": -1.4871,
+      "CI high %": 8.2016,
+      "p": 0.1822,
+      "n": 15686.0
+    }
+  },
   "a3_host_tier": {
     "host_tier": [
       "Single (1)",
@@ -480,15 +950,15 @@
       71.702,
       79.862
     ],
-    "median_dist_station_m": [
-      1464.777,
-      794.08,
-      625.46
+    "median_walk_station_m": [
+      2210.196,
+      1152.133,
+      845.502
     ],
     "within_500m_pct": [
-      22.411,
-      34.345,
-      40.799
+      14.089,
+      22.861,
+      30.342
     ],
     "median_dist_cbd_km": [
       8.662,
@@ -547,69 +1017,100 @@
   },
   "a3_host_tests": {
     "rating_kw_p": 0.0,
-    "rating_mw_p": 8.224477746387249e-308,
-    "dist_mw_p": 2.280141387456143e-197,
+    "rating_mw_p": 8.22447774638725e-308,
+    "dist_mw_p": 1.4255963747464176e-232,
     "rating_rank_biserial": 0.49822767055410755,
-    "near_station_chi2_p": 3.245718032129054e-92,
-    "rating_gap_adj": -0.16942005999356757,
+    "near_station_chi2_p": 5.3503346638481536e-89,
+    "rating_gap_adj": -0.16149837572841944,
     "rating_gap_adj_ci": [
-      -0.1797,
-      -0.1591
+      -0.1903,
+      -0.1327
     ],
-    "rating_gap_adj_p": 5.030228869527542e-227
+    "rating_gap_adj_p": 4.480560411658102e-28,
+    "rating_gap_adj_ci_hc3": [
+      -0.1723,
+      -0.1507
+    ],
+    "cleanliness_gap_adj": -0.1581654888432378,
+    "cleanliness_gap_adj_ci": [
+      -0.1901,
+      -0.1262
+    ],
+    "occupancy_gap_adj": -20.756020474074532,
+    "occupancy_gap_adj_ci": [
+      -26.6544,
+      -14.8577
+    ],
+    "occupancy_gap_adj_p": 5.31097251559855e-12
   },
-  "ml_train_n": 12548,
-  "ml_test_n": 3138,
-  "m1_alpha": 1.0,
-  "m1_cv_rmse_log": 0.3587,
+  "ml_train_n": 12372,
+  "ml_test_n": 3314,
+  "ml_test_sa2": 63,
+  "ml_train_sa2": 248,
+  "m1_alpha": 100.0,
+  "m1_cv_rmse_log": 0.3602,
   "m1": {
     "Model": "Model 1: Ridge",
-    "R2 (log price)": 0.7316,
-    "RMSE (AUD)": 235.5027,
-    "MAE (AUD)": 118.9256,
-    "MAPE %": 27.1245
+    "R2 (log price)": 0.7198,
+    "RMSE (AUD)": 245.3542,
+    "MAE (AUD)": 120.9112,
+    "MAPE %": 27.8204
   },
-  "m1_train_r2": 0.732,
+  "m1_train_r2": 0.7363,
   "m1_noT": {
     "Model": "Ridge without rail features",
-    "R2 (log price)": 0.731,
-    "RMSE (AUD)": 235.5155,
-    "MAE (AUD)": 118.9411,
-    "MAPE %": 27.1603
+    "R2 (log price)": 0.7094,
+    "RMSE (AUD)": 243.2028,
+    "MAE (AUD)": 122.6666,
+    "MAPE %": 28.4392
+  },
+  "m1_random": {
+    "Model": "Ridge (random split)",
+    "R2 (log price)": 0.7346,
+    "RMSE (AUD)": 235.1894,
+    "MAE (AUD)": 117.9728,
+    "MAPE %": 26.8397
   },
   "m1_coef_rail": {
-    "log_dist_station": 0.0046,
-    "stations_within_1km": 0.031
+    "log_walk_station": 0.0179,
+    "stations_within_1km": 0.0224,
+    "services_per_hour": -0.0053,
+    "rail_mins_to_cbd": 0.0182,
+    "rail_mins_to_airport": 0.0329,
+    "log_patronage": 0.0219,
+    "nearest_mode_Light rail": 0.0408,
+    "nearest_mode_Metro": -0.0328,
+    "nearest_mode_Train": -0.008
   },
   "m1_top_coefs": {
-    "neighbourhood_cleansed_Camden": 0.5471,
-    "room_type_infrequent_sklearn": -0.5458,
-    "room_type_Entire home/apt": 0.3502,
-    "neighbourhood_cleansed_Campbelltown": 0.3382,
-    "neighbourhood_cleansed_Penrith": 0.3318,
-    "neighbourhood_cleansed_Ku-Ring-Gai": -0.2645,
-    "neighbourhood_cleansed_Sutherland Shire": 0.2606,
-    "neighbourhood_cleansed_Liverpool": 0.2398,
-    "longitude": 0.2047,
-    "property_group_Private room in home": -0.2032,
-    "bedrooms": 0.1935,
-    "neighbourhood_cleansed_Willoughby": -0.1886
+    "property_group_Private room in home": -0.1829,
+    "bedrooms": 0.1759,
+    "property_group_Entire home": 0.1546,
+    "room_type_Entire home/apt": 0.1503,
+    "accommodates": 0.1127,
+    "neighbourhood_cleansed_Fairfield": -0.0979,
+    "room_type_Private room": -0.0925,
+    "neighbourhood_cleansed_Ku-Ring-Gai": -0.0812,
+    "neighbourhood_cleansed_Camden": 0.0799,
+    "longitude": 0.0799,
+    "log_dist_beach": -0.0787,
+    "bathrooms": 0.0761
   },
   "m1_top_nonlga": {
-    "room_type_infrequent_sklearn": -0.5458,
-    "room_type_Entire home/apt": 0.3502,
-    "longitude": 0.2047,
-    "property_group_Private room in home": -0.2032,
-    "bedrooms": 0.1935,
-    "property_group_Entire home": 0.1682,
-    "room_type_Hotel room": 0.1274,
-    "accommodates": 0.1246,
-    "latitude": 0.0977,
-    "property_group_Private room in rental unit": -0.0826,
-    "room_type_Private room": 0.0682,
-    "number_of_reviews": -0.0623
+    "property_group_Private room in home": -0.1829,
+    "bedrooms": 0.1759,
+    "property_group_Entire home": 0.1546,
+    "room_type_Entire home/apt": 0.1503,
+    "accommodates": 0.1127,
+    "room_type_Private room": -0.0925,
+    "longitude": 0.0799,
+    "log_dist_beach": -0.0787,
+    "bathrooms": 0.0761,
+    "bath_shared": -0.0695,
+    "irsad_score": 0.0632,
+    "property_group_Private room in rental unit": -0.0631
   },
-  "m1_coef_cbd": -0.0288,
+  "m1_coef_cbd": -0.0088,
   "m2_k_table": {
     "k": [
       2,
@@ -623,175 +1124,260 @@
       10
     ],
     "inertia": [
-      72852.7183,
-      57290.8742,
-      47703.1652,
-      42668.8678,
-      38697.0384,
-      35780.4685,
-      33404.7504,
-      31421.0424,
-      29633.2686
+      83286.1965,
+      65192.5824,
+      56539.6865,
+      49862.1835,
+      44155.5295,
+      41113.6308,
+      38461.5897,
+      36377.3819,
+      34074.3874
     ],
     "silhouette": [
-      0.3079,
-      0.3192,
-      0.2587,
-      0.2161,
-      0.2313,
-      0.2195,
-      0.2127,
-      0.2177,
-      0.2249
+      0.2819,
+      0.263,
+      0.2376,
+      0.2357,
+      0.2415,
+      0.2474,
+      0.2423,
+      0.2106,
+      0.2198
     ]
   },
-  "m2_k": 4,
-  "m2_silhouette": 0.2587,
+  "m2_k": 7,
+  "m2_silhouette": 0.2474,
   "m2_profiles": {
     "cluster": [
+      4,
+      0,
       3,
-      1,
+      5,
+      6,
       2,
-      0
+      1
     ],
     "segment": [
-      "City-core high-turnover",
-      "Inner-ring low-utilisation",
-      "Coastal premium, rail-remote",
-      "Outer-suburban budget"
+      "Inner: mid-price, high-turnover, rail-served",
+      "Inner: mid-price, low-utilisation, rail-served",
+      "Middle coastal: premium, low-utilisation, rail-remote",
+      "Middle: budget, low-utilisation, rail-served",
+      "Outer: budget, average demand, rail-remote",
+      "Outer coastal: premium, low-utilisation, rail-remote",
+      "Outer: mid-price, average demand, rail-remote"
     ],
     "listings": [
-      3520,
-      7726,
-      2183,
-      2257
+      2694,
+      4592,
+      3375,
+      2594,
+      780,
+      881,
+      770
     ],
     "median_price": [
-      278.3,
-      326.0,
-      502.2,
-      203.5
+      280.0,
+      293.2,
+      436.0,
+      238.7,
+      251.8,
+      635.0,
+      277.1
     ],
     "median_occupancy": [
-      186.0,
-      24.0,
+      210.0,
       30.0,
-      36.0
+      30.0,
+      30.0,
+      48.0,
+      24.0,
+      38.0
     ],
     "median_revenue": [
-      51333.0,
-      7337.0,
-      15180.0,
-      6300.0
+      55858.5,
+      7572.0,
+      14796.0,
+      6237.0,
+      9814.0,
+      16206.0,
+      10191.0
     ],
-    "median_dist_station_m": [
-      513.5,
-      669.0,
-      9584.9,
-      1116.8
+    "median_walk_station_m": [
+      628.5,
+      558.5,
+      3684.1,
+      988.3,
+      3545.5,
+      28150.4,
+      2468.6
     ],
     "median_dist_cbd_km": [
-      3.6,
-      5.7,
-      15.4,
-      25.9
+      2.8,
+      3.0,
+      7.3,
+      14.4,
+      27.2,
+      28.1,
+      36.5
+    ],
+    "median_dist_beach_km": [
+      2.9,
+      3.3,
+      0.6,
+      8.6,
+      5.3,
+      0.6,
+      16.9
     ],
     "entire_home_pct": [
-      85.6,
-      80.5,
-      94.5,
-      58.0
+      86.2,
+      77.9,
+      93.5,
+      62.9,
+      70.4,
+      95.6,
+      68.4
     ],
     "mean_rating": [
       4.8,
       4.7,
       4.8,
-      4.6
+      4.6,
+      4.7,
+      4.9,
+      4.7
     ],
     "top_lga": [
       "Sydney, Waverley",
-      "Sydney, Waverley",
-      "Pittwater, Manly",
-      "Parramatta, Blacktown"
+      "Sydney, Randwick",
+      "Waverley, Manly",
+      "Auburn, Parramatta",
+      "Liverpool, Sutherland Shire",
+      "Pittwater, Warringah",
+      "Blacktown, The Hills Shire"
     ]
   },
-  "m3_search_seconds": 87.0,
+  "m3_search_seconds": 114.8,
   "m3_params": {
-    "subsample": 0.9,
-    "reg_lambda": 3,
+    "subsample": 0.8,
+    "reg_lambda": 10,
     "n_estimators": 800,
-    "min_child_weight": 1,
+    "min_child_weight": 3,
     "max_depth": 6,
-    "learning_rate": 0.03,
+    "learning_rate": 0.02,
     "colsample_bytree": 0.6
   },
-  "m3_cv_rmse_log": 0.3093,
+  "m3_cv_rmse_log": 0.3288,
   "m3": {
     "Model": "Model 3: XGBoost",
-    "R2 (log price)": 0.8059,
-    "RMSE (AUD)": 198.1792,
-    "MAE (AUD)": 99.9734,
-    "MAPE %": 22.664
+    "R2 (log price)": 0.7857,
+    "RMSE (AUD)": 206.3271,
+    "MAE (AUD)": 104.1977,
+    "MAPE %": 23.9637
   },
-  "m3_train_r2": 0.9057,
+  "m3_train_r2": 0.8762,
   "m3_noT": {
     "Model": "XGBoost without rail features",
-    "R2 (log price)": 0.8045,
-    "RMSE (AUD)": 198.3849,
-    "MAE (AUD)": 100.1883,
-    "MAPE %": 22.7007
+    "R2 (log price)": 0.7865,
+    "RMSE (AUD)": 207.3635,
+    "MAE (AUD)": 104.6313,
+    "MAPE %": 23.9201
+  },
+  "m3_random": {
+    "Model": "XGBoost (random split)",
+    "R2 (log price)": 0.8052,
+    "RMSE (AUD)": 196.3683,
+    "MAE (AUD)": 99.9056,
+    "MAPE %": 22.6961
   },
   "m3_shap_mean_abs": {
-    "bedrooms": 0.18029999732971191,
-    "accommodates": 0.13740000128746033,
-    "room_type": 0.12160000205039978,
-    "longitude": 0.10830000042915344,
-    "bathrooms": 0.05380000174045563,
-    "property_group": 0.047600001096725464,
-    "dist_to_cbd_km": 0.03709999844431877,
-    "amenities_count": 0.03480000048875809,
-    "number_of_reviews": 0.0333000011742115,
-    "review_scores_location": 0.03310000151395798,
-    "latitude": 0.03220000118017197,
-    "minimum_nights": 0.03009999915957451,
-    "availability_365": 0.02969999983906746,
-    "review_scores_rating": 0.027699999511241913,
-    "calculated_host_listings_count": 0.027400000020861626,
-    "neighbourhood_cleansed": 0.02239999920129776,
-    "beds": 0.019600000232458115,
-    "bath_shared": 0.01940000057220459,
-    "dist_to_nearest_station_m": 0.014299999922513962,
-    "superhost": 0.006500000134110451,
-    "stations_within_1km": 0.004600000102072954
+    "bedrooms": 0.17110000550746918,
+    "accommodates": 0.13289999961853027,
+    "room_type": 0.11550000309944153,
+    "bathrooms": 0.0575999990105629,
+    "longitude": 0.05460000038146973,
+    "dist_to_beach_km": 0.049400001764297485,
+    "property_group": 0.0471000000834465,
+    "amenities_count": 0.03680000081658363,
+    "irsad_score": 0.034699998795986176,
+    "minimum_nights": 0.03400000184774399,
+    "number_of_reviews": 0.032499998807907104,
+    "review_scores_location": 0.029899999499320984,
+    "review_scores_rating": 0.02889999933540821,
+    "availability_365": 0.0272000003606081,
+    "calculated_host_listings_count": 0.025599999353289604,
+    "bath_shared": 0.020899999886751175,
+    "beds": 0.020899999886751175,
+    "dist_to_cbd_km": 0.018300000578165054,
+    "attractions_1km": 0.013299999758601189,
+    "latitude": 0.01269999984651804,
+    "walk_dist_station_m": 0.008799999952316284,
+    "rail_mins_to_cbd": 0.008100000210106373,
+    "neighbourhood_cleansed": 0.008100000210106373,
+    "log_patronage": 0.007799999788403511,
+    "stations_within_1km": 0.00570000009611249,
+    "superhost": 0.005400000140070915,
+    "rail_mins_to_airport": 0.004399999976158142,
+    "services_per_hour": 0.003700000001117587,
+    "nearest_mode": 0.002099999925121665
   },
-  "m3_shap_rail_share_pct": 1.9,
-  "m3_shap_rail_rank": 19,
+  "m3_shap_rail_share_pct": 4.0,
+  "m3_shap_rail_rank": 21,
+  "m3_shap_rail_top": "walk_dist_station_m",
   "m3_shap_dist_band_pct": {
-    "<250 m": -0.05,
-    "250-500 m": -0.49,
-    "500 m-1 km": -0.21,
-    "1-2 km": -0.58,
-    "2-5 km": -0.09,
-    ">5 km": 3.37
+    "<250 m": -0.48,
+    "250-500 m": -0.91,
+    "500 m-1 km": -0.39,
+    "1-2 km": -0.47,
+    "2-5 km": -0.25,
+    ">5 km": 2.15
+  },
+  "m3_shap_ring_band_pct": {
+    "Inner (<5 km)": {
+      "<250 m": -0.54,
+      "250-500 m": -0.84,
+      "500 m-1 km": -0.27,
+      "1-2 km": -0.41,
+      "2-5 km": -0.16,
+      ">5 km": null
+    },
+    "Middle (5-15 km)": {
+      "<250 m": -0.74,
+      "250-500 m": -1.12,
+      "500 m-1 km": -0.53,
+      "1-2 km": -0.45,
+      "2-5 km": -0.13,
+      ">5 km": 1.27
+    },
+    "Outer (>15 km)": {
+      "<250 m": 0.22,
+      "250-500 m": -0.84,
+      "500 m-1 km": -0.44,
+      "1-2 km": -0.54,
+      "2-5 km": -0.77,
+      ">5 km": 2.85
+    }
   },
   "ml_err_by_band": {
     "Ridge MAPE %": {
-      "Q1 (cheapest)": 34.96,
-      "Q2": 23.48,
-      "Q3": 19.96,
-      "Q4 (dearest)": 30.1
+      "Q1 (cheapest)": 38.08,
+      "Q2": 23.39,
+      "Q3": 19.53,
+      "Q4 (dearest)": 30.27
     },
     "XGBoost MAPE %": {
-      "Q1 (cheapest)": 26.46,
-      "Q2": 19.81,
-      "Q3": 18.32,
-      "Q4 (dearest)": 26.07
+      "Q1 (cheapest)": 29.34,
+      "Q2": 21.2,
+      "Q3": 18.52,
+      "Q4 (dearest)": 26.78
     },
     "XGBoost bias %": {
-      "Q1 (cheapest)": 20.7,
-      "Q2": 10.81,
-      "Q3": -0.37,
-      "Q4 (dearest)": -12.51
+      "Q1 (cheapest)": 22.9,
+      "Q2": 8.44,
+      "Q3": -2.17,
+      "Q4 (dearest)": -15.68
     }
-  }
+  },
+  "far_from_rail_coastal_pct": 76.1
 }

@@ -1,0 +1,608 @@
+osm_type,osm_id,name,category,tourism,lat,lon
+node,13887214,Mrs Macquarie's Chair,Attraction,attraction,-33.8597064,151.222565
+node,20959057,Justice & Police Museum,Attraction,museum,-33.862084499999995,151.2122831
+node,20979947,Aquabumps,Attraction,gallery,-33.889632,151.2712351
+node,21397908,Coca-Cola Billboard,Attraction,attraction,-33.8753099,151.2222336
+node,25843272,Darling Harbour,Attraction,attraction,-33.8675516,151.1995619
+node,130018662,The Rock,Attraction,attraction,-33.77254200000001,151.2371082
+node,130018671,Three steps,Attraction,attraction,-33.77066009999999,151.2365132
+node,241895324,Wascoe Siding Miniature Railway,Attraction,attraction,-33.75280939999999,150.6121388
+node,243435171,Glenbrook Native Plant Reserve,Attraction,attraction,-33.764602399999994,150.623775
+node,249089375,Artillery,Attraction,attraction,-33.8523085,151.2462914
+node,270993431,Blue Fish Wall,Attraction,attraction,-33.8021808,151.3031233
+node,334107323,The Nurragingy Blacksmith,Attraction,attraction,-33.761768100000005,150.8592257
+node,434858614,Big Bike,Attraction,attraction,-33.892338800000005,151.0409844
+node,458712741,Free Flight Bird Show,Attraction,attraction,-33.84397259999999,151.2391873
+node,461114868,Mary MacKillop Place Museum,Attraction,museum,-33.838744000000005,151.2047103
+node,465200731,Doctors House,Attraction,attraction,-33.6041427,150.8225468
+node,465200732,Hawkesbury Museum – John Howe’s House,Attraction,museum,-33.604518600000006,150.8227619
+node,465200733,Peninsula House & Tebbutt's Observatory 1879 & 1894,Attraction,museum,-33.6067912,150.8310395
+node,465200755,Anglican Rectory (1825),Attraction,attraction,-33.6088255,150.8131398
+node,465200757,Old Station Masters House – 1880,Attraction,attraction,-33.6133162,150.811954
+node,493792629,Eagle Rock,Attraction,attraction,-34.1534625,151.0995456
+node,498485346,Campbelltown Steam & Machinery Museum,Attraction,attraction,-34.09297850000001,150.7697954
+node,540118898,Red Hands Cave,Attraction,attraction,-33.782338800000005,150.5910271
+node,570812830,George Hanna Museum,Attraction,museum,-33.93009740000001,151.1936405
+node,623939752,Wagon,Attraction,attraction,-33.76926649999999,150.7677196
+node,670333770,Lapstone Zig Zag,Attraction,attraction,-33.762141299999996,150.6391466
+node,670333771,Lucasville Railway Station,Attraction,attraction,-33.76112139999999,150.6390688
+node,671365948,Australian Securities Exchange,Attraction,attraction,-33.86790179999999,151.2101646
+node,686512300,Arms of Australia Inn Museum,Attraction,museum,-33.749722999999996,150.6693935
+node,740718114,Heartbreak Hill,Attraction,attraction,-33.7631011,151.2401583
+node,743322923,The Rocks Discovery Museum,Attraction,museum,-33.8588995,151.2086515
+node,1068599998,Netherby Homestead,Attraction,attraction,-33.64463970000001,151.0447123
+node,1068600458,Rural Museums,Attraction,attraction,-33.6444522,151.0441973
+node,1068600562,Rural Musems,Attraction,attraction,-33.64417529999999,151.0443797
+node,1068604943,Eco Garden,Attraction,attraction,-33.643941,151.0447155
+node,1080476563,Hawkesbury Regional Museum,Attraction,museum,-33.604615900000006,150.8223491
+node,1117739786,Susannah Place Museum,Attraction,museum,-33.860091499999996,151.2074289
+node,1332235355,Manly Art Gallery & Museum,Attraction,gallery,-33.798481599999995,151.2813039
+node,1648050614,North Fort Tours,Attraction,attraction,-33.817456699999994,151.2967171
+node,1648068684,S.H. Ervin Gallery,Attraction,gallery,-33.86136979999999,151.2043368
+node,1701929177,Wedding Cake Rock,Attraction,attraction,-34.10948739999999,151.1519835
+node,1782327141,Winding House Base,Attraction,attraction,-33.77803879999998,150.6300774
+node,1827334302,Squirrel Monkeys,Attraction,attraction,-33.84253519999999,151.2418189
+node,1852659123,Brett Whiteley Studio,Attraction,gallery,-33.88867379999999,151.2145871
+node,1929819501,19th hole,Attraction,attraction,-33.769681199999994,151.2500348
+node,1986191921,The Rocks Market,Attraction,attraction,-33.85787739999999,151.2086071
+node,1986768390,Gosford Regional Gallery & Arts Centre,Attraction,gallery,-33.44162270000001,151.351703
+node,1997779030,Liverpool Regional Museum and Family History Centre,Attraction,museum,-33.9338028,150.9168643
+node,2085347829,Experiment Farm Cottage,Attraction,museum,-33.820143599999994,151.012641
+node,2152985088,Riverstone Museum,Attraction,museum,-33.6771555,150.8650048
+node,2303042475,Museum of Printing,Attraction,museum,-33.757162199999996,150.6884527
+node,2304415127,Elizabeth Langreiter Art Gallery,Attraction,gallery,-33.91442299999999,151.1997701
+node,2423930651,Whaleback Rock,Attraction,attraction,-34.105448800000005,151.04308030000004
+node,2779050417,Chrissie Cotter Gallery,Attraction,gallery,-33.8879082,151.176326
+node,2787409691,Artsite,Attraction,gallery,-33.891948600000006,151.1749235
+node,3071850818,Pindar Cave,Attraction,attraction,-33.49309529999999,151.22305030000004
+node,3111982183,Hangman's Rock,Attraction,attraction,-33.36760090000001,150.9867545
+node,3278528361,Gallery Herk Alexander,Attraction,gallery,-33.8881566,151.1665897
+node,3338691785,Gordons Bay Underwater Trip Start,Attraction,attraction,-33.915797,151.2648117
+node,3970125394,Funicular Railway,Attraction,attraction,-33.77846770000001,150.6301262
+node,3972627803,Paramatta River head,Attraction,attraction,-33.7986279,150.9963593
+node,3979252646,Jetpack Adventures,Attraction,attraction,-33.72709499999999,150.6881203
+node,4010124889,Hurstville Museum and Gallery,Attraction,museum,-33.964465,151.1024219
+node,4101244488,Commissioners Steps,Attraction,attraction,-33.85985499999999,151.2097383
+node,4230114185,Australian Rainforest Sanctuary,Attraction,attraction,-33.3500363,151.3288625
+node,4353240911,Kurrajong Radio Museum,Attraction,museum,-33.5471352,150.6561161
+node,4354728817,Addington Museum,Attraction,museum,-33.814547,151.0985005
+node,4354728823,Brislington Medical and Nursing Museum,Attraction,museum,-33.81290750000001,151.0020915
+node,4354728824,Burnside Heritage Centre,Attraction,museum,-33.79535489999999,151.0161916
+node,4354728826,Butterfly Museum,Attraction,museum,-33.569743,150.836674
+node,4354728828,Campbelltown Steam Museum,Attraction,museum,-34.09213880000001,150.7688075
+node,4354728834,Fairfield City Museum And Gallery,Attraction,museum,-33.8542809,150.9420268
+node,4354728844,Linnwood Museum,Attraction,museum,-33.85470039999999,150.9762569
+node,4354728855,Nativity House Museum And Gallery,Attraction,museum,-33.85232559999999,150.8214125
+node,4354728856,Netherby House,Attraction,museum,-33.644342400000006,151.0444983
+node,4354728860,Old Government House,Attraction,museum,-33.81210980000001,150.9973605
+node,4354728864,Richmond Villa Heritage Centre,Attraction,museum,-34.0682424,150.8151116
+node,4354728865,Rouse Hill Estate,Attraction,museum,-33.675835400000004,150.9083578
+node,4354728870,St Joseph's Boys Home Museum,Attraction,museum,-33.4885976,151.3754331
+node,4354728872,Sydney Jewish Museum,Attraction,museum,-33.87900539999999,151.2202516
+node,4356677661,Carisbrook House,Attraction,museum,-33.82310729999999,151.1500703
+node,4356677670,Don Bank Museum,Attraction,museum,-33.83771200000001,151.2051577
+node,4356677692,Minto Carriage Museum,Attraction,museum,-34.029417800000004,150.8469159
+node,4374907042,Belgenny Farm,Attraction,attraction,-34.084610699999985,150.7054135
+node,4374907060,Central Coast Miniature Railway,Attraction,attraction,-33.403443,151.3459852
+node,4374907072,Calmsley Hill City Farm,Attraction,attraction,-33.86882130000001,150.8595114
+node,4374907079,Glenworth Valley Horse Riding,Attraction,attraction,-33.402897100000004,151.192802
+node,4374907513,Model Park,Attraction,attraction,-33.8636315,150.7189403
+node,4374907541,Sugarloaf Horse Riding Farm,Attraction,attraction,-34.094610200000005,150.7719622
+node,4374907570,Waterski Park,Attraction,attraction,-33.5637017,150.8725345
+node,4374907578,tree top walk,Attraction,attraction,-33.6119208,150.6928203
+node,4518276721,Collingwood House,Attraction,museum,-33.934341399999994,150.9186534
+node,4688993518,Australian Design Centre,Attraction,gallery,-33.8745996,151.2168711
+node,4700359389,Stables,Attraction,attraction,-33.85598160000001,151.274083
+node,4729109689,The Rocks Free Tour,Attraction,attraction,-33.85895039999999,151.2094095
+node,4733321526,Waterfall Art Gallery,Attraction,museum,-33.77078900000001,151.046512
+node,4733333921,Sydney Australia Temple,Attraction,attraction,-33.77556669999999,151.0506078
+node,4740827783,Salt Water Crocodile,Attraction,attraction,-33.41893420000001,151.2777632
+node,4740827786,Spider World,Attraction,attraction,-33.4186238,151.277803
+node,4740827787,Lost World Of Reptiles,Attraction,attraction,-33.4185237,151.2778186
+node,4740827788,Galapagos Tortoise,Attraction,attraction,-33.4183458,151.27751770000003
+node,4740827789,American Alligator,Attraction,attraction,-33.418016099999996,151.2772481
+node,4740827790,Lace Monitor,Attraction,attraction,-33.41846949999999,151.2769835
+node,4740827791,Tasmanian Devil,Attraction,attraction,-33.4182933,151.2772955
+node,4740827792,Kangaroo,Attraction,attraction,-33.418657999999986,151.2773102
+node,4740827801,Turtle,Attraction,attraction,-33.418642600000005,151.2769643
+node,4740827802,Echidna,Attraction,attraction,-33.41866910000001,151.2771125
+node,4740827803,Dingo,Attraction,attraction,-33.4187574,151.2768156
+node,4740827804,Yellow Foot Rock Wallaby,Attraction,attraction,-33.4190881,151.276776
+node,4740827805,Wombat,Attraction,attraction,-33.4189047,151.2769129
+node,4740827806,Reptile Display Pits,Attraction,attraction,-33.4184972,151.277686
+node,4740827807,Platypus,Attraction,attraction,-33.4177991,151.2779918
+node,4740828043,Parma Wallaby,Attraction,attraction,-33.418931099999995,151.2767555
+node,4740828044,Cassowary,Attraction,attraction,-33.4186284,151.2763659
+node,4740828045,Rainforest Aviary,Attraction,attraction,-33.418478199999996,151.2763649
+node,4740828046,Show Pit,Attraction,attraction,-33.418200899999995,151.2770663
+node,4740828051,Nocturnal House,Attraction,attraction,-33.417058,151.2768029
+node,4740828052,Bush Birds,Attraction,attraction,-33.417080000000006,151.2765671
+node,4740828053,Koala Photo Area,Attraction,attraction,-33.41818,151.2768149
+node,4740828054,Koala,Attraction,attraction,-33.4180348,151.2768396
+node,4740828055,Ploddy the Dinosaur,Attraction,attraction,-33.425268499999994,151.2770986
+node,4740828232,Lorikeet,Attraction,attraction,-33.418869300000004,151.2779006
+node,4740828233,Pig-nosed Turtle,Attraction,attraction,-33.4188526,151.2779248
+node,4740828675,Walk-in Owl Flight,Attraction,attraction,-33.4178453,151.2766796
+node,4740828691,Woodland Parrot Aviary,Attraction,attraction,-33.417731599999996,151.2766398
+node,4740828692,Wet Eucalypt Forest Bird Aviary,Attraction,attraction,-33.41775109999999,151.276551
+node,4755778123,Speaker's Corner,Attraction,attraction,-33.86842560000001,151.2164783
+node,4756293121,Macquarie University Art Gallery,Attraction,museum,-33.7725373,151.1151231
+node,4799669412,Madame Tussauds Sydney,Attraction,museum,-33.8697254,151.2016549
+node,4800460090,Old Sydney Town,Attraction,museum,-33.42153100000001,151.27727340000004
+node,4844904522,Argyle Stairs,Attraction,attraction,-33.85894689999999,151.2073156
+node,4844904524,GPO Colonnade,Attraction,attraction,-33.8676568,151.2073995
+node,4844908021,The Bridge Stairs,Attraction,attraction,-33.85911689999999,151.2069762
+node,4860741329,Cumberland Hwy Interchange,Attraction,attraction,-33.8161232,150.9634544
+node,4860741429,Raby Interchange,Attraction,attraction,-34.032410000000006,150.8238939
+node,4887424621,Wishing Tree,Attraction,attraction,-33.864898999999994,151.217994
+node,4928549541,Man O' War Steps,Attraction,attraction,-33.857800299999994,151.2159364
+node,5042081721,BridgeClimb Sydney,Attraction,attraction,-33.85735640000001,151.2078141
+node,5108437149,Canterbury Bankstown Bulldogs Rugby League,Attraction,attraction,-33.91629079999999,151.0947227
+node,5108437150,Manly Sea Eagles Rugby League,Attraction,attraction,-33.760533,151.2735392
+node,5108437539,West Tigers Rugby League,Attraction,attraction,-34.0504874,150.8336525
+node,5108458122,Penrith Panthers Rugby League,Attraction,attraction,-33.7588536,150.6875381
+node,5334046021,Reserve Bank of Australia Museum,Attraction,museum,-33.868096599999994,151.21196
+node,5337688298,Belle Framing Art Gallery,Attraction,gallery,-33.89095879999999,151.2449115
+node,5350634018,Cannon House Gallery,Attraction,gallery,-33.8592834,151.2083174
+node,5367109429,Blank Space,Attraction,gallery,-33.8831583,151.2145817
+node,5367395898,Walter's Gallery,Attraction,gallery,-33.8753397,151.2149814
+node,5415532122,Paddlewheeler,Attraction,attraction,-33.603226799999995,150.8236552
+node,5517592614,Well Courtyard,Attraction,attraction,-33.85942949999999,151.208215
+node,5575109056,Insects,Attraction,attraction,-33.8448531,151.2439061
+node,5721524955,Camden Museum,Attraction,museum,-34.0535712,150.6954766
+node,5748633429,Meyer Gallery,Attraction,gallery,-33.8771592,151.2173819
+node,5757955476,Shark Island,Attraction,attraction,-34.027769899999996,151.0786715
+node,5771965380,Rock Garden,Attraction,attraction,-33.42822840000001,151.29346410000002
+node,5771965385,Kangaroo Paw Mounds,Attraction,attraction,-33.42770339999999,151.2935327
+node,5771965386,Rain Forest Garden,Attraction,attraction,-33.427913600000004,151.2944698
+node,5771965389,Misty Mountains,Attraction,attraction,-33.42774930000001,151.2945057
+node,5771965391,Bottle Tree Garden,Attraction,attraction,-33.4272297,151.2939199
+node,5771965392,Puddle Garden,Attraction,attraction,-33.4272617,151.2941595
+node,5771965397,Gondwana Garden,Attraction,attraction,-33.4280702,151.29356540000003
+node,5771965603,Mt Penang Sculpture Symposium I,Attraction,attraction,-33.42664539999999,151.2941611
+node,5771969069,Mt Penang Sculpture Symposium II,Attraction,attraction,-33.426222300000006,151.3004748
+node,5826043094,Banksia Art Gallery,Attraction,gallery,-33.944283299999995,151.1405114
+node,5841244000,Newsagency Gallery,Attraction,gallery,-33.8959691,151.1574578
+node,5843186216,Dragon Garden,Attraction,attraction,-33.42831419999999,151.2939537
+node,5843186217,Summer Aquatic Garden,Attraction,attraction,-33.427504199999994,151.2947409
+node,5892457573,Twenty Twenty Six,Attraction,gallery,-33.8890538,151.2709077
+node,6285805181,Komodo Dragon,Attraction,attraction,-33.4192217,151.277059
+node,6326631386,The Museum of Human Disease,Attraction,museum,-33.91771789999999,151.23462770000003
+node,6408709085,Old slate quarry,Attraction,attraction,-34.028436299999996,150.6422569
+node,6433467485,Allen Barker Art Gallery,Attraction,attraction,-34.053946499999995,150.6950543
+node,6433467586,Sickles Creek Reserve,Attraction,attraction,-34.042902100000006,150.6649019
+node,6433467785,Harrington Forest Reserve,Attraction,attraction,-34.01689280000001,150.73976720000002
+node,6471142585,Old wagon,Attraction,attraction,-34.0077689,150.6396882
+node,6487929466,Beach & Surf Gallery,Attraction,gallery,-33.91650309999999,151.2414802
+node,6604144995,Grand Prix Park Sign,Attraction,attraction,-34.00290389999999,150.7331457
+node,6611362276,The Rocks Walking Tours,Attraction,attraction,-33.85936759999999,151.2080989
+node,6738168086,Asian Gateway,Attraction,attraction,-33.894524700000005,150.9369598
+node,6872651462,Trans Aquarium,Attraction,aquarium,-33.8875435,150.942939
+node,6897174185,Flying Fox Colony,Attraction,attraction,-33.803659999999994,150.9995412
+node,6961581887,Gun emplacement,Attraction,attraction,-33.8347341,151.2601746
+node,6961581988,Fortifications,Attraction,attraction,-33.8521711,151.2459341
+node,7024709311,Barrel Display,Attraction,attraction,-33.8172821,151.2986527
+node,7025435085,The WILD PLAY Discovery Center,Attraction,attraction,-33.8977198,151.239342
+node,7070907988,White Gums Community - Rowan Classen,Attraction,attraction,-33.40049719999999,150.8107475
+node,7070907990,Hearth Ground Community,Attraction,attraction,-33.4044531,150.8071742
+node,7123753985,Opal Museum,Attraction,museum,-33.86431759999999,151.2089738
+node,7176946197,Nepean Naval Museum,Attraction,museum,-33.74646870000001,150.6835786
+node,7221980998,All Fish 2U Aquarium,Attraction,aquarium,-33.7584695,150.7183889
+node,7236403336,Bellsridge Cottage,Attraction,gallery,-33.528437200000006,150.630145
+node,7314034130,Cobham Hall Museum,Attraction,museum,-33.38579250000001,150.9857196
+node,7444356985,HarbenVale Reserve,Attraction,attraction,-34.06055239999999,150.6716149
+node,7748794085,MacQuarrie house lookout,Attraction,attraction,-34.05115239999999,150.6875756
+node,7871001731,Redfern Art Gallery,Attraction,gallery,-33.89284140000001,151.2053177
+node,8004454585,Cliffside ruins,Attraction,attraction,-34.025627799999995,151.2294038
+node,8071437217,Auburn Aviary,Attraction,attraction,-33.85986049999999,151.0179275
+node,8456132626,Gorge look out,Attraction,attraction,-33.9422711,150.6243039
+node,8456132831,Campbells Ford,Attraction,attraction,-33.959234,150.6240141
+node,8740683317,Old gun emplacement,Attraction,attraction,-33.849863899999995,151.2870363
+node,8740683417,Aboriginal engravings,Attraction,attraction,-33.8861797,151.28564240000003
+node,8808668962,Treetops Adventure The Hills,Attraction,attraction,-33.74276439999999,151.0406452
+node,8874084808,Powditch Studio,Attraction,gallery,-33.887466399999994,151.1677099
+node,8928768229,Olympic Rings,Attraction,attraction,-33.8484651,151.0656587
+node,9179894080,Ferry Artists,Attraction,gallery,-33.3853289,150.9861219
+node,9231372233,NSW Schoolhouse Museum,Attraction,museum,-33.7946815,151.1212494
+node,9364661959,Oceanarium Aquarium,Attraction,aquarium,-33.766445999999995,150.7738969
+node,9497088817,Coma Gallery,Attraction,gallery,-33.8859451,151.1985884
+node,9504471393,Lavender Bay Gallery,Attraction,gallery,-33.84217609999999,151.2084045
+node,9527715587,Incinerator Art Space,Attraction,gallery,-33.811453400000005,151.2018121
+node,9536155229,Portuguese Ethnographic Museum of Australia,Attraction,museum,-33.8884396,151.174991
+node,9892744773,Museum of Illusions,Attraction,attraction,-33.87038809999999,151.2068102
+node,9942803983,Westpac Museum,Attraction,museum,-33.867264799999994,151.20675100000005
+node,10067945218,Fishing,Attraction,attraction,-33.9950237,151.2382772
+node,10174648682,China Heights,Attraction,gallery,-33.8798117,151.2103303
+node,10185684900,Harbour Masters Steps,Attraction,attraction,-33.8603934,151.2096273
+node,10196563897,Ambush,Attraction,gallery,-33.902250699999996,151.2022289
+node,10239221876,Simmos Beach,Beach,,-33.999368399999994,150.9118339
+node,10294804840,Art2Muse Gallery,Attraction,gallery,-33.884901899999996,151.2373838
+node,10312416442,Martin Browne Contemporary,Attraction,gallery,-33.88137520000001,151.233034
+node,10312416443,Wagner Contemporary,Attraction,gallery,-33.881099899999995,151.2331913
+node,10312416444,Justin Miller Art,Attraction,gallery,-33.8813195,151.2332397
+node,10602319270,Australian Galleries,Attraction,gallery,-33.8813429,151.2336164
+node,10602400842,Roslyn Oxley9 Gallery,Attraction,gallery,-33.8826261,151.2340556
+node,10728710305,Weekend cars for sale,Attraction,attraction,-33.73978910000001,151.3029171
+node,10833319917,Olsen,Attraction,gallery,-33.88808569999998,151.2353065
+node,10895520174,APA Gallery,Attraction,gallery,-33.89865929999999,151.20714160000003
+node,10943710510,Ken Done Gallery,Attraction,gallery,-33.857889799999995,151.2094487
+node,10981819784,Ames Yavuz,Attraction,gallery,-33.8806176,151.2109939
+node,10981819787,Sketch co Gallery,Attraction,gallery,-33.88488469999999,151.214231
+node,11006860246,firstdraft,Attraction,gallery,-33.872596699999995,151.2155812
+node,11034136119,Australian Golf Heritage Society Museum,Attraction,museum,-33.880467800000005,151.0634018
+node,11072861576,Little Nipper,Attraction,attraction,-33.8462896,151.2097846
+node,11072861577,Bug,Attraction,attraction,-33.8464254,151.209865
+node,11072861578,Sledgehammer,Attraction,attraction,-33.8466341,151.2098254
+node,11128867910,The Cross Art Projects,Attraction,gallery,-33.87233749999999,151.2245132
+node,11147762381,Armaments Display,Attraction,museum,-33.830165400000006,151.0699863
+node,11147785811,Murama Healing Space,Attraction,museum,-33.82483710000001,151.0653269
+node,11147785821,Education Centre,Attraction,gallery,-33.83352779999999,151.0635111
+node,11147785822,Armory Gallery,Attraction,gallery,-33.8262342,151.06620940000002
+node,11273263415,Robin Gibson Gallery,Attraction,gallery,-33.877775299999996,151.2192429
+node,11273263417,Yirranma Place,Attraction,gallery,-33.8777842,151.2190415
+node,11339537611,Sisters of Charity Heritage Centre and Archives,Attraction,museum,-33.86974359999999,151.2241625
+node,11378830326,House Down Under,Attraction,museum,-33.69150379999999,150.9244054
+node,11461415169,Canoe launch,Attraction,attraction,-33.65650399999999,151.2719136
+node,11461415269,Canoe Launch,Attraction,attraction,-33.6591507,151.2974991
+node,11504663070,Canoe Ramp,Attraction,attraction,-33.7675867,151.1998286
+node,11535646554,Battery Bastion,Attraction,attraction,-33.853188499999995,151.2462611
+node,11535753854,Lifeboat,Attraction,attraction,-33.8689067,151.1991104
+node,11601335301,Art+,Attraction,gallery,-33.8706999,151.2251149
+node,11608909640,Passage,Attraction,gallery,-33.88087279999999,151.2036797
+node,11658542653,Gallery 9,Attraction,gallery,-33.878676899999995,151.219428
+node,11658776324,NAS Gallery,Attraction,gallery,-33.87965270000001,151.2185237
+node,11686752656,La Perouse Snake Show,Attraction,attraction,-33.9881339,151.2338503
+node,11794962494,Arthouse Gallery,Attraction,gallery,-33.8782337,151.226957
+node,11794984816,Sally Dan Cuthbert Gallery,Attraction,gallery,-33.8775245,151.2282778
+node,11815694732,Qtopia,Attraction,museum,-33.87974119999999,151.2172056
+node,11831839070,UNSW Galleries,Attraction,gallery,-33.88361220000001,151.2204888
+node,11865362055,Harrington Street Gallery,Attraction,gallery,-33.887599,151.1999879
+node,11896154480,Silly Sub,Attraction,attraction,-33.84679789999999,151.2097599
+node,11934181899,Dinosaur garden,Attraction,attraction,-33.8774635,151.1540676
+node,11935641398,Royal Australian Navy Heritage Centre,Attraction,museum,-33.85953489999999,151.2300928
+node,11982371043,The Garden Gallery,Attraction,gallery,-33.8666585,151.2180181
+node,12050821706,Middle Head Inner Fort (Gun Emplacements),Attraction,attraction,-33.8246074,151.2667476
+node,12089720396,Sarah’s Gallery,Attraction,gallery,-33.8820547,151.2281735
+node,12091276257,Woollahra Gallery at Redleaf,Attraction,gallery,-33.8724845,151.2485277
+node,12114789905,SYD,Attraction,attraction,-33.9362321,151.1650856
+node,12128538440,Artistika,Attraction,gallery,-33.87257700000001,151.2186496
+node,12150773662,Nanda Hobbs,Attraction,gallery,-33.887338099999994,151.1995298
+node,12177991230,Locomotive Workshop,Attraction,attraction,-33.8947163,151.1954177
+node,12179752331,Yana Art Studio & Gallery,Attraction,gallery,-33.774125899999994,151.0822387
+node,12206382778,Ellipsis Gallery,Attraction,gallery,-33.87269909999999,151.2165279
+node,12208368273,Gallery 371,Attraction,gallery,-33.90378789999999,151.1683633
+node,12239973595,Redbase,Attraction,gallery,-33.8865421,151.2009357
+node,12254169129,Gaffa,Attraction,gallery,-33.8723967,151.2055579
+node,12356559501,Kangaroo sighting,Attraction,attraction,-33.798653099999996,150.6174657
+node,12408083874,Studio 25B,Attraction,gallery,-33.878046499999996,151.2256701
+node,12597670802,The Shop Gallery,Attraction,gallery,-33.8817508,151.1888905
+node,12599787123,4A Centre for Contemporary Asian Art,Attraction,gallery,-33.879962199999994,151.2058619
+node,12717080541,The Corner Shop - Art by Phillip Ricketson,Attraction,gallery,-33.9014921,151.1801067
+node,12756485904,Aitken's Australia in the Round,Attraction,gallery,-33.7655675,150.6201072
+node,12809053728,Dodgem City,Attraction,attraction,-33.847315,151.2097836
+node,12809053747,Foyer 2,Attraction,attraction,-33.8474738,151.2098803
+node,12824865530,Puzzle Gallery,Attraction,gallery,-33.886547,151.201063
+node,12824865531,Michael Reid,Attraction,gallery,-33.88766229999999,151.1951766
+node,12974889225,Studio W,Attraction,gallery,-33.86932670000001,151.2193704
+node,12982188829,Studio Gallery,Attraction,gallery,-33.8978119,151.2103737
+node,12982188837,Rainbow Studios,Attraction,gallery,-33.8784236,151.2227105
+node,13073517611,Japan Foundation Gallery,Attraction,gallery,-33.88475569999999,151.2008185
+node,13115653363,Christopher Vine,Attraction,gallery,-33.8821494,151.2162762
+node,13253266290,Rogue Popup,Attraction,gallery,-33.8942802,151.1993502
+node,13516349828,48 Art Atrium,Attraction,gallery,-33.84726460000001,151.2112363
+node,13545087566,Tin Sheds Gallery,Attraction,gallery,-33.8886947,151.19190090000004
+node,13571789901,Climbing  rope,Attraction,attraction,-33.69069399999999,151.2821534
+node,13584370419,B & C Aquarium,Attraction,aquarium,-33.95811119999999,151.2313535
+node,13589437039,Large Bent-winged Bats,Attraction,attraction,-33.8451153,151.1937104
+node,13812478587,Julie Peadon Art,Attraction,gallery,-33.85287999999999,151.1519913
+node,13938019809,May Gibbs' Nutcote,Attraction,museum,-33.84191669999999,151.2215264
+node,13970488918,BridgeMuseum,Attraction,museum,-33.854590300000005,151.2094667
+node,13981977516,Blue Zone Art Gallery,Attraction,gallery,-33.8416929,151.2060923
+node,14047898308,Gallery Oz,Attraction,gallery,-33.881163,151.2091692
+node,14047910271,Pete Versus Toby,Attraction,gallery,-33.8809871,151.2089446
+node,14070845057,Australian Computer Museum Society,Attraction,museum,-33.874697899999994,151.12611480000004
+node,14089605404,Parramatta Female Factory,Attraction,museum,-33.8035105,151.0004471
+node,14090823195,QStation Visitor Centre Museum,Attraction,museum,-33.81564219999999,151.2858876
+node,14133088701,Swing City,Attraction,theme_park,-33.74571130000001,150.9514673
+node,14179989466,Flinders Street Gallery,Attraction,gallery,-33.883029099999995,151.21720650000003
+node,14179998969,Palangi Gallery,Attraction,gallery,-33.88296379999999,151.2172048
+node,14248274949,Lydham Hall,Attraction,museum,-33.944898599999995,151.1300262
+relation,1249201,Lady Margaret Beach,Beach,,-33.9956020791775,151.14759350197582
+relation,1286351,Shelly Beach,Beach,,-34.06414741512753,151.15546509006234
+relation,2250112,Bronte Beach,Beach,,-33.903628457104624,151.26829066736846
+relation,2251446,Maroubra Beach,Beach,,-33.94963715033491,151.2567006085993
+relation,2916623,Luna Park,Attraction,theme_park,-33.84727534593886,151.20980431667084
+relation,2927697,Store Beach,Beach,,-33.812058980957616,151.28969127173036
+relation,2970109,North Steyne Beach,Beach,attraction,-33.79353404746111,151.28770994411056
+relation,2978551,Palm Beach,Beach,,-33.59100430490411,151.32531870380828
+relation,2978552,Station Beach,Beach,,-33.58422753081704,151.32581888744235
+relation,3178788,Sydney Harbour Bridge,Attraction,attraction,-33.85211648007189,151.2107812505976
+relation,3359340,Fishermans Beach,Beach,,-33.7364961135524,151.30599288827162
+relation,5622266,Avalon Beach,Beach,,-33.63528306398238,151.33251812191486
+relation,5922776,Little Congwong Beach,Beach,,-33.99139668497601,151.23829651990454
+relation,5926010,Congwong Beach,Beach,,-33.98905260503476,151.23502866720122
+relation,5926011,Frenchmans Bay,Beach,,-33.98519289788997,151.23134679991134
+relation,5926014,Yarra Bay Beach,Beach,,-33.97894037722745,151.22918501802317
+relation,5926228,Little Bay Beach,Beach,,-33.97852431557692,151.2516276438274
+relation,6808214,Patonga Beach,Beach,,-33.551587007239334,151.2785448935357
+relation,7071528,Towra Spit Island,Beach,,-34.00989754159779,151.14389949450091
+relation,7371641,Umina Beach,Beach,,-33.530587666038464,151.3119997645909
+relation,7714157,Featherdale Wildlife Park,Attraction,zoo,-33.76582698211208,150.88426867125372
+relation,7908100,Elizabeth Farm,Attraction,museum,-33.82118182957296,151.01796862159256
+relation,7966481,Ettalong Beach,Beach,,-33.52094477934731,151.3322267840585
+relation,7966651,Putty Beach,Beach,,-33.530663531621855,151.36366729645272
+relation,8016729,Headland Park,Attraction,museum,-33.83260011162792,151.25805121702012
+relation,8238628,Queenscliff Beach,Beach,attraction,-33.78801601550157,151.2881452415145
+relation,9596872,Sydney Opera House,Attraction,attraction,-33.85720578876808,151.2151211573103
+relation,14117819,Ocean Beach,Beach,,-33.52470823400201,151.32293338790168
+relation,17190703,Wattamolla Beach,Beach,,-34.13751461733562,151.11745356387297
+relation,18179623,Kyeemagh Dog Beach,Beach,,-33.949658505447694,151.1670527718738
+relation,18183670,East Manly Cove Beach,Beach,,-33.80138368260501,151.28632759705442
+relation,18224617,SEA LIFE Sydney Aquarium,Attraction,aquarium,-33.86959339155795,151.20189337835868
+relation,20386462,Penrith Beach,Beach,,-33.69170274022817,150.6758469249079
+way,4042219,Freshwater Beach,Beach,,-33.781943955138786,151.2907150460648
+way,4042355,Dee Why Beach,Beach,,-33.750736289189696,151.29855060594022
+way,4042505,Bilgola Beach,Beach,,-33.645249513781266,151.32810136952804
+way,4044016,Warriewood Beach,Beach,,-33.69073945365427,151.30866604072006
+way,4335014,Whale Beach,Beach,,-33.61075854969685,151.33155544673198
+way,4335060,Flannel Flower Beach,Beach,,-33.57600773650159,151.30593730784685
+way,4335061,West Head Beach,Beach,,-33.58144811867707,151.30910979521093
+way,4335895,Hungry Beach,Beach,,-33.58298618692745,151.27583628534447
+way,4354480,Shark Beach,Beach,,-33.85043469156628,151.26714836017507
+way,4354525,Milk Beach,Beach,,-33.85654594689985,151.2673194457326
+way,4354532,Taronga Zoo,Attraction,zoo,-33.843682003343325,151.2412538156472
+way,4960808,Elizabeth Bay House,Attraction,museum,-33.87012897969409,151.2264522929697
+way,9922242,Muru Nanga Mai Dreaming Track,Attraction,attraction,-33.84381239999999,151.0784748
+way,10420683,Cobblers Beach,Beach,,-33.825886430333796,151.2632702817696
+way,13858409,Long Reef Beach,Beach,,-33.74429568160708,151.30783449057603
+way,13858412,Mona Vale Beach,Beach,,-33.68296891878595,151.31183286667536
+way,13858415,Basin Beach,Beach,,-33.67684834342165,151.31566571016737
+way,13858417,Bungan Beach,Beach,,-33.6675091345781,151.31896627054255
+way,13858421,Turimetta Beach,Beach,,-33.69925686851696,151.30966588305617
+way,14040821,North Narrabeen Beach,Beach,,-33.707439514334716,151.30447226377015
+way,14040977,Narrabeen Beach,Beach,,-33.71751193655575,151.30007162216555
+way,14041013,Collaroy Beach,Beach,,-33.72788172321734,151.30040903086677
+way,14041635,Newport Beach,Beach,,-33.65398593344252,151.3233848037015
+way,14059935,Great Mackerel Beach,Beach,,-33.590275084645185,151.3008969685727
+way,14061125,Currawong Beach,Beach,,-33.595980890893344,151.29970693570522
+way,16597926,The Star,Attraction,attraction,-33.86791276101672,151.19504747595863
+way,16598528,Australian National Maritime Museum,Attraction,museum,-33.86936257605,151.1986749691366
+way,16599528,Museum of Contemporary Art,Attraction,gallery,-33.85995686057749,151.20895520566756
+way,16748926,Australian Museum,Attraction,museum,-33.87427461061538,151.2132557339691
+way,16749595,Hyde Park Barracks,Attraction,museum,-33.86962260364187,151.2127980939353
+way,16750260,The Mint,Attraction,museum,-33.86894289997878,151.21243054630747
+way,16765958,Powerhouse Museum,Attraction,museum,-33.87820879542299,151.19955612403342
+way,23019739,Cronulla Beach,Beach,,-34.055084436898746,151.1550241327446
+way,23141277,Horderns Beach,Beach,,-34.082405016591906,151.1473753978927
+way,23240543,Clontarf Beach,Beach,,-33.803214839795544,151.25204475579463
+way,23240559,Fairlight Beach,Beach,,-33.79991100885694,151.27506454702416
+way,23240560,Delwood Beach,Beach,,-33.79952007004827,151.27800876534477
+way,23240573,Forty Baskets Beach,Beach,,-33.803434153249704,151.27010138331545
+way,23240574,Washaway Beach,Beach,,-33.81530467136124,151.26324080357895
+way,26317732,Gunyah Beach,Beach,,-33.572390584660326,151.24011964481332
+way,26317788,Eleanor Beach,Beach,,-33.5761276363378,151.2438077057382
+way,26491957,Little Marley Beach,Beach,,-34.12114019432332,151.13511026515067
+way,26492096,Marley Beach,Beach,,-34.11442370758733,151.14140065656244
+way,26765655,Little Jibbon Beach,Beach,,-34.07649537196656,151.1673620596453
+way,28135857,Bradley's Beach,Beach,,-33.5400423917971,151.23967741416016
+way,29388919,Coogee Beach,Beach,,-33.92083924596931,151.2579111731036
+way,37066937,Double Bay Beach,Beach,,-33.87382694200907,151.2448718010905
+way,39373324,Shelley Beach,Beach,,-34.079963869731294,151.17012218061348
+way,40717424,Queen Victoria Building,Attraction,attraction,-33.87143785333328,151.20666936827317
+way,41740993,Curl Curl Beach,Beach,,-33.77000760546532,151.29584291731547
+way,42874299,Heathcote Hall (historic house),Attraction,attraction,-34.088245400084624,151.01506885001416
+way,47894641,Lady Bay Beach,Beach,,-33.83559743923168,151.27944729117434
+way,55218511,Sydney Observatory,Attraction,museum,-33.85954108558066,151.2046671315392
+way,55495702,Valley Heights Locomotive Depot Heritage Museum,Attraction,attraction,-33.70270449771673,150.58059462781574
+way,55890139,YMCA building,Attraction,museum,-34.04499084457514,151.05218574689707
+way,58060426,Blacktown Arts Centre,Attraction,museum,-33.77265854312505,150.9086966912324
+way,62151542,Sydney Tramway Museum,Attraction,museum,-34.04616550516426,151.05190550020765
+way,77085587,Silver Beach,Beach,,-34.00728021699505,151.19294774889678
+way,77090123,Elouera Beach,Beach,,-34.046622345216534,151.15931125554818
+way,86379306,Greenhills Beach,Beach,,-34.03697294045616,151.172608145982
+way,86484406,Blackwoods Beach,Beach,,-34.06023872992292,151.15707318805642
+way,91675833,Australian Reptile Park,Attraction,zoo,-33.41867629182606,151.2771090408505
+way,100533199,Woolwich Dock and Parklands,Attraction,museum,-33.84085200530802,151.17243074683992
+way,100949415,Former Barracks Building,Attraction,museum,-33.85348425022042,151.19538596047192
+way,102757017,Lady Martins Beach,Beach,,-33.86483956908589,151.25287190982328
+way,102757069,Bellamy Beach,Beach,,-33.86962537912911,151.2535551653775
+way,102758329,Queens Beach,Beach,,-33.86113139518584,151.2689314662337
+way,102758775,Tingara Beach,Beach,,-33.85752499181591,151.26829047865095
+way,102758786,Hermit Beach,Beach,,-33.8588177705649,151.26915025390392
+way,104740406,Towra Spit Beach,Beach,,-34.00355008576277,151.1682017749681
+way,110166921,Mosman Art Gallery & Community Centre,Attraction,gallery,-33.8261932000946,151.24051669691957
+way,112266963,Obelisk Beach,Beach,,-33.8297801991552,151.26087126640866
+way,117759132,Coney Island Funny Land,Attraction,attraction,-33.84691574177988,151.20977467272914
+way,117759135,Carousel,Attraction,attraction,-33.84859070959634,151.21031845849348
+way,130512350,Hazelhurst Gallery,Attraction,museum,-34.03292526427142,151.08228427777948
+way,133028222,Hayes Street Beach,Beach,,-33.84162914863494,151.2194015996161
+way,138899324,Australia Walkabout Wildlife Park,Attraction,zoo,-33.426005764287254,151.22106608463943
+way,147146404,Seal,Attraction,attraction,-33.8448700449933,151.24202621198165
+way,147146675,Pelican,Attraction,attraction,-33.844673872979186,151.24141043347677
+way,147146888,Red Panda,Attraction,attraction,-33.84506410045334,151.2407781100426
+way,147146959,Gibbon,Attraction,attraction,-33.84517430979832,151.24017537545157
+way,147147069,Fishing Cat,Attraction,attraction,-33.844946532569445,151.24054786731833
+way,147147651,Sun Bear,Attraction,attraction,-33.844066168504355,151.24019672395906
+way,147226880,Wild Australia,Attraction,attraction,-33.844098594921846,151.2439391622746
+way,147226930,Backyard to Bush,Attraction,attraction,-33.8449430789222,151.2439025485417
+way,147226943,Farm Yard,Attraction,attraction,-33.84545357833554,151.24396696779735
+way,151179896,Zebra,Attraction,attraction,-33.84314321275973,151.23993914946865
+way,151179897,Elephant,Attraction,attraction,-33.84460174630606,151.24039937223762
+way,151179899,Giraffe,Attraction,attraction,-33.84326592551272,151.24037980078674
+way,151180885,Chimpanzee,Attraction,attraction,-33.842735958118986,151.24026056585154
+way,151180891,Corroborree Frog,Attraction,attraction,-33.842719349757886,151.2409369802866
+way,151181051,Capybara,Attraction,attraction,-33.84344694917779,151.24199195027455
+way,151181052,Ring-tailed Lemur,Attraction,attraction,-33.84379247304199,151.24190898492054
+way,151181053,Camel,Attraction,attraction,-33.84435232842197,151.24285813819446
+way,151181055,Gorilla,Attraction,attraction,-33.84401674400551,151.24142901139714
+way,156581638,Government House,Attraction,attraction,-33.85990569290475,151.2151196350591
+way,159097567,Little Tallow Beach,Beach,,-33.540237722667065,151.34802676343298
+way,159097569,Tallow Beach,Beach,,-33.53737531878704,151.35192763578712
+way,166230547,HMAS Onslow,Attraction,attraction,-33.86900706377133,151.19960620800444
+way,166230548,HMAS Vampire,Attraction,attraction,-33.86915927735067,151.19985494891336
+way,168834629,Malabar Beach,Beach,,-33.96439505281128,151.25187276459027
+way,169219244,Verge Gallery,Attraction,gallery,-33.8890033469491,151.19134573174895
+way,172616049,Jibbon Beach,Beach,,-34.08064499756529,151.1656901408358
+way,172983356,Camp Cove Beach,Beach,,-33.83968938618391,151.2790317287025
+way,173244595,Bondi Beach,Beach,attraction,-33.89230657405184,151.2753197810709
+way,173257848,Tamarama Beach,Beach,attraction,-33.900590231140754,151.27055604451482
+way,173257859,Clovelly Beach,Beach,,-33.91350790438792,151.2663571779228
+way,173352023,Pearl Beach,Beach,,-33.54189655581663,151.30817698756326
+way,173353364,Resolute Beach,Beach,,-33.58490270539184,151.30699228936524
+way,173565454,HMAS Advance,Attraction,attraction,-33.86865887547703,151.20010281846567
+way,174440305,Indy 800 Kart Track,Attraction,attraction,-33.5715971327585,150.83679355870655
+way,176725263,Gibson's Beach,Beach,,-33.8464635574931,151.2809970066881
+way,176725266,Kutti Beach,Beach,,-33.8472104613739,151.27921909836158
+way,176726573,Vaucluse House,Attraction,museum,-33.85561127701938,151.27363465370394
+way,176726580,Rose Bay Beach,Beach,,-33.86930762324513,151.26849065390883
+way,176762314,Little Patonga Beach,Beach,,-33.56412317324009,151.2624304843049
+way,177081893,Penrith Regional Gallery & The Lewers Bequest,Attraction,gallery,-33.75847406060393,150.66445923189983
+way,179541460,Reef Beach,Beach,,-33.8076854485923,151.27406045492896
+way,179732278,Watsons Bay,Beach,,-33.84418144999316,151.28159451209942
+way,179912450,Corner Beach,Beach,,-33.83814843508694,151.22918695151623
+way,179913213,Whiting Beach,Beach,,-33.844414337347786,151.23844173149604
+way,179913855,Balmoral Beach,Beach,,-33.824066608940264,151.2512888896535
+way,179934230,Chinamans Beach,Beach,,-33.814519624077235,151.24848526901172
+way,179951390,Flat Rock Beach,Beach,,-33.78281509119104,151.22516347855995
+way,179975399,Bullimah Beach,Beach,,-33.531835713742105,151.38065078279024
+way,180072642,Lobster Beach,Beach,,-33.529874737735646,151.3413733329528
+way,180522305,Castle Rock Beach,Beach,,-33.81167166726581,151.2590004664502
+way,182821636,Anzac Memorial,Attraction,attraction,-33.87575160029582,151.2109485645202
+way,183532933,La Perouse Museum (Former Cable Station),Attraction,museum,-33.98851880217052,151.23160158653647
+way,191624662,Harry's Cafe de Wheels,Attraction,attraction,-33.86925430000057,151.22118214974512
+way,196464388,Yaralla Estate,Attraction,attraction,-33.84136743357939,151.09677442852544
+way,197801072,Sydney Tower,Attraction,attraction,-33.870499441965315,151.20894704026648
+way,207840948,Greenwich Baths,Beach,,-33.841263158543384,151.18275580862837
+way,223789521,Manly Beach,Beach,attraction,-33.79774244335375,151.288940258535
+way,223791335,Little Manly Cove,Beach,,-33.80660017839985,151.28694328255443
+way,223791501,Collins Flat Beach,Beach,,-33.808290134617664,151.29138809489575
+way,232448864,Cadman's Cottage,Attraction,attraction,-33.85889390000489,151.20919129974155
+way,238539066,Fauna Reserve,Attraction,zoo,-33.858839437638835,151.01684927932348
+way,250868637,Little Shark Rock Point Beach,Beach,,-33.59243311456013,151.22346667743903
+way,252695700,Josef Lebovic Gallery,Attraction,gallery,-33.90883565093979,151.2230930089776
+way,253258716,Boat Harbour Beach,Beach,,-34.03709302286735,151.19582034816247
+way,253258718,Wanda Beach,Beach,,-34.0424498365938,151.16314782551385
+way,255379489,Koala Park,Attraction,zoo,-33.74183484411239,151.0445409363109
+way,270507389,Maian Bar Beach,Beach,,-34.0772542253473,151.13268355503476
+way,287001201,Brickpit Ring Walk,Attraction,attraction,-33.841462799999995,151.0715906
+way,309514417,Seven Shillings Beach,Beach,,-33.87106898610115,151.24890186664874
+way,314946608,Sydney Action Park,Attraction,theme_park,-33.80722581581901,150.91049501305008
+way,330361858,Cape Baily Lighthouse,Attraction,attraction,-34.035135800003296,151.22219525000034
+way,331769921,Stage 7,Attraction,museum,-33.892324931135946,151.22826606552357
+way,332107402,See Street Gallery,Attraction,gallery,-33.8147047995102,151.0929303676931
+way,365799739,Museum of Fire,Attraction,museum,-33.747421320372915,150.69324701779735
+way,377569431,Portugese Beach,Beach,,-33.61072874509399,151.30155986307005
+way,378280632,Anzac Bridge,Attraction,attraction,-33.86916643067018,151.18583651007197
+way,382842767,Sydney Bus Museum,Attraction,museum,-33.87635950038691,151.15863245699336
+way,392404417,Casemate,Attraction,attraction,-33.836338069716675,151.26066228245645
+way,392414820,Quarantine Beach,Beach,,-33.81508573764424,151.28668748482193
+way,394692970,Cruwee Cove,Beach,,-33.99744275956273,151.24444713551495
+way,409035048,Museum of Sydney,Attraction,museum,-33.863752758635385,151.2114804314899
+way,411511917,White Rabbit Gallery,Attraction,gallery,-33.88649514444256,151.20026127055155
+way,435461994,Head Lighthouse Keeper's Cottage,Attraction,attraction,-33.83353693304862,151.2801192769382
+way,455660810,Flint and Steel Beach,Beach,,-33.5733405657978,151.28610326744467
+way,455660813,White Horse Beach,Beach,,-33.57986189627731,151.28117503325842
+way,461653305,Graffiti Wall,Attraction,attraction,-33.73848696684858,151.28215200162623
+way,480007047,Glenbrook Beach,Beach,,-33.77558109008344,150.60941892675174
+way,484100339,Galston Valley Railway,Attraction,attraction,-33.65002752531547,151.0332206393872
+way,488590389,HMB Endeavour,Attraction,attraction,-33.868374942181674,151.1995278126389
+way,498426544,Henry Kendall Historical Museum,Attraction,museum,-33.43005585007812,151.31454064995648
+way,527393935,Duck Hole Beach,Beach,,-33.76645459250093,150.60334869902644
+way,528733519,Mount Penang Gardens,Attraction,attraction,-33.42782412388106,151.29392617989785
+way,548252219,Former Walter Burley Griffin Incinerator,Attraction,attraction,-33.873893983690806,151.18658194755528
+way,554399640,Artbank Sydney,Attraction,gallery,-33.90006957810795,151.20827605019608
+way,561377761,Dirty Haul Beach,Beach,,-33.79780427778327,151.26827092278864
+way,561911023,Beulah Vista,Attraction,museum,-33.90767560006734,151.1235378032169
+way,581526818,Ferris  Wheel,Attraction,attraction,-33.84865010004415,151.21008710048065
+way,584390542,Grand Flaneur Beach,Beach,,-33.90566002607385,150.9573624981896
+way,592956273,Northbridge School of Visual Arts,Attraction,gallery,-33.81171057398191,151.2174467827416
+way,597981886,Foundation Park,Attraction,attraction,-33.85829686299233,151.20804694860527
+way,598423620,Tempe House,Attraction,attraction,-33.929646550168684,151.15515220697165
+way,615682218,Patonga Bakehouse Gallery,Attraction,gallery,-33.550454152348934,151.27275516633182
+way,624169546,Australian Army Museum of Military Engineering,Attraction,museum,-33.96444775544727,150.9600866973244
+way,673479106,Pipe Kiln No 1,Attraction,museum,-34.0324959501619,151.07243690632097
+way,677184847,Paradise Beach,Beach,,-33.62433508931459,151.31684756584409
+way,684486877,Iron Ladder Beach,Beach,,-33.540883432038,151.34309977751883
+way,691343193,Carss Cottage Museum,Attraction,museum,-33.99050601572917,151.1203315719873
+way,698194006,Sydney Zoo,Attraction,zoo,-33.788731733158734,150.86611502919615
+way,700604254,Tessellated Pavement,Attraction,attraction,-33.531211609924156,151.37905313758614
+way,714728440,New South Wales Lancers Memorial Museum,Attraction,museum,-33.81729425497286,151.00682886582902
+way,794603649,Sydney Zoo Aquarium,Attraction,aquarium,-33.78809560027201,150.86783991141735
+way,818647435,Natural Bridge,Attraction,attraction,-33.7661217,151.223805
+way,844256147,Treillage Tower,Attraction,attraction,-33.848001250367304,151.07909217253703
+way,888519142,Eora Beach,Beach,,-33.89904110657554,150.95901337708315
+way,911100403,The King's School Robert Robertson Museum,Attraction,museum,-33.78588420039689,151.02664457146923
+way,914265903,Willoughby District Historical Society,Attraction,museum,-33.80005735002494,151.1849395499804
+way,917870228,Biba Beach,Beach,,-33.62077899367192,151.2989512229979
+way,960710577,Dowling Beach,Beach,,-33.90584677368075,150.96487430927058
+way,966087394,Kennards Hire Museum,Attraction,museum,-33.81492500047603,151.1893779057195
+way,985668257,Lion,Attraction,attraction,-33.84271002260083,151.23933593173135
+way,985668260,Meerkats,Attraction,attraction,-33.843462684260096,151.24012294444586
+way,985668266,Fennec Fox,Attraction,attraction,-33.84371273962485,151.24039837239144
+way,985816945,Andean Condor,Attraction,attraction,-33.844361758886926,151.2396676162157
+way,985816946,Tortoise,Attraction,attraction,-33.84421527909466,151.2397426248523
+way,985816948,Palm Aviary,Attraction,attraction,-33.84447895440239,151.2398049758202
+way,997796448,Clive Park Beach,Beach,,-33.80590831351193,151.23092058545944
+way,1000666213,Bull Shark,Attraction,attraction,-33.78812315969763,150.86810359248088
+way,1000666225,Lemur,Attraction,attraction,-33.789159043514694,150.86756673841236
+way,1000666226,Hamadryas Baboon,Attraction,attraction,-33.788852197031844,150.86745044186287
+way,1000666260,Tufted Capuchin,Attraction,attraction,-33.78888388109427,150.8668761997129
+way,1000666261,Tiger,Attraction,attraction,-33.788458850667425,150.8665402278711
+way,1000666265,Cheetah,Attraction,attraction,-33.78790968037391,150.86578457807926
+way,1000666266,African Painted Dog,Attraction,attraction,-33.78836135873312,150.86496113000368
+way,1000666267,"Giraffe, Nyala, Ostrich, Rhino, Zebra",Attraction,attraction,-33.7882173440568,150.86395751221335
+way,1000666274,Hyena,Attraction,attraction,-33.78846293935672,150.86453617941294
+way,1000666283,Orangutan,Attraction,attraction,-33.78895249445445,150.86668011456436
+way,1000697716,Otter,Attraction,attraction,-33.78835137060069,150.86584798616937
+way,1009936215,Fairfield City Museum and Gallery,Attraction,museum,-33.85463589501344,150.94214218794846
+way,1009952090,Hare St Gallery,Attraction,gallery,-33.76341910063003,150.62024668222958
+way,1019862631,Clareville Beach,Beach,,-33.63446543407311,151.31146720840405
+way,1019863584,Sandy Beach,Beach,,-33.60394485777201,151.31904662495475
+way,1019863586,Snapperman Beach,Beach,,-33.598116377156856,151.31888085476228
+way,1021342149,Museums Discovery Centre,Attraction,museum,-33.724603690319476,150.9731700799317
+way,1025699560,Refuge Beach,Beach,,-33.6027428252271,151.24941345521535
+way,1032007966,Revolve Gallery,Attraction,gallery,-33.89177774164408,151.19741937781376
+way,1055843191,Galler.E,Attraction,gallery,-33.806007249873744,150.9837567413254
+way,1073009172,Tree Kangaroo,Attraction,attraction,-33.8427096718827,151.2425334112398
+way,1079380690,Chau Chak Wing Museum,Attraction,museum,-33.88529271450494,151.19049678718082
+way,1134458784,Sydney Live Steam Locomotive Society,Attraction,attraction,-33.80457272830817,151.08694225457583
+way,1134702515,The Australiana Pioneer Village,Attraction,theme_park,-33.56748463143099,150.8403079173767
+way,1157561691,Rouse Hill House,Attraction,museum,-33.6741320555996,150.9068475259336
+way,1158412695,Rosedale Street Gallery,Attraction,gallery,-33.896559000117385,151.13748685508753
+way,1169020217,Prince Henry Hospital Nursing and Medical Museum,Attraction,museum,-33.98079115138682,151.24602124565706
+way,1192861896,Big Dipper,Attraction,attraction,-33.84723145000479,151.20979349999348
+way,1192861898,Hair Raiser,Attraction,attraction,-33.847779402093394,151.20972654398554
+way,1192861900,Rotor,Attraction,attraction,-33.84889933274801,151.2107357633797
+way,1192861901,Volare,Attraction,attraction,-33.84837999985637,151.21029978908584
+way,1192861903,Tango Train,Attraction,attraction,-33.84819565118494,151.2101783786241
+way,1240347962,Darling Harbour Carousel,Attraction,attraction,-33.8742265500413,151.20104009999835
+way,1240351997,The Big Dig Education Centre,Attraction,museum,-33.86034255215361,151.2070989675219
+way,1248731440,MV Cape Don,Attraction,museum,-33.84391049707933,151.19324544816365
+way,1254496376,Watchtower,Attraction,attraction,-33.83744325000276,151.2609154000003
+way,1258468313,Willandra Historic House,Attraction,attraction,-33.81603213482348,151.10206854062426
+way,1259561187,Quarantine Boat Depot Beach,Beach,,-33.84506707607385,151.194889856722
+way,1260485942,Comber Street Studios,Attraction,gallery,-33.88244564425293,151.221574795194
+way,1260485950,Saint Cloche Gallery,Attraction,gallery,-33.8814352870255,151.22482200098574
+way,1262877036,Welcome Wall,Attraction,attraction,-33.86857650000001,151.1980561
+way,1265404795,Art Gallery of New South Wales,Attraction,gallery,-33.868594974637865,151.21742976625842
+way,1266748167,Secret Cove,Beach,,-33.841651966266966,151.2180908713075
+way,1270332070,Argyle Cut,Attraction,attraction,-33.85880389727565,151.20657930565852
+way,1281873035,Boomerang,Attraction,attraction,-33.84643174989219,151.2095258920442
+way,1284962158,Camden Museum of Aviation,Attraction,museum,-34.03726860260876,150.73862929975718
+way,1303440310,Golden Ridge Animal Farm,Attraction,zoo,-33.66847109989418,151.02447632930597
+way,1303443734,WILD LIFE Sydney Zoo,Attraction,zoo,-33.86931443850684,151.2022815586354
+way,1309288098,Nepean Belle Paddlewheeler,Attraction,attraction,-33.78315799999999,150.6400117
+way,1336770111,North Cronulla Beach,Beach,,-34.05092650503981,151.15632861088702
+way,1383490190,Loopy Lighthouse,Attraction,attraction,-33.84665290149391,151.20965390276976
+way,1383490191,Freaky Frogs,Attraction,attraction,-33.84651476226677,151.20965619394946
+way,1415874701,The Rocks Square,Attraction,attraction,-33.858548957142794,151.20845461641989
+way,1427506675,Hallets Beach,Beach,,-33.6000514649635,151.24224912132522
+way,1435822985,Riverboat Postman,Attraction,attraction,-33.54653535000552,151.22734079999938
+way,1452540971,City of Canada Bay Museum,Attraction,museum,-33.8553114612717,151.10448747898542
+way,1466007308,Sydney Society of Model Engineers,Attraction,theme_park,-33.86273836878334,150.71707869768366
+way,1486282303,Quarantine Boat Depot Beach Shack,Attraction,attraction,-33.845169950001875,151.19485989999808
+way,1500242237,Woolwich Baths Beach,Beach,,-33.83929452730639,151.16925106207952
+way,1524809997,Deane Russell Art Gallery,Attraction,gallery,-33.83900244922333,151.21754939132836
+way,1527828113,Zambi Wildlife Retreat,Attraction,zoo,-33.86932714411069,150.6705393615498
+way,1548030641,Tom Bass Sculpture Studio School,Attraction,gallery,-33.899162224523835,151.18804424302212
+way,1550449298,beach,Beach,,-34.029957435927045,150.92039451514134
