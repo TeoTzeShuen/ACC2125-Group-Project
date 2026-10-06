@@ -127,6 +127,8 @@ def table(df, caption, widths_cm, align_right_from=1):
         cell = t.rows[0].cells[j]; cell.text = ""
         run = cell.paragraphs[0].add_run(str(col)); run.bold = True; run.font.color.rgb = RGBColor(0xFF, 0xFF, 0xFF)
         shade(cell, "104281")
+    trPr = t.rows[0]._tr.get_or_add_trPr()   # repeat the header row when a table runs onto a new page
+    hdr = OxmlElement("w:tblHeader"); hdr.set(qn("w:val"), "true"); trPr.append(hdr)
     for i, row in enumerate(df.itertuples(index=False)):
         cells = t.add_row().cells
         for j, v in enumerate(row):
@@ -187,267 +189,296 @@ for a, b in cover.itertuples(index=False):
     cells[0].width = Cm(4); cells[1].width = Cm(8)
 doc.add_paragraph().add_run().add_break(WD_BREAK.PAGE)
 
+
 # ======================================================================
 # Part A
 # ======================================================================
+def ci(lo, hi, unit="%", d=1):
+    return f"95% CI {lo:+.{d}f}{unit} to {hi:+.{d}f}{unit}"
+
+def pval(p):
+    return "p < 0.001" if p < 0.001 else (f"p = {p:.3f}" if p < 0.01 else f"p = {p:.2f}")
+
 doc.add_heading("Part A. Data Selection and Exploratory Analysis", level=1)
 doc.add_heading("A1. Data selection", level=2)
 para(f"We analyse the Inside Airbnb snapshot for Sydney, New South Wales, scraped between 17 and 29 June 2026 "
-     f"({R['raw_listings']:,} listings; {R['raw_calendar_rows']:,} calendar rows covering June 2026 to June 2027). "
-     "Sydney is one of the world's largest Airbnb markets. It has sharply different sub-markets (CBD apartments, harbour and beach suburbs, "
-     "and the western suburbs) and a dense commuter-rail network, which makes it a natural place to ask whether transport "
-     "access, rather than just location, shapes short-term rental performance. We use listings.csv.gz (listing attributes, price, "
-     "reviews and estimated occupancy), calendar.csv.gz (forward availability; this snapshot contains no calendar prices) and "
-     "neighbourhoods.geojson (boundaries of the 38 local government areas, LGAs).", align="justify")
-para("Transport for NSW's *Train Station Entrance Locations* dataset (file stationentrances2020_v4.csv, "
-     f"{R['raw_station_rows']:,} entrances at {R['raw_stations_unique']} stations, published on the TfNSW Open Data Hub under "
-     "CC BY 4.0, reflecting the network as at 2020, accessed 6 October 2026). It gives the latitude and longitude of every "
-     "entrance to Sydney Trains, NSW TrainLink, Sydney Metro and light-rail stations. Entrances, rather than station centroids, measure the walk a guest actually faces. "
-     f"After restricting it to Greater Sydney ({R['entrances_sydney']} entrances, {R['stations_sydney']} stations), we join it to every listing with a "
-     "haversine nearest-neighbour search. This produces the walking-proximity features *distance to nearest station entrance* and *stations within 1 km*, plus "
-     f"distance-to-CBD as a control. The median listing is {R['median_dist_station_m']:,} m from a station entrance; "
-     f"{R['share_within_500m']}% are within 500 m. These features drive Q3, both unguided analyses and all three models.",
-     bold_lead="External dataset. ", align="justify")
-
-log = pd.read_csv(ROOT / "outputs" / "data_decisions_log.csv")
-log = log[["Change Details", "Reason and Justification"]]
-table(log, f"Data Decisions Log ({R['raw_listings']:,} raw listings → {R['clean_listings']:,} analysed)", [7.6, 8.3], align_right_from=99)
+     f"({R['raw_listings']:,} listings; {R['raw_calendar_rows']:,} calendar rows). Sydney is one of the world's largest Airbnb markets, with "
+     "sharply different sub-markets (CBD apartments, harbour and beach suburbs, the western suburbs) and a dense rail network that has grown "
+     "quickly since 2019 (light rail to Randwick and Kingsford, Sydney Metro under the harbour, Parramatta Light Rail). That makes it a natural "
+     "place to test a common investor belief: that listings near a station earn more. We use listings.csv.gz, calendar.csv.gz (forward "
+     "availability only; this snapshot has no calendar prices) and neighbourhoods.geojson (38 local government areas, LGAs). The 21 March 2026 "
+     f"snapshot ({R['raw_listings_mar']:,} listings) is used only as a cross-season check; the September and December 2025 snapshots have no prices.",
+     align="justify")
+para("No single dataset describes rail access well, so we combine five public sources (Table 1). Each is joined to every listing and used "
+     "in Q3, both unguided analyses and all three models.", bold_lead="External datasets. ", align="justify")
+ext = pd.DataFrame([
+    ("External01", "Transport for NSW, Timetables Complete GTFS (Open Data Hub)", "Timetable valid from 6 Oct 2026", "6 Oct 2026",
+     "Station entrances, mode, off-peak frequency, rail time to CBD and airport"),
+    ("External02", "Transport for NSW, Train, Metro and Light Rail Station Entries and Exits", "Oct 2024 – Aug 2026 (monthly)", "7 Oct 2026",
+     "Station patronage (12-month average)"),
+    ("External03", "Australian Bureau of Statistics, SEIFA 2021 by SA2 (+ ASGS Ed. 3 SA2 boundaries)", "2021 Census", "7 Oct 2026",
+     "Neighbourhood advantage (IRSAD); SA2 areas for location controls"),
+    ("External04", "OpenStreetMap contributors, via Overpass API (OSMnx)", "Extract of 7 Oct 2026", "7 Oct 2026",
+     "Beaches, tourist attractions; pedestrian network for walking distance"),
+    ("External05", "Transport for NSW, Train Station Entrance Locations (v4)", "Network as at 2020", "6 Oct 2026",
+     "Comparison only: what the outdated network misses"),
+], columns=["File", "Source and publisher", "Coverage", "Accessed", "Used for"])
+table(ext, "External datasets (TfNSW and ABS data CC BY 4.0; OpenStreetMap ODbL 1.0)", [1.9, 5.0, 2.8, 1.8, 4.4], align_right_from=99)
+para(f"The 1.4 GB GTFS feed was condensed to one row per entrance of the {R['stations_sydney']} Sydney stations "
+     f"({R['stations_by_mode']['Train']} train, {R['stations_by_mode']['Metro']} Metro, {R['stations_by_mode']['Light rail']} light rail). "
+     "For each station we computed off-peak departures per hour and the expected rail travel time to the CBD and the airport, using a reverse "
+     "connection scan over the 7 October 2026 timetable (Dibbelt et al., 2013) with 3-minute transfers. Each listing was then routed along the "
+     f"OpenStreetMap footpath network to its nearest entrance ({R['walk_routed_pct']}% routed), placed in one of {R['sa2_n']} ABS Statistical Area Level 2 "
+     "(SA2) neighbourhoods, and given its distance to the nearest beach and the number of attractions within 1 km. "
+     f"The median listing is a {R['median_dist_station_m']:,} m walk from a station (straight line {R['median_straight_dist_station_m']:,} m), and "
+     f"{R['share_within_500m']}% are within a 500 m walk. Compared with the 2020 file, {len(R['new_stations_since_2020'])} stations are new and "
+     f"{R['listings_station_closer_than_2020']:,} listings are now more than 200 m closer to rail.", bold_lead="Integration. ", align="justify")
+log = pd.read_csv(ROOT / "outputs" / "data_decisions_log.csv")[["Change Details", "Reason and Justification"]]
+table(log, f"Data Decisions Log ({R['raw_listings']:,} raw listings → {R['clean_listings']:,} analysed)", [7.9, 8.0], align_right_from=99)
 
 # ---- Q1 ----
 doc.add_heading("A2. Guided analysis", level=2)
 doc.add_heading("Q1. Characteristics of the most popular listings", level=3)
-q1 = pd.DataFrame(R["q1"])
-pop, oth = q1["Popular (top 25%)"], q1["Other listings"]
-para("We measure popularity with Inside Airbnb's *estimated nights booked in the last 12 months* and define the most popular "
-     f"listings as the top quartile (at least {R['popular_threshold_nights']:.0f} nights; n = {R['popular_n']:,}). Because the estimate is "
-     f"derived from review counts, it agrees almost perfectly with reviews in the last 12 months (ρ = {R['rho_occ_reviews_ltm']}) but only weakly "
-     f"with the share of the next 90 calendar nights already unavailable (ρ = {R['rho_occ_calendar']}). Calendar 'unavailable' nights mix bookings with "
-     "host blocks, so we use the review-based measure and treat the calendar as supporting evidence.", align="justify")
+q1 = pd.DataFrame(R["q1"]); pop, oth = q1["Popular (top 25%)"], q1["Other listings"]
+rob = R["q1_robust"]; cal_ = rob["Calendar: next 90 days unavailable"]
+mn = R["q1_occ_by_minnights"]; rb = R["q1_occ_by_rating"]; sh = R["q1_occ_superhost"]
+para("We measure popularity with Inside Airbnb's *estimated nights booked in the last 12 months* and call the top quartile popular "
+     f"(at least {R['popular_threshold_nights']:.0f} nights; n = {R['popular_n']:,}). Popular listings are *not* the expensive ones "
+     f"({money(pop['Median price (AUD)'])} against {money(oth['Median price (AUD)'])}). They stand out on how they are run (Table 3): "
+     f"{pop['Superhost %']:.0f}% are superhosts (versus {oth['Superhost %']:.0f}%), the median minimum stay is {pop['Median minimum nights']:.0f} night "
+     f"(versus {oth['Median minimum nights']:.0f}) and they list more amenities. Median occupancy falls from {mn['1']:.0f} nights at one-night minimums to "
+     f"{mn['8-30']:.0f} at 8–30 nights, and rises with rating from {rb['<4.5']:.0f} nights below 4.5 to {rb['4.8-4.9']:.0f} at 4.8–4.9 (Figure 1). "
+     "Commercial hosts are under-represented among popular listings.", align="justify")
 rows = [("Median nightly price", money(pop["Median price (AUD)"]), money(oth["Median price (AUD)"])),
         ("Median minimum stay (nights)", f"{pop['Median minimum nights']:.0f}", f"{oth['Median minimum nights']:.0f}"),
         ("Superhost share", f"{pop['Superhost %']:.0f}%", f"{oth['Superhost %']:.0f}%"),
         ("Median amenities listed", f"{pop['Median amenities']:.0f}", f"{oth['Median amenities']:.0f}"),
         ("Mean rating (5+ reviews)", f"{pop['Mean rating (5+ reviews)']:.2f}", f"{oth['Mean rating (5+ reviews)']:.2f}"),
-        ("Entire home/apartment share", f"{pop['Entire home %']:.0f}%", f"{oth['Entire home %']:.0f}%"),
         ("Run by a commercial host (10+ listings)", f"{pop['Commercial host (10+) %']:.0f}%", f"{oth['Commercial host (10+) %']:.0f}%"),
-        ("Within 500 m of a station entrance", f"{pop['Within 500 m of station %']:.0f}%", f"{oth['Within 500 m of station %']:.0f}%"),
-        ("Median share of next 90 nights unavailable", f"{pop['Median 90-day unavailable %']:.0f}%", f"{oth['Median 90-day unavailable %']:.0f}%")]
+        ("Within a 500 m walk of a station", f"{pop['Within 500 m walk of station %']:.0f}%", f"{oth['Within 500 m walk of station %']:.0f}%")]
 table(pd.DataFrame(rows, columns=["Characteristic", f"Popular (n = {pop['Listings']:,.0f})", f"Other (n = {oth['Listings']:,.0f})"]),
-      "Profile of popular listings versus the rest (price, minimum stay, amenities, rating and station distance differ at p < 0.001, Mann-Whitney U)", [8.3, 3.8, 3.8])
-mn = R["q1_occ_by_minnights"]; rb = R["q1_occ_by_rating"]; sh = R["q1_occ_superhost"]
-para("Popular listings are *not* the expensive ones: their median price is "
-     f"{money(pop['Median price (AUD)'])} against {money(oth['Median price (AUD)'])}. They stand out on how they are run. "
-     f"Superhosts make up {pop['Superhost %']:.0f}% of them (versus {oth['Superhost %']:.0f}%), and the median superhost listing books {sh['1']:.0f} nights a year against "
-     f"{sh['0']:.0f} for other listings (Figure 1C). Flexibility matters most: median occupancy falls from {mn['1']:.0f} nights for one-night minimum stays to "
-     f"{mn['4-7']:.0f} at four to seven nights and {mn['8-30']:.0f} at eight to thirty (Figure 1A). Occupancy also rises with rating, from {rb['<4.5']:.0f} nights below 4.5 to "
-     f"{rb['4.8-4.9']:.0f} at 4.8–4.9 (Figure 1B). Popular listings are more often near rail and less often run by commercial hosts. "
-     "The insight for hosts is that demand is earned through low booking friction and consistent service, not through charging more.",
-     align="justify")
-figure("q1_popularity_drivers", "Median estimated nights booked by minimum stay (A), rating band (B) and superhost status (C).")
+      "Popular listings versus the rest (price, minimum stay, amenities, rating and walking distance differ at p < 0.001, Mann-Whitney U)", [8.3, 3.8, 3.8])
+para(f"*Robustness.* The occupancy estimate is built from review counts, so it tracks reviews in the last 12 months almost perfectly (ρ = {R['rho_occ_reviews_ltm']}) "
+     f"but the forward calendar only weakly (ρ = {R['rho_occ_calendar']}). When popularity is defined by the calendar instead, only "
+     f"{cal_['Overlap with main definition %']:.0f}% of listings overlap, the superhost gap vanishes ({cal_['Superhost % (popular / other)']}) and minimum stays are equal. "
+     "Part of the superhost link is mechanical, since superhost status itself requires completed, reviewed stays. The pattern that holds under every "
+     f"definition is that commercial hosts are under-represented among the busiest listings ({cal_['Commercial host % (popular / other)']} on the calendar). "
+     "The insight is that demand follows low booking friction and a good review record, not price.", align="justify")
+figure("q1_popularity_drivers", "Median estimated nights booked by minimum stay (A), rating band (B) and superhost status (C).", width_cm=15)
 
 # ---- Q2 ----
 doc.add_heading("Q2. Relationship between price and guest ratings", level=3)
 sp = R["q2_spearman_price"]; dec = R["q2_deciles"]; br = R["q2_by_room"]
-para(f"Using the {R['q2_n_rated']:,} listings with at least five reviews, price and overall rating are positively but weakly related "
-     f"(Spearman ρ = {R['q2_rho_overall']:.2f}, p < 0.001). The relationship holds within room types "
-     f"(entire homes ρ = {br['Entire home/apt']['rho']:.2f}; private rooms ρ = {br['Private room']['rho']:.2f}), so it is not just a room-mix effect. "
-     f"It is non-linear (Figure 2A). The jump happens at the bottom of the market: the cheapest decile (median {money(dec['price_median'][0])}) averages "
-     f"{dec['rating_mean'][0]:.2f} stars and {dec['share_below_45'][0]:.0f}% of these listings are rated below 4.5. The second decile ({money(dec['price_median'][1])}) already averages "
-     f"{dec['rating_mean'][1]:.2f}, and ratings then creep up only slowly to {dec['rating_mean'][9]:.2f} in the top decile. "
-     f"A log-price regression explains only {100*R['q2_linear_r2']:.1f}% of rating variation ({100*R['q2_quad_r2']:.1f}% with a quadratic term).", align="justify")
-para(f"The sub-scores explain why (Figure 2B). Location has the strongest link to price (ρ = {sp['Location']:.2f}): guests pay more for, and "
-     f"value, good locations. Value has almost no link (ρ = {sp['Value']:.2f}): guests at expensive listings are more satisfied "
-     "overall but do not feel they get better value for money. Pricing above the market's floor protects against poor ratings, but "
-     "high prices do not buy higher ratings. Hosts should compete on the experience, not expect price to signal quality.", align="justify")
-figure("q2_price_vs_rating", "Mean overall, value and location scores by price decile (A) and Spearman correlations between price and review sub-scores (B).")
+para(f"Among the {R['q2_n_rated']:,} listings with at least five reviews, price and rating are positively but weakly related "
+     f"(Spearman ρ = {R['q2_rho_overall']:.2f}, p < 0.001), also within room types (entire homes ρ = {br['Entire home/apt']['rho']:.2f}; private rooms "
+     f"ρ = {br['Private room']['rho']:.2f}). The relationship is non-linear (Figure 2A): the cheapest decile (median {money(dec['price_median'][0])}) averages "
+     f"{dec['rating_mean'][0]:.2f} stars with {dec['share_below_45'][0]:.0f}% of listings below 4.5, the second decile already {dec['rating_mean'][1]:.2f}, and the curve is "
+     f"then nearly flat to {dec['rating_mean'][9]:.2f} at the top. Log price explains only {100*R['q2_linear_r2']:.1f}% of rating variation. Location is the "
+     f"sub-score most tied to price (ρ = {sp['Location']:.2f}) and Value the least (ρ = {sp['Value']:.2f}; Figure 2B): guests at dearer listings are "
+     "happier overall but do not feel they get better value. Pricing above the market floor protects against poor ratings, but high prices do not buy higher ones.",
+     align="justify")
+figure("q2_price_vs_rating", "Mean overall, value and location scores by price decile (A) and Spearman correlations between price and review sub-scores (B).", width_cm=15)
 
 # ---- Q3 ----
 doc.add_heading("Q3. Location, listing characteristics and performance", level=3)
-tp = R["q3_lga_top_price"]; bp = R["q3_lga_bottom_price"]; to = R["q3_lga_top_occ"]; bands = R["q3_bands"]
-para(f"Supply is concentrated: the City of Sydney LGA alone holds {R['q3_sydney_lga_share']}% of listings and the five largest LGAs hold "
-     f"{R['q3_top5_lga_share']}%. Both price and occupancy differ strongly across the {R['q3_lga_n']} LGAs with 30+ listings (Kruskal-Wallis p < 0.001 for both), "
-     f"but they follow different maps (Figure 3). Prices peak on the coast and the North Shore (Pittwater median {money(tp['Pittwater']['median_price'])}, "
-     f"Manly {money(tp['Manly']['median_price'])}, Woollahra {money(tp['Woollahra']['median_price'])}) and are lowest in the south and south-west "
-     f"(Bankstown {money(bp['Bankstown']['median_price'])}, Hurstville {money(bp['Hurstville']['median_price'])}). Demand peaks in the City of Sydney "
-     f"({to['Sydney']['median_occupancy']:.0f} nights at a mid-market {money(to['Sydney']['median_price'])}), while Pittwater, the dearest LGA, books only "
-     f"{tp['Pittwater']['median_occupancy']:.0f} nights. Across LGAs, price and occupancy are almost unrelated (ρ = {R['q3_lga_price_occ_rho']}). "
-     "Premium leisure areas earn their revenue through rate; the inner city earns it through volume.", align="justify")
-figure("q3_lga_maps", "Median nightly price (A) and median nights booked (B) by LGA, with Transport for NSW station entrances overlaid. "
-       "LGAs with fewer than 30 listings are greyed out.", width_cm=14.5)
-para(f"The external rail data adds a second lens (Figure 4). Listings within 500 m of a station entrance book the most "
-     f"(median {bands['median_occupancy'][0]:.0f} nights against {bands['median_occupancy'][3]:.0f} beyond 2 km) and have the highest share of forward nights already taken "
-     f"({100*bands['unavailable_90d'][0]:.0f}% against {100*bands['unavailable_90d'][3]:.0f}%). They are, however, *cheaper* "
-     f"({money(bands['median_price'][0])} against {money(bands['median_price'][3])}). The most rail-remote band contains the beach and bushland homes "
-     f"of the Northern Beaches and Sutherland Shire, which are large, expensive and rated highly for location ({bands['mean_location_score'][3]:.2f}). "
-     f"Distance to rail and distance to the CBD are also correlated (ρ = {R['q3_rho_cbd_station']}). The raw rail pattern therefore mixes "
-     "the effect of access with *what* is built near stations and *where* stations are, which Analysis 1 separates.", align="justify")
-figure("q3_transit_bands", "Median price (A), median nights booked (B) and mean location score (C) by distance to the nearest station entrance.")
+tp = R["q3_lga_top_price"]; bp = R["q3_lga_bottom_price"]; to = R["q3_lga_top_occ"]; bands = R["q3_bands"]; bm = R["q3_by_mode_near"]
+para(f"The City of Sydney holds {R['q3_sydney_lga_share']}% of listings and the five largest LGAs {R['q3_top5_lga_share']}%. Price and occupancy both differ "
+     f"strongly across the {R['q3_lga_n']} LGAs with 30+ listings (Kruskal-Wallis p < 0.001), but they follow different maps (Figure 3). Prices peak "
+     f"on the coast and North Shore (Pittwater {money(tp['Pittwater']['median_price'])}, Manly {money(tp['Manly']['median_price'])}, Woollahra "
+     f"{money(tp['Woollahra']['median_price'])}) and are lowest in the south and south-west (Bankstown {money(bp['Bankstown']['median_price'])}, Hurstville "
+     f"{money(bp['Hurstville']['median_price'])}). Demand peaks in the City of Sydney ({to['Sydney']['median_occupancy']:.0f} nights at "
+     f"{money(to['Sydney']['median_price'])}), while Pittwater books only {tp['Pittwater']['median_occupancy']:.0f}. Across LGAs price and occupancy are almost "
+     f"unrelated (ρ = {R['q3_lga_price_occ_rho']}): leisure areas earn through rate, the inner city through volume. Listings in more advantaged SA2s "
+     f"charge more (ρ = {R['q3_rho_irsad_price']:.2f} with SEIFA IRSAD) but are barely booked more (ρ = {R['q3_rho_irsad_occ']:.2f}).", align="justify")
+figure("q3_lga_maps", "Median nightly price (A) and median nights booked (B) by LGA, with current station entrances overlaid. "
+       "LGAs with fewer than 30 listings are greyed out.", width_cm=13.5)
+para(f"Rail access is linked to demand more than price (Figure 4). Listings within a 500 m walk book the most (median {bands['median_occupancy'][0]:.0f} nights "
+     f"against {bands['median_occupancy'][3]:.0f} beyond 2 km) and have the most forward nights taken ({100*bands['unavailable_90d'][0]:.0f}% against "
+     f"{100*bands['unavailable_90d'][3]:.0f}%), yet are *cheaper* ({money(bands['median_price'][0])} against {money(bands['median_price'][3])}). The rail-remote band is "
+     f"dear because it holds the beaches: its median listing is {bands['median_dist_beach_km'][3]:.1f} km from a beach against {bands['median_dist_beach_km'][0]:.1f} km "
+     f"for the nearest band. Near a station, light-rail listings are the most central and busiest ({bm['Light rail']['median_occupancy']:.0f} nights) and Metro "
+     f"listings the dearest ({money(bm['Metro']['median_price'])}). The raw pattern therefore mixes access with *what* is built near stations and *where* "
+     "stations are, which Analysis 1 separates.", align="justify")
+figure("q3_transit_bands", "Median price (A), median nights booked (B) and mean location score (C) by walking distance to the nearest station entrance.", width_cm=15)
 
 # ---- A3 ----
 doc.add_heading("A3. Unguided analysis", level=2)
-doc.add_heading("Analysis 1. Is there a rail-access price premium?", level=3)
+doc.add_heading("Analysis 1. Does rail access pay?", level=3)
 prem = pd.DataFrame(R["a3_premium"])
-def pv(model, band):
+def pv(model, band="<500 m"):
     return prem[(prem.Model == model) & (prem.Band == band)].iloc[0]
-s1 = pv("+ Structure", "<500 m"); s2 = pv("+ Structure + location", "<500 m")
-para("A common investor assumption is that listings near transport command a nightly-rate premium. We test it with log-price OLS "
-     "regressions (heteroskedasticity-robust HC3 errors) comparing each distance band with listings more than 2 km from a station. Controls are added in "
-     "two blocks: listing structure (room type, guests, bedrooms, bathrooms, shared bathroom, amenities) and location (distance to the CBD and "
-     "LGA fixed effects). Coefficients are converted to percentage price differences, exp(β) − 1.", align="justify")
-para(f"The premium does not survive (Figure 5). Uncontrolled, listings within 500 m are {abs(R['a3_raw_premium_500']):.0f}% *cheaper*. "
-     f"Controlling for structure shrinks this to {s1['Premium %']:.0f}%, because near-station stock is dominated by small apartments. Adding location "
-     f"controls removes it altogether: {R['a3_adj_premium_500']:+.1f}% (95% CI {R['a3_adj_premium_500_ci'][0]:+.1f}% to {R['a3_adj_premium_500_ci'][1]:+.1f}%, "
-     f"p = {s2['p']:.2f}), about {money(R['a3_adj_premium_500_dollars'])} a night at the median price of {money(R['median_price'])}. "
-     f"Model fit rises from R² = {R['a3_r2']['Raw']:.2f} to {R['a3_r2']['+ Structure + location']:.2f}, so the controls, not rail, explain price. "
-     f"Rail access does matter for demand: with the same controls plus price, listings within 500 m book {R['a3_occ_500_nights']:.1f} more nights a year "
-     f"(95% CI {R['a3_occ_500_ci'][0]:.1f}–{R['a3_occ_500_ci'][1]:.1f}, p = {R['a3_occ_500_p']:.2f}). For investors, rail proximity is an occupancy "
-     "advantage, not a pricing one, and should not be paid for as if it lifts nightly rates.", align="justify")
-figure("a3_transit_premium", "Estimated price difference by distance band relative to listings more than 2 km from a station, under three sets of controls (95% CI).", width_cm=14.5)
+rg = pd.DataFrame(R["a3_ring"]).set_index("Group"); dm = R["a3_demand"]; robx = R["a3_robust"]
+se_c, se_h = R["a3_se_cluster_vs_hc3"]
+para("We regress log price on walking-distance bands (reference: more than 2 km), adding controls in blocks: listing structure (room type, guests, "
+     "bedrooms, bathrooms, shared bathroom, amenities); distance to the CBD with LGA fixed effects; distance to the nearest beach and attractions within "
+     "1 km; and finally SA2 fixed effects, which compare listings within the same small neighbourhood. Standard errors are clustered by host, "
+     f"because 259 commercial hosts run 38% of listings and their listings are not independent (Cameron & Miller, 2015); this makes the key standard "
+     f"error {se_c/se_h:.1f}x larger than heteroskedasticity-robust (HC3) errors. Coefficients are reported as percentage differences, exp(β) − 1.",
+     bold_lead="Method. ", align="justify")
+para(f"The apparent rail effect is a composition effect (Figure 5). Uncontrolled, listings within a 500 m walk are {abs(R['a3_raw_premium_500']):.0f}% *cheaper*, "
+     f"because near-station stock is mostly small apartments ({pv('+ Structure')['Premium %']:+.0f}% after structure) and stations are not on the beaches. With all "
+     f"controls the difference is {R['a3_adj_premium_500']:+.1f}% ({ci(*R['a3_adj_premium_500_ci'])}, {pval(R['a3_adj_premium_500_p'])}), about "
+     f"{money(R['a3_adj_premium_500_dollars'])} a night at the median price. A smooth spline in walking distance gives the same answer (Figure 6A), and "
+     "neither the station's mode, frequency, rail time to the CBD nor patronage moves price measurably (all p > 0.1).", bold_lead="Price. ", align="justify")
+figure("a3_transit_premium", "Price difference by walking-distance band relative to listings more than 2 km from a station, under five sets of controls (95% CI, clustered by host).", width_cm=13.5)
+para(f"The average hides a split by ring (Figure 6B). In the inner city (< 5 km from Town Hall), where almost everything is walkable, near-station listings are "
+     f"{abs(rg.loc['Inner (<5 km)','Premium %']):.1f}% *cheaper* ({pval(rg.loc['Inner (<5 km)','p'])}). In the middle ring they earn "
+     f"{rg.loc['Middle (5-15 km)','Premium %']:+.1f}% ({pval(rg.loc['Middle (5-15 km)','p'])}) and in the outer suburbs {rg.loc['Outer (>15 km)','Premium %']:+.1f}% "
+     f"({pval(rg.loc['Outer (>15 km)','p'])}), where a station is the guest's link to the city.", bold_lead="Where it pays. ", align="justify")
+figure("a3_rail_shape", "Adjusted price by walking distance relative to a 2 km walk (A) and the within-500 m premium by CBD ring and station mode (B).", width_cm=15)
+drows = []
+for label in ["Occupancy, nights (OLS)", "Occupancy, nights (OLS, + log price)", "Calendar unavailable, next 90 days (OLS)",
+              "Reviews, last 12 months (Poisson)", "Revenue (PPML)"]:
+    d = dm[label]; u = {"nights": " nights", "pp": " pp", "%": "%"}[d["Unit"]]
+    drows.append((label, f"{d['Effect of <500 m walk']:+.1f}{u}", f"{d['CI low']:+.1f} to {d['CI high']:+.1f}", pval(d["p"])))
+for label, key in [("Price, March 2026 snapshot", "March 2026, walking distance, current network"),
+                   ("Price, first-draft measure (2020 network, straight line)", "June 2026, straight line, 2020 network (first draft)")]:
+    d = robx[key]
+    drows.append((label, f"{d['Premium %']:+.1f}%", f"{d['CI low %']:+.1f} to {d['CI high %']:+.1f}", pval(d["p"])))
+table(pd.DataFrame(drows, columns=["Outcome (all with full controls and SA2 fixed effects)", "Within 500 m walk", "95% CI", "p"]),
+      "Demand, revenue and robustness checks for the within-500 m effect", [8.2, 2.6, 3.2, 1.9])
+para("Demand is measured three ways because the occupancy estimate is review-based (Table 4). None shows a rail effect: "
+     f"{dm['Occupancy, nights (OLS)']['Effect of <500 m walk']:+.1f} nights a year, and estimated revenue (Poisson pseudo-maximum likelihood, which keeps "
+     f"zero-revenue listings; Santos Silva & Tenreyro, 2006) changes by {R['a3_rev_500_pct']:+.1f}% ({ci(*R['a3_rev_500_ci'])}). The result holds in the March "
+     "snapshot, so it is not a winter artefact. Our first draft, which used straight-line distance to the 2020 stations, LGA controls and listing-level "
+     f"errors, reported +4.8 nights (p = 0.04); with the 2020 measure, even our final model shows a spurious "
+     f"{robx['June 2026, straight line, 2020 network (first draft)']['Premium %']:+.1f}% price premium. Measurement quality changed the answer. "
+     "*Limitations:* these are associations within SA2s, not causal effects; prices are asking prices and revenue is an estimate.",
+     bold_lead="Demand, revenue and robustness. ", align="justify")
 
 doc.add_heading("Analysis 2. Commercial multi-listing hosts versus single-listing hosts", level=3)
 ht = pd.DataFrame(R["a3_host_tier"]).set_index("host_tier"); hs = R["a3_host_subscores"]; tt = R["a3_host_tests"]
 S, C = ht.loc["Single (1)"], ht.loc["Commercial (10+)"]
-para(f"Sydney's supply is highly concentrated: just {C['hosts']:.0f} commercial hosts (10+ listings) operate {C['listing_share_pct']:.0f}% of short-term listings. "
-     "We compare them with single-listing and small multi-listing hosts on guest satisfaction, demand and rail access (Figure 6).", align="justify")
 tier_rows = [(t, f"{ht.loc[t,'listings']:,.0f}", f"{ht.loc[t,'mean_rating_5plus']:.2f}", f"{ht.loc[t,'below_4_5_pct']:.0f}%",
-              f"{ht.loc[t,'superhost_pct']:.0f}%", f"{ht.loc[t,'median_occupancy']:.0f}", f"{ht.loc[t,'median_dist_station_m']:,.0f} m",
+              f"{ht.loc[t,'superhost_pct']:.0f}%", f"{ht.loc[t,'median_occupancy']:.0f}", f"{ht.loc[t,'median_walk_station_m']:,.0f} m",
               f"{ht.loc[t,'within_500m_pct']:.0f}%") for t in ht.index]
-table(pd.DataFrame(tier_rows, columns=["Host tier", "Listings", "Mean rating", "Rated < 4.5", "Superhost", "Median nights", "Median to station", "< 500 m"]),
+para(f"Just {C['hosts']:.0f} commercial hosts (10+ listings) operate {C['listing_share_pct']:.0f}% of short-term listings. We compare them with single and small "
+     "multi-listing hosts on guest satisfaction, demand and rail access (Table 5, Figure 7).", align="justify")
+table(pd.DataFrame(tier_rows, columns=["Host tier", "Listings", "Mean rating", "Rated < 4.5", "Superhost", "Median nights", "Median walk", "< 500 m"]),
       "Host tiers compared (ratings use listings with 5+ reviews)", [3.4, 1.6, 1.7, 1.7, 1.7, 1.8, 2.3, 1.7])
-para(f"Commercial listings score lower on every sub-score, with the largest gaps in cleanliness ({hs['Commercial (10+)']['Cleanliness']:.2f} against "
-     f"{hs['Single (1)']['Cleanliness']:.2f}) and value ({hs['Commercial (10+)']['Value']:.2f} against {hs['Single (1)']['Value']:.2f}). "
-     f"The difference is large (rank-biserial r = {tt['rating_rank_biserial']:.2f}, p < 0.001), and a regression controlling for room type, price, "
-     f"review volume, distance to the CBD and LGA still finds commercial listings {abs(tt['rating_gap_adj']):.2f} stars lower "
-     f"(95% CI {tt['rating_gap_adj_ci'][0]:.2f} to {tt['rating_gap_adj_ci'][1]:.2f}). Yet commercial hosts hold the best-connected stock: median "
-     f"{C['median_dist_station_m']:,.0f} m to a station against {S['median_dist_station_m']:,.0f} m for single hosts. Even so, their median occupancy is lower "
-     f"({C['median_occupancy']:.0f} against {S['median_occupancy']:.0f} nights). Professional operators secure the best locations but lose demand through "
-     "a weaker, more standardised guest experience. This links Q1 and Analysis 1: service quality, not location, is the binding constraint.",
+para(f"Commercial listings score lower on every sub-score, most in value ({hs['Commercial (10+)']['Value']:.2f} against {hs['Single (1)']['Value']:.2f}) and "
+     f"cleanliness ({hs['Commercial (10+)']['Cleanliness']:.2f} against {hs['Single (1)']['Cleanliness']:.2f}); the difference is large (rank-biserial r = "
+     f"{tt['rating_rank_biserial']:.2f}). Controlling for room type, price, review volume, distance to the CBD and SA2, with host-clustered errors, commercial "
+     f"listings are still {abs(tt['rating_gap_adj']):.2f} stars lower ({ci(*tt['rating_gap_adj_ci'], unit='', d=2)}). They hold the best-connected stock "
+     f"(median walk {C['median_walk_station_m']:,.0f} m against {S['median_walk_station_m']:,.0f} m), yet book {abs(tt['occupancy_gap_adj']):.0f} fewer nights a year than "
+     f"comparable single-host listings in the same SA2 at the same price ({ci(*tt['occupancy_gap_adj_ci'], unit=' nights', d=0)}). Professional operators "
+     "secure the locations but lose demand through a weaker guest experience. *Limitation:* guests with a poor stay may be less likely to review.",
      align="justify")
-figure("a3_host_tiers", "Mean review sub-scores by host tier (A) and cumulative distribution of distance to the nearest station entrance (B).")
+figure("a3_host_tiers", "Mean review sub-scores by host tier (A) and cumulative distribution of walking distance to the nearest station entrance (B).", width_cm=15)
 
 # ======================================================================
 # Part B
 # ======================================================================
 doc.add_heading("Part B. Machine Learning Analysis, Interpretation and Limitations", level=1)
-para(f"All models use the {R['clean_listings']:,} cleaned listings and the rail features built from the external dataset. The two supervised models "
-     f"predict log nightly price from 18 numeric and 3 categorical inputs (structure, reviews, host scale, coordinates, distance to CBD, "
-     "distance to station, stations within 1 km, room type, property group and LGA). A log target suits the right-skewed prices and makes "
-     f"errors proportional. Both share the same random 80/20 split (seed 42; {R['ml_train_n']:,} training and {R['ml_test_n']:,} test listings); hyper-parameters "
-     "are tuned by cross-validation on the training set only, and the test set is used once. A median-price baseline gives the reference point.",
-     align="justify")
-
-m1, m3, m1n, m3n = R["m1"], R["m3"], R["m1_noT"], R["m3_noT"]
+m1, m3, m1n, m3n, m1r, m3r = R["m1"], R["m3"], R["m1_noT"], R["m3_noT"], R["m1_random"], R["m3_random"]
 BASE = pd.read_csv(ROOT / "outputs" / "model_comparison.csv").set_index("Model").loc["Baseline (median)"]
+para(f"All models use the {R['clean_listings']:,} cleaned listings. The supervised models predict log nightly price (prices are right-skewed, so errors "
+     "become proportional) from listing structure, reviews, host scale, coordinates, LGA, the CBD, beach and attraction measures, SEIFA, and seven rail "
+     "features from the external data (walking distance, stations within 1 km, mode, frequency, patronage, rail time to the CBD and airport). "
+     f"Because neighbouring listings are alike, a random split flatters models. We therefore hold out whole SA2 neighbourhoods: {R['ml_test_n']:,} test listings "
+     f"in {R['ml_test_sa2']} SA2s never seen in training ({R['ml_train_n']:,} listings, {R['ml_train_sa2']} SA2s), and tune hyper-parameters with folds that are also "
+     "grouped by SA2 (Roberts et al., 2017). The random split is reported for comparison.", align="justify")
+
 doc.add_heading("Model 1 (supervised). Ridge regression", level=2)
-para("Ridge regression is linear regression with an L2 penalty (α·Σβ²) that shrinks coefficients towards zero (Hoerl & Kennard, 1970). It suits this "
-     "data because many inputs are correlated (guests, bedrooms and beds; coordinates, LGA and distances). Our *objective* was an interpretable price "
-     "model that shows how much rail access adds once a listing's structure and location are known.", bold_lead="Method and objective. ", align="justify")
-para("Numeric inputs are median-imputed with missing-value indicators (12% of listings have no rating yet), then standardised. Categorical "
-     "inputs are one-hot encoded, and levels with fewer than 20 rows are merged. Station and CBD distances enter as logarithms so each extra metre "
-     f"matters less. α was tuned over 11 values from 0.01 to 1,000 by 5-fold CV; the best was α = {R['m1_alpha']:.0f}.",
-     bold_lead="Preparation and tuning. ", align="justify")
-para(f"Test R² = {m1['R2 (log price)']:.3f} (training {R['m1_train_r2']:.3f}, so there is no overfitting), RMSE = {money(m1['RMSE (AUD)'])}, "
-     f"MAE = {money(m1['MAE (AUD)'])}, MAPE = {m1['MAPE %']:.1f}%. The median baseline scores R² ≈ 0 and MAE {money(BASE['MAE (AUD)'])}. Room type and size dominate (Figure 7B). "
-     f"The rail coefficients are small (standardised β = {R['m1_coef_rail']['log_dist_station']:+.3f} for log distance; "
-     f"{R['m1_coef_rail']['stations_within_1km']:+.3f} for stations within 1 km), and removing them changes test R² only from "
-     f"{m1['R2 (log price)']:.4f} to {m1n['R2 (log price)']:.4f}. This is consistent with Analysis 1.", bold_lead="Results. ", align="justify")
-para("(1) Rare room types (13 shared rooms) produced unstable dummies; merging infrequent levels fixed this. (2) LGA dummies, coordinates "
-     "and CBD distance overlap, so some outer LGAs (e.g. Camden) take large positive coefficients that only offset the distance terms; the penalty "
-     "stabilises predictions but individual location coefficients should not be read alone. (3) The model is additive and misses interactions. It under-predicts "
-     "luxury homes (Figure 7A), and listed price is an asking price, not the price paid.", bold_lead="Issues and limitations. ", align="justify")
-figure("m1_ridge", "Ridge predicted versus actual price on the test set (A) and the largest standardised non-LGA coefficients (B).")
+para("Ridge is linear regression with an L2 penalty (α·Σβ²) that shrinks coefficients towards zero (Hoerl & Kennard, 1970), which stabilises "
+     "estimates when inputs are correlated (guests, bedrooms and beds; coordinates, LGA, distances and rail times). Our *objective* was an "
+     "interpretable price model that shows how much rail access adds once structure and location are known.", bold_lead="Method and objective. ", align="justify")
+para("Numeric inputs are median-imputed with missing-value indicators (12% of listings have no rating; a few stations have no patronage record) "
+     "and standardised; categories are one-hot encoded with levels under 20 rows merged; distances enter as logarithms. α was tuned over 11 values "
+     f"from 0.01 to 1,000 by grouped 5-fold CV (best α = {R['m1_alpha']:g}).", bold_lead="Preparation and tuning. ", align="justify")
+para(f"On held-out SA2s, R² = {m1['R2 (log price)']:.3f} (training {R['m1_train_r2']:.3f}), RMSE {money(m1['RMSE (AUD)'])}, MAE {money(m1['MAE (AUD)'])}, "
+     f"MAPE {m1['MAPE %']:.1f}%, against a median baseline with MAE {money(BASE['MAE (AUD)'])}. Room type and size dominate, followed by distance to the beach, "
+     f"longitude and SEIFA (Figure 8B). Removing all rail features lowers R² only from {m1['R2 (log price)']:.3f} to {m1n['R2 (log price)']:.3f}.",
+     bold_lead="Results. ", align="justify")
+para(f"(1) The random split scored R² = {m1r['R2 (log price)']:.3f}, overstating accuracy in a new area; we report the spatial result. (2) Only 13 shared "
+     "rooms remain, so rare levels were merged to avoid unstable dummies. (3) LGA dummies, coordinates and distances overlap, so individual location "
+     "coefficients should not be read alone; the penalty keeps predictions stable. (4) The model is additive and misses interactions, and listed price "
+     "is an asking price.", bold_lead="Issues and limitations. ", align="justify")
+figure("m1_ridge", "Ridge predicted versus actual price on held-out SA2s (A) and the largest standardised non-LGA coefficients (B).", width_cm=15)
 
 doc.add_heading("Model 2 (unsupervised). K-Means market segmentation", level=2)
 kt = pd.DataFrame(R["m2_k_table"]).set_index("k"); pr = pd.DataFrame(R["m2_profiles"])
-para("K-Means assigns each listing to the nearest of k centroids and repeatedly moves each centroid to the mean of its members, minimising "
-     "within-cluster squared distance (inertia). Our *objective* was to segment Sydney's supply into investment zones combining location, price, "
-     "rail access and demand. Inputs were latitude, longitude, log price, log distance to station, distance to the CBD and estimated occupancy, all "
-     "standardised because their units differ by orders of magnitude.", bold_lead="Method and objective. ", align="justify")
-para(f"We fitted k = 2–10 (Figure 8). The silhouette score peaks at k = 3 ({kt.loc[3,'silhouette']:.2f}), but that solution only separates coast, suburbs "
-     f"and inner city. The elbow flattens after k = 4, and k = 4 (silhouette {R['m2_silhouette']:.2f}) splits the inner city into two commercially "
-     "very different groups, so we chose it for interpretability. Silhouette is O(n²), so it was computed on a fixed 4,000-listing sample.",
+para("K-Means assigns each listing to the nearest of k centroids and moves each centroid to the mean of its members until assignments settle, "
+     "minimising within-cluster squared distance. Our *objective* was to segment Sydney's supply into zones combining location, price, rail access "
+     "and demand, as an investment screen. Inputs were latitude, longitude, log price, log walking distance to a station, distance to the CBD, log "
+     "distance to the beach and estimated occupancy, all z-scored because their units differ by orders of magnitude.", bold_lead="Method and objective. ", align="justify")
+para(f"We fitted k = 2–10. The silhouette is highest at k = 2 ({kt.loc[2,'silhouette']:.2f}), which only separates the city from the rest; among k ≥ 4 it "
+     f"peaks at k = {R['m2_k']} ({R['m2_silhouette']:.2f}), where the elbow curve has flattened. Silhouette is O(n²), so it was computed on a fixed 4,000-listing "
+     "sample. Segment names are generated from each profile (ring, coast, price and demand relative to the city median, walk to rail).",
      bold_lead="Choosing k. ", align="justify")
-figure("m2_choose_k", "Elbow curve (A) and silhouette score (B) for k = 2–10.", width_cm=13)
 prow = [(r_.segment, f"{r_.listings:,.0f}", money(r_.median_price), f"{r_.median_occupancy:.0f}", money(r_.median_revenue),
-         f"{r_.median_dist_station_m:,.0f} m", f"{r_.median_dist_cbd_km:.1f} km") for r_ in pr.itertuples()]
-table(pd.DataFrame(prow, columns=["Segment", "Listings", "Median price", "Median nights", "Median revenue", "To station", "To CBD"]),
-      "K-Means segment profiles (medians; revenue is Inside Airbnb's 12-month estimate)", [4.6, 1.7, 1.9, 1.7, 2.1, 2.0, 1.9])
-city = pr[pr.segment == "City-core high-turnover"].iloc[0]; ring = pr[pr.segment == "Inner-ring low-utilisation"].iloc[0]
-para(f"The clusters map cleanly (Figure 9). The *City-core high-turnover* and *Inner-ring low-utilisation* segments occupy the same LGAs "
-     f"and similar rail access ({city.median_dist_station_m:,.0f} m against {ring.median_dist_station_m:,.0f} m), yet median occupancy is {city.median_occupancy:.0f} against "
-     f"{ring.median_occupancy:.0f} nights and median revenue {money(city.median_revenue)} against {money(ring.median_revenue)}. Within the same locations, "
-     "operation separates winners from under-used stock. The *Coastal premium* segment charges the most but is rail-remote and seasonal; "
-     "the *Outer-suburban budget* segment is cheap with low demand. Silhouettes near 0.26 mean the segments overlap, K-Means assumes compact "
-     "clusters and treats coordinates as Euclidean, and results depend on the inputs chosen, so the segments are a screening tool, not natural boundaries.",
+         f"{r_.median_walk_station_m:,.0f} m") for r_ in pr.itertuples()]
+table(pd.DataFrame(prow, columns=["Segment", "Listings", "Median price", "Median nights", "Median revenue", "Walk to rail"]),
+      "K-Means segment profiles (medians; revenue is Inside Airbnb's 12-month estimate)", [6.6, 1.6, 1.9, 1.8, 2.1, 1.9])
+top_rev = pr.sort_values("median_revenue", ascending=False).iloc[0]
+inner_low = pr[pr.segment.str.startswith("Inner") & pr.segment.str.contains("low-utilisation")].iloc[0]
+para(f"The two inner-city, rail-served segments sit in the same LGAs with similar rail access ({top_rev.median_walk_station_m:,.0f} m against "
+     f"{inner_low.median_walk_station_m:,.0f} m), yet book {top_rev.median_occupancy:.0f} against {inner_low.median_occupancy:.0f} nights, and median revenue is "
+     f"{money(top_rev.median_revenue)} against {money(inner_low.median_revenue)} (Figure 9). Within the same locations, operation separates winners from under-used "
+     "stock. The coastal premium segments charge the most but are rail-remote with low utilisation. Silhouettes near 0.25 mean the segments overlap, "
+     "K-Means assumes compact clusters and treats coordinates as Euclidean, so the segments are a screening tool, not natural boundaries.",
      bold_lead="Results and limitations. ", align="justify")
-figure("m2_cluster_maps", "Listings in each K-Means segment (blue) against all listings (grey), with segment medians.")
+figure("m2_cluster_maps", "Listings in each K-Means segment (blue) against all listings (grey), with segment medians.", width_cm=15.5)
 
 doc.add_heading("Model 3 (not covered in class). XGBoost with SHAP interpretation", level=2)
-p3 = R["m3_params"]
-para("XGBoost (Chen & Guestrin, 2016) is a gradient-boosted tree ensemble. Trees are added one at a time, each fitted to the residual errors of the "
-     "trees before it and scaled by a learning rate, with L2 regularisation on leaf weights and row/column subsampling to limit overfitting. Unlike "
-     "Ridge, it learns non-linear effects and interactions automatically. To interpret it we use SHAP (Lundberg & Lee, 2017), which splits each "
-     "prediction into additive feature contributions based on Shapley values from cooperative game theory. With a log target, a SHAP value s means "
-     "the feature moves the predicted price by about exp(s) − 1. Our *objective* was to beat Ridge's accuracy and isolate the non-linear effect of rail proximity.",
-     bold_lead="Method and objective. ", align="justify")
-para(f"The same inputs as Model 1 (raw distances, since trees are scale-free) with one-hot categories. A randomised search over 30 configurations with 3-fold CV "
-     f"selected {p3['n_estimators']} trees, depth {p3['max_depth']}, learning rate {p3['learning_rate']}, subsample {p3['subsample']}, column sample "
-     f"{p3['colsample_bytree']} and λ = {p3['reg_lambda']} (CV RMSE {R['m3_cv_rmse_log']:.3f} log units against {R['m1_cv_rmse_log']:.3f} for Ridge).",
-     bold_lead="Preparation and tuning. ", align="justify")
+p3 = R["m3_params"]; sb = R["m3_shap_dist_band_pct"]; eb = R["ml_err_by_band"]
+para("XGBoost (Chen & Guestrin, 2016) is a gradient-boosted tree ensemble: each new tree is fitted to the residual errors of those before it and "
+     "scaled by a learning rate, with L2 regularisation and row/column subsampling against overfitting. Unlike Ridge it learns non-linear effects and "
+     "interactions, such as rail mattering more in the suburbs. SHAP (Lundberg & Lee, 2017) splits each prediction into additive feature contributions "
+     "based on Shapley values; with a log target a SHAP value s moves the predicted price by about exp(s) − 1. Our *objective* was to beat Ridge and isolate "
+     "the non-linear contribution of rail access.", bold_lead="Method and objective. ", align="justify")
+para(f"Same inputs as Model 1 (raw distances; trees are scale-free). A randomised search over 30 configurations with grouped 3-fold CV selected "
+     f"{p3['n_estimators']} trees, depth {p3['max_depth']}, learning rate {p3['learning_rate']}, subsample {p3['subsample']}, column sample "
+     f"{p3['colsample_bytree']} and λ = {p3['reg_lambda']} (CV RMSE {R['m3_cv_rmse_log']:.3f} log units against {R['m1_cv_rmse_log']:.3f} for Ridge). "
+     "The model without rail features received its own search.", bold_lead="Preparation and tuning. ", align="justify")
 cmp_rows = [("Baseline (median price)", f"{BASE['R2 (log price)']:.3f}", money(BASE['RMSE (AUD)']), money(BASE['MAE (AUD)']), f"{BASE['MAPE %']:.1f}%")]
-for name, m in [("Model 1: Ridge", m1), ("Ridge without rail features", m1n), ("Model 3: XGBoost", m3), ("XGBoost without rail features", m3n)]:
+for name, m in [("Model 1: Ridge", m1), ("Ridge without rail features", m1n), ("Model 3: XGBoost", m3), ("XGBoost without rail features", m3n),
+                ("Ridge, random split (comparison)", m1r), ("XGBoost, random split (comparison)", m3r)]:
     cmp_rows.append((name, f"{m['R2 (log price)']:.3f}", money(m['RMSE (AUD)']), money(m['MAE (AUD)']), f"{m['MAPE %']:.1f}%"))
-table(pd.DataFrame(cmp_rows, columns=["Model (test set)", "R² (log)", "RMSE", "MAE", "MAPE"]), "Test-set performance and rail-feature ablation",
-      [6.3, 2.2, 2.4, 2.4, 2.4])
-sb = R["m3_shap_dist_band_pct"]
-para(f"XGBoost improves on Ridge on every metric: R² {m3['R2 (log price)']:.3f} against {m1['R2 (log price)']:.3f}, MAE {money(m3['MAE (AUD)'])} against "
-     f"{money(m1['MAE (AUD)'])}, MAPE {m3['MAPE %']:.1f}% against {m1['MAPE %']:.1f}%. The gain comes from non-linear size and location effects. SHAP ranks bedrooms, guests, room "
-     f"type and longitude (the east–west, coast-to-inland gradient) highest (Figure 10A). The rail features rank {R['m3_shap_rail_rank']}th and carry only "
-     f"{R['m3_shap_rail_share_pct']}% of total |SHAP|. Figure 10B isolates station distance: within 4 km its effect stays within about ±1% of price "
-     f"(e.g. {sb['<250 m']:+.1f}% under 250 m, {sb['500 m-1 km']:+.1f}% at 500 m–1 km). It turns positive only beyond 5 km ({sb['>5 km']:+.1f}% on average), "
-     "where it is acting as a proxy for coastal Northern Beaches homes rather than a rail effect. Dropping rail features moves test R² only from "
-     f"{m3['R2 (log price)']:.4f} to {m3n['R2 (log price)']:.4f}. Three independent methods (regression with controls, Ridge and XGBoost with SHAP) agree "
-     "that rail proximity does not set Sydney's short-term rental prices.", bold_lead="Results. ", align="justify")
-eb = R["ml_err_by_band"]
-para(f"(1) Overfitting: training R² is {R['m3_train_r2']:.2f} against {m3['R2 (log price)']:.2f} on test. The search favoured subsampling and "
-     "regularisation, and CV and test errors agree, so the score is not a lucky split. (2) SHAP spreads one-hot categories over many columns, "
-     "under-stating LGA and room type, so we summed SHAP values back to the original variable. (3) Predictions shrink to the middle: XGBoost "
-     f"over-predicts the cheapest quartile by {eb['XGBoost bias %']['Q1 (cheapest)']:.0f}% and under-predicts the dearest by "
-     f"{abs(eb['XGBoost bias %']['Q4 (dearest)']):.0f}%. (4) SHAP explains the model, not causation, and the random split lets neighbouring listings sit "
-     "in both train and test sets, so spatial generalisation may be optimistic.", bold_lead="Issues and limitations. ", align="justify")
-figure("m3_shap", "XGBoost feature importance as mean |SHAP|, rail features in orange (A), and SHAP effect of station distance on predicted price with binned mean (B).")
+table(pd.DataFrame(cmp_rows, columns=["Model (held-out SA2s unless stated)", "R² (log)", "RMSE", "MAE", "MAPE"]),
+      "Test-set performance, rail-feature ablation and random-split comparison", [7.1, 2.0, 2.2, 2.2, 2.2])
+para(f"XGBoost beats Ridge on every metric (R² {m3['R2 (log price)']:.3f} against {m1['R2 (log price)']:.3f}; MAE {money(m3['MAE (AUD)'])} against "
+     f"{money(m1['MAE (AUD)'])}). SHAP ranks bedrooms, guests and room type highest, then longitude, distance to the beach and SEIFA (Figure 10A). All rail "
+     f"features together carry {R['m3_shap_rail_share_pct']}% of total |SHAP| and the best of them is only number {R['m3_shap_rail_rank']}. Walking distance "
+     f"moves price by about 1% or less below 5 km in every ring (Figure 10B) and rises only beyond 5 km ({sb['>5 km']:+.1f}%), where {R['far_from_rail_coastal_pct']:.0f}% "
+     f"of listings are within 2 km of a beach, a coastal effect rather than a rail one. Re-tuned without rail features, R² is {m3n['R2 (log price)']:.4f} against "
+     f"{m3['R2 (log price)']:.4f}. Regression with controls, Ridge and XGBoost agree: rail proximity does not set Sydney's short-term rental prices.",
+     bold_lead="Results. ", align="justify")
+para(f"(1) Training R² is {R['m3_train_r2']:.2f} against {m3['R2 (log price)']:.2f} on test; the search favoured regularising settings and the grouped CV "
+     f"error matches the test error, so the score is not a lucky split. (2) The random split overstated R² ({m3r['R2 (log price)']:.3f}). (3) SHAP spreads one-hot "
+     "categories over many columns, so we summed them back to the original variable. (4) Predictions shrink to the middle: the cheapest quartile is "
+     f"over-predicted by {eb['XGBoost bias %']['Q1 (cheapest)']:.0f}% and the dearest under-predicted by {abs(eb['XGBoost bias %']['Q4 (dearest)']):.0f}%. "
+     "(5) SHAP explains the model, not causation.", bold_lead="Issues and limitations. ", align="justify")
+figure("m3_shap", "XGBoost feature importance as mean |SHAP| (A) and SHAP effect of walking distance on predicted price by CBD ring (B).", width_cm=15.5)
 
 # ======================================================================
 # Part C
 # ======================================================================
 doc.add_heading("Part C. Summary and Business Recommendations", level=1)
-para("Across the exploratory and machine learning analyses, one message is consistent: in Sydney's short-term rental market, *what* a "
-     "listing is and *where* it sits set the price, while *how it is run* sets the demand. Location strongly shapes price (coastal and "
-     "North Shore premiums, a western-suburbs discount). Rail access, which looks like a 30% discount in raw data, has no meaningful price effect "
-     f"once structure and location are controlled ({R['a3_adj_premium_500']:+.1f}%, not significant), and adds almost nothing to either price model. "
-     f"It does add demand (about {R['a3_occ_500_nights']:.0f} extra nights a year within 500 m). Demand, in turn, depends on operation: popular listings "
-     "are superhost-run, have short minimum stays and avoid sub-4.5 ratings, and K-Means shows that within the same inner-city locations a "
-     f"high-turnover segment earns about {city.median_revenue/ring.median_revenue:.0f} times the median revenue of an under-used one. "
-     "Commercial hosts hold the best-connected stock but deliver lower ratings and lower occupancy.", align="justify")
-bullet(f" Value transit-adjacent units on occupancy, not on nightly rate. Our models show no reliable price premium for being within "
-       f"500 m of a station, but a measurable occupancy gain. Investors should not pay above-market purchase prices expecting higher rates near "
-       f"stations. They should target well-connected inner-city stock and underwrite it on volume, as in the city-core segment "
-       f"({money(city.median_price)} median rate, {city.median_occupancy:.0f} nights, {money(city.median_revenue)} median revenue).",
+para("Across the exploratory and machine learning analyses one message is consistent: *what* a listing is and *where* it sits set the price, and "
+     "*how it is run* sets the demand. Rail access looks like a 26% discount in raw data, but once structure, beaches and neighbourhood are controlled it "
+     f"has no average effect on price ({R['a3_adj_premium_500']:+.1f}%), demand or revenue, and it adds almost nothing to either price model. The exception is "
+     f"the suburbs, where a station within a 500 m walk is worth about {rg.loc['Middle (5-15 km)','Premium %']:.0f}–{rg.loc['Outer (>15 km)','Premium %']:.0f}% on the "
+     "nightly rate. Demand instead follows operation: popular listings have short minimum stays and strong review records, the busiest inner-city "
+     f"segment earns about {top_rev.median_revenue/inner_low.median_revenue:.0f} times the revenue of an under-used segment in the same area, and commercial "
+     "hosts convert the best-connected stock into lower ratings and fewer nights. Better data also mattered: the outdated 2020 network and straight-line "
+     "distances produced a rail premium and a demand effect that the corrected measures do not support.", align="justify")
+bullet(" Do not pay extra for proximity to a station in the inner city, where it carries no premium. In the middle and outer suburbs, "
+       f"a listing within a 500 m walk of a station earns about {rg.loc['Middle (5-15 km)','Premium %']:.0f}–{rg.loc['Outer (>15 km)','Premium %']:.0f}% more a night than a comparable one "
+       "further away. That is where rail access is worth paying for. Underwrite inner-city stock on occupancy, as in the high-turnover segment "
+       f"({money(top_rev.median_price)} median rate, {top_rev.median_occupancy:.0f} nights, {money(top_rev.median_revenue)} median revenue).",
        lead="1. Investors —")
-bullet(f" Cut booking friction before cutting price. Occupancy falls from {mn['1']:.0f} to {mn['4-7']:.0f} median nights as minimum "
-       f"stays rise from one to four to seven nights, and superhost listings book about {sh['1']/max(sh['0'],1):.0f} times as many nights as others. Hosts in the "
-       "inner-ring low-utilisation segment, who already have the city-core's locations, should first move to one- or two-night minimums, "
-       "work towards superhost criteria and add amenities, before discounting. Price is a weak lever on ratings (ρ = "
-       f"{R['q2_rho_overall']:.2f}).", lead="2. Individual hosts —")
-bullet(f" Close the guest-experience gap, starting with cleanliness. Commercial listings trail single hosts by "
-       f"{abs(tt['rating_gap_adj']):.2f} stars after controls and {hs['Single (1)']['Cleanliness'] - hs['Commercial (10+)']['Cleanliness']:.2f} on "
-       f"cleanliness, and {C['below_4_5_pct']:.0f}% of their listings fall below the 4.5 threshold where occupancy collapses (median {rb['<4.5']:.0f} nights against {rb['4.8-4.9']:.0f} at 4.8–4.9). "
-       "Turnover audits, standardised cleaning checklists and value-adding inclusions would let operators convert their location "
-       f"advantage into the occupancy they currently miss ({C['median_occupancy']:.0f} against {S['median_occupancy']:.0f} nights). An XGBoost price model "
-       f"(MAPE {m3['MAPE %']:.0f}%) can support rate-setting for mid-market stock, but not for luxury homes, where it under-predicts.",
+bullet(f" Reduce booking friction before cutting price. Median occupancy falls from {mn['1']:.0f} nights at a one-night minimum stay to {mn['4-7']:.0f} at "
+       "four to seven nights, and ratings below 4.5 coincide with much lower occupancy. Hosts in the low-utilisation inner segment, who already "
+       "have the right locations, should first move to one- or two-night minimums and protect their review record. Price is a weak lever on ratings "
+       f"(ρ = {R['q2_rho_overall']:.2f}).", lead="2. Individual hosts —")
+bullet(f" Close the guest-experience gap, starting with value and cleanliness. Commercial listings trail single hosts by {abs(tt['rating_gap_adj']):.2f} "
+       f"stars after controls, {C['below_4_5_pct']:.0f}% of them sit below 4.5, and they book {abs(tt['occupancy_gap_adj']):.0f} fewer nights than comparable "
+       "listings. Turnover audits, cleaning checklists and value-adding inclusions would let operators turn their location advantage into occupancy. "
+       f"An XGBoost price model (MAPE {m3['MAPE %']:.0f}% on unseen neighbourhoods) can support rate-setting for mid-market stock, but not luxury homes, which it under-prices.",
        lead="3. Commercial operators —")
-para("Limitations: Inside Airbnb occupancy and revenue are model estimates built from reviews; listed prices are asking prices from one "
-     "snapshot (winter); the station data reflects the 2020 network, so newer Sydney Metro stations are missing; and all findings are associations.",
+para("*Limitations.* Inside Airbnb occupancy and revenue are estimates built from reviews; prices are asking prices; the main snapshot is from winter "
+     "(checked against March 2026); the GTFS timetable is from October 2026 and SEIFA from the 2021 Census; and all findings are associations, not causal effects.",
      align="justify")
 
 # ======================================================================
@@ -455,16 +486,26 @@ para("Limitations: Inside Airbnb occupancy and revenue are model estimates built
 # ======================================================================
 doc.add_heading("References", level=1)
 refs = [
-    "Chen, T., & Guestrin, C. (2016). XGBoost: A scalable tree boosting system. In *Proceedings of the 22nd ACM SIGKDD International Conference on Knowledge Discovery and Data Mining* (pp. 785–794). https://doi.org/10.1145/2939672.2939785",
+    "Australian Bureau of Statistics. (2021). *Australian Statistical Geography Standard (ASGS) Edition 3: Statistical Area Level 2 digital boundaries* [Data set]. Licensed under CC BY 4.0. Retrieved 7 October 2026, from https://www.abs.gov.au/",
+    "Australian Bureau of Statistics. (2023). *Socio-Economic Indexes for Areas (SEIFA), Australia, 2021: Statistical Area Level 2 indexes* [Data set]. Licensed under CC BY 4.0. Retrieved 7 October 2026, from https://www.abs.gov.au/",
+    "Boeing, G. (2017). OSMnx: New methods for acquiring, constructing, analyzing, and visualizing complex street networks. *Computers, Environment and Urban Systems, 65*, 126–139.",
+    "Cameron, A. C., & Miller, D. L. (2015). A practitioner's guide to cluster-robust inference. *Journal of Human Resources, 50*(2), 317–372.",
+    "Chen, T., & Guestrin, C. (2016). XGBoost: A scalable tree boosting system. In *Proceedings of the 22nd ACM SIGKDD International Conference on Knowledge Discovery and Data Mining* (pp. 785–794).",
+    "Dibbelt, J., Pajor, T., Strasser, B., & Wagner, D. (2013). Intriguingly simple and fast transit routing. In *Experimental Algorithms (SEA 2013)*, Lecture Notes in Computer Science 7933 (pp. 43–54). Springer.",
     "Hoerl, A. E., & Kennard, R. W. (1970). Ridge regression: Biased estimation for nonorthogonal problems. *Technometrics, 12*(1), 55–67.",
-    f"Inside Airbnb. (2026). *Sydney, New South Wales, Australia: listings, calendar and neighbourhoods* [Data set; scraped 17–29 June 2026]. Licensed under CC BY 4.0. Retrieved 6 October 2026, from https://insideairbnb.com/get-the-data/",
+    "Inside Airbnb. (2026). *Sydney, New South Wales, Australia: listings, calendar and neighbourhoods* [Data set; compiled 29 June 2026 and 21 March 2026]. Licensed under CC BY 4.0. Retrieved 6–7 October 2026, from https://insideairbnb.com/get-the-data/",
     "Lundberg, S. M., & Lee, S.-I. (2017). A unified approach to interpreting model predictions. *Advances in Neural Information Processing Systems, 30*, 4765–4774.",
+    "OpenStreetMap contributors. (2026). *OpenStreetMap* [Data set; beaches, tourist attractions and pedestrian network for Sydney]. Licensed under ODbL 1.0. Retrieved 7 October 2026, via the Overpass API, from https://www.openstreetmap.org/",
     "Pedregosa, F., et al. (2011). Scikit-learn: Machine learning in Python. *Journal of Machine Learning Research, 12*, 2825–2830.",
+    "Roberts, D. R., et al. (2017). Cross-validation strategies for data with temporal, spatial, hierarchical, or phylogenetic structure. *Ecography, 40*(8), 913–929.",
     "Rousseeuw, P. J. (1987). Silhouettes: A graphical aid to the interpretation and validation of cluster analysis. *Journal of Computational and Applied Mathematics, 20*, 53–65.",
-    "Transport for NSW. (2020). *Train station entrance locations* (stationentrances2020_v4) [Data set]. TfNSW Open Data Hub. Licensed under CC BY 4.0. Retrieved 6 October 2026, from https://opendata.transport.nsw.gov.au/",
+    "Santos Silva, J. M. C., & Tenreyro, S. (2006). The log of gravity. *Review of Economics and Statistics, 88*(4), 641–658.",
+    "Transport for NSW. (2020). *Train station entrance locations* (stationentrances2020_v4) [Data set]. Licensed under CC BY 4.0. Retrieved 6 October 2026, from https://opendata.transport.nsw.gov.au/",
+    "Transport for NSW. (2026a). *Timetables Complete GTFS* [Data set; timetable valid from 6 October 2026]. Licensed under CC BY 4.0. Retrieved 6 October 2026, from https://opendata.transport.nsw.gov.au/",
+    "Transport for NSW. (2026b). *Train, Metro and Light Rail Station Entries and Exits* [Data set; October 2024 – August 2026]. Licensed under CC BY 4.0. Retrieved 7 October 2026, from https://opendata.transport.nsw.gov.au/",
 ]
 for ref in refs:
-    p = para(ref, after=3)
+    p = para(ref, after=2)
     p.paragraph_format.left_indent = Cm(0.8); p.paragraph_format.first_line_indent = Cm(-0.8)
 
 # ---- Footer with page numbers ----
