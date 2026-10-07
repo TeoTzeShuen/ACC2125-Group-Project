@@ -1,7 +1,5 @@
 # Does Rail Access Pay? Machine Learning on Sydney's Short-Term Rental Market
 
-Group project for **ACC2125 Data Analytics and Machine Learning** (Singapore Institute of Technology, AY2026/27 Trimester 1).
-
 ## Goal of the analysis
 
 Investors often assume that short-term rental listings near train stations earn more. This project tests that assumption on Sydney, Australia. It joins the Inside Airbnb listings for Sydney to the current Transport for NSW rail, Metro and light-rail network (station entrances, frequency, travel time to the CBD and airport, patronage), measures real walking distance on the OpenStreetMap street network, and controls for beaches, attractions and neighbourhood status (ABS SEIFA by SA2). It then asks:
@@ -113,7 +111,3 @@ Open `Code_Group09.ipynb` in Jupyter or VS Code with a Python 3.14 kernel and ru
 ## Limitations
 
 Inside Airbnb's occupancy and revenue figures are model estimates built from review counts, and the calendar mixes bookings with host-blocked nights. Prices are asking prices; the main snapshot is from winter (June 2026), with March 2026 used as a cross-season check. The GTFS timetable (October 2026) is a few months later than the listings snapshot. SEIFA is from the 2021 Census. All findings are associations, not causal effects.
-
-## Academic use
-
-This was prepared for coursework at the Singapore Institute of Technology. Follow your institution's academic integrity policy before reusing any of it.
